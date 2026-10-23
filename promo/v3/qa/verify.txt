@@ -1,0 +1,18 @@
+{
+  "format": "1080x1920 / 30fps / 10 seconds / H.264 yuv420p + AAC stereo",
+  "bytes": 3043978,
+  "sha256": "3fd77737e2920ae29c4699a9aa18b8be818188a6d882501012a80eeb94cd9613",
+  "full_decode_exit": 0,
+  "audio_peak": 0.8043743968009949,
+  "audio_rms": 0.12182298302650452,
+  "female_narration": {
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "generic_synthetic_voice": true,
+    "script": "���н��ֻ���ѧϰ�ڼ���ֻ����ﺢ�������ֻ����ҳ��ͱ������ر�С��������ע��Ⱥ�������ȡ��",
+    "all_words_present_in_generation_metadata": true,
+    "raw_duration": 8.52,
+    "speech_last_word_end_with_delay": 8.24,
+    "mix_delay_seconds": 0.18,
+    "cut_off": false
+  }
+}

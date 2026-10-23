@@ -1,0 +1,19 @@
+MV-02 render 00/36s; elapsed 0.5s
+MV-02 render 02/36s; elapsed 1.5s
+MV-02 render 04/36s; elapsed 2.4s
+MV-02 render 06/36s; elapsed 3.4s
+MV-02 render 08/36s; elapsed 4.4s
+MV-02 render 10/36s; elapsed 5.6s
+MV-02 render 12/36s; elapsed 6.6s
+MV-02 render 14/36s; elapsed 7.6s
+MV-02 render 16/36s; elapsed 8.8s
+MV-02 render 18/36s; elapsed 9.6s
+MV-02 render 20/36s; elapsed 10.6s
+MV-02 render 22/36s; elapsed 11.7s
+MV-02 render 24/36s; elapsed 12.6s
+MV-02 render 26/36s; elapsed 13.6s
+MV-02 render 28/36s; elapsed 15.3s
+MV-02 render 30/36s; elapsed 17.6s
+MV-02 render 32/36s; elapsed 19.4s
+MV-02 render 34/36s; elapsed 20.3s
+MV-02 rendered in 21.3s

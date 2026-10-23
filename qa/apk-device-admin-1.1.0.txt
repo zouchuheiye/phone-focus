@@ -1,0 +1,4 @@
+N: android=http://schemas.android.com/apk/res/android
+  E: device-admin (line=2)
+    E: uses-policies (line=3)
+      E: force-lock (line=4)

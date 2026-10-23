@@ -1,0 +1,12 @@
+{
+  "evidence_id": "E-20261023-GITHUB-PUBLISH-AUDIT",
+  "verified_at": "2026-10-23T16:11:20.180914+08:00",
+  "scope": "Exactly current Git index; rerun after staging any new content. Patterns are a bounded credential audit, not a guarantee of absence of all secret types.",
+  "staged_file_count": 282,
+  "staged_total_bytes": 48051152,
+  "largest_file_bytes": 6912044,
+  "forbidden_paths": [],
+  "credential_pattern_findings": [],
+  "keystore_and_local_state_excluded": true,
+  "publish_visibility": "public, authorized by upload request and promotional display-page scope"
+}

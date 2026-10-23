@@ -1,0 +1,11 @@
+{
+  "voice": "zh-CN-XiaoxiaoNeural",
+  "gender": "Female",
+  "synthetic": true,
+  "text": "考研戒手机，学习期间戒手机。帮孩子少玩手机，家长和备考党必备小软件。关注加群，免费领取！",
+  "rate": "+25%",
+  "pitch": "+2Hz",
+  "engine": "edge-tts",
+  "proxy_used": true,
+  "scope": "Only this public promotional script is sent for speech synthesis. User screenshot images are not sent."
+}

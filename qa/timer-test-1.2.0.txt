@@ -1,0 +1,3 @@
+PASS: 129966 checks; boundary, repeat, screen-off, duplicate, delay, long uptime, randomized sequences.
+PASS: 382 auto-screen-off checks; real service decision class with fake OS adapter, no device claim.
+PASS: 3363 owner-focus checks; monotonic/reboot deadlines, emergency code verification, independent policy rollback/retry. No device-owner hardware claim.

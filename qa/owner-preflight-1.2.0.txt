@@ -1,0 +1,6 @@
+{
+  "mode": "read-only",
+  "connectedDevices": 0,
+  "devices": [],
+  "next": "Connect the phone, accept USB debugging on it, then pass -DeviceSerial. Without -Apply this script does not install or grant anything."
+}

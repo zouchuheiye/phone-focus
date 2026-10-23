@@ -1,0 +1,2 @@
+PASS: same signer as 1.1.0
+Signer #1 certificate SHA-256 digest: 60f4fe96b3ea2259c45ff413505f256f48924870893cf3cf75c0a98e9a71e2f8

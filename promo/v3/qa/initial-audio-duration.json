@@ -1,0 +1,8 @@
+{
+  "first_mux_video_seconds": 10,
+  "first_mix_audio_seconds": 9.92,
+  "validation_result": "Rejected: audio/video stream duration difference exceeded 0.05s.",
+  "cause": "FFmpeg filter mix returned 9.92s; adding padding still returned 9.92s. Exact filter/timestamp cause not established.",
+  "fix": "Replace filter-chain mixing with a PCM sample-index mix of exactly 480000 stereo frames at 48kHz, retain every voice sample, then re-render and re-verify.",
+  "narration_cutoff": false
+}

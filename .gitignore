@@ -1,0 +1,15 @@
+.local/
+.gradle/
+**/build/
+local.properties
+qa/classes/
+**/__pycache__/
+*.py[cod]
+*.jks
+*.keystore
+signing.json
+.env
+.env.*
+!.env.example
+node_modules/
+.local-preview/

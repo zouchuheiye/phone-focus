@@ -1,0 +1,1 @@
+PASS: 12 owner-setup guard checks using fake ADB only. No phone contacted or configured.

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f3e9">
+  <meta name="description" content="去做正事：在安卓手机设置每天的专注时段，支持多段独立开关、跨午夜和到点恢复。免费观看10秒动漫宣传片，下载Android安装包。">
+  <meta property="og:title" content="去做正事 · 给正事，留一段时间">
+  <meta property="og:description" content="双框选时，多段独立，每天重复。Android每日时段助手。">
+  <meta property="og:image" content="https://zouchuheiye.github.io/phone-focus/assets/github-cover.jpg">
+  <meta property="og:type" content="website">
+  <title>去做正事 · 给正事，留一段时间</title>
+  <link rel="icon" type="image/svg+xml" href="assets/mark.svg">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">跳到正文</a>
+  <header class="site-header wrap">
+    <a class="brand" href="#" aria-label="去做正事首页"><img src="assets/mark.svg" width="42" height="42" alt=""><span>去做正事<small>PHONE FOCUS</small></span></a>
+    <nav aria-label="主导航"><a href="#how">怎么使用</a><a href="#film">宣传短片</a><a class="nav-source" href="https://github.com/zouchuheiye/phone-focus" target="_blank" rel="noreferrer">GitHub ↗</a></nav>
+    <a class="button small header-download" href="download/phone-focus-1.3.1.apk" download>下载 Android 版 <span aria-hidden="true">↓</span></a>
+  </header>
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="live-dot"></span> ANDROID 每日时段助手 <span class="version">V1.3.1</span></p>
+        <h1 id="hero-title">把手机放下，<br><em>去做正事。</em></h1>
+        <p class="hero-description">考研备考、日常学习，或陪孩子安排手机时间。<br class="desktop-break">给想完成的事，留一个不被打断的时段。</p>
+        <div class="hero-actions"><a class="button primary" href="download/phone-focus-1.3.1.apk" download>免费下载 Android 版 <span aria-hidden="true">↓</span></a><button class="text-button" data-play-film><span class="play-icon" aria-hidden="true">▶</span> 看 10 秒使用故事</button></div>
+        <p class="download-note">Android 8.0+ · 无需账号 · 手机授权后使用</p>
+        <div class="hero-meta"><span><b>双框选时</b>开始、结束，自己定</span><span><b>多段独立</b>像闹钟一样管理</span><span><b>每天重复</b>不必每天重新开始</span></div>
+      </div>
+      <figure class="hero-visual">
+        <div class="visual-frame"><img class="hero-art" src="assets/hero.jpg" alt="宣传短片中的动漫女生在书桌前，拿着显示去做正事设置页的手机" width="984" height="1220" fetchpriority="high"></div>
+        <div class="floating-range"><span class="range-status"><i></i> 每日专注计划</span><div><strong>09:00</strong><span>—</span><strong>12:00</strong></div><small>到点进入专注，结束恢复使用</small></div>
+        <figcaption>人物与手机画面取自本项目宣传短片 · 动漫演绎</figcaption>
+      </figure>
+    </section>
+
+    <section class="rhythm wrap" id="how" aria-labelledby="how-title">
+      <div class="section-heading"><p class="eyebrow">让计划，自己发生</p><h2 id="how-title">设好一次，<br>把注意力留给眼前。</h2><p>不用每天点一次“开始 15 分钟”。<br>你安排时段，手机按每日计划执行。</p></div>
+      <div class="steps">
+        <article><span class="step-number">01</span><h3>选择开始与结束</h3><p>横排双框，数字滚轮选择小时与分钟。支持多个分离时段，每段都能单独开关。</p><div class="mini-range"><span><small>开始时间</small>09:00</span><i>—</i><span><small>结束时间</small>12:00</span></div></article>
+        <article><span class="step-number">02</span><h3>手机授权，开启计划</h3><p>在手机上启用无障碍服务、准时闹钟，并允许后台运行和自启动。每日计划自动重复。</p><div class="schedule-list"><div><span>上午专注</span><b>09:00—12:00</b><i aria-label="示例开关已开"></i></div><div><span>下午学习</span><b>14:00—18:00</b><i aria-label="示例开关已开"></i></div></div></article>
+        <article><span class="step-number">03</span><h3>该专注时专注，空档自由</h3><p>时段内显示专注拦截页，结束时自动撤下。比如中午 12:00—14:00，可以正常使用手机。</p><div class="day-strip" aria-label="9点到12点专注，12点到14点空档，14点到18点专注"><div class="strip"><span></span><span></span><span></span></div><div class="strip-labels"><span>09:00</span><span>12:00</span><span>14:00</span><span>18:00</span></div><small>电话与紧急呼叫入口保留</small></div></article>
+      </div>
+    </section>
+
+    <section class="film-section" id="film" aria-labelledby="film-title">
+      <div class="wrap film-layout"><div class="film-copy"><p class="eyebrow">10 秒动漫使用故事</p><h2 id="film-title">从拿起手机，<br>到回到书桌。</h2><p>和宣传片里的她一起，<br>给学习留一段完整的时间。</p><ol class="story-list"><li><span>01</span> 设置每日时段</li><li><span>02</span> 进入禁用时段</li><li><span>03</span> 放下手机</li><li><span>04</span> 继续学习</li></ol><p class="film-disclosure">动漫人物、合成女声与截图合成展示。<br>用于说明使用场景，实际效果受手机系统与授权状态影响。</p></div><div class="film-player"><video id="promo-film" controls playsinline preload="metadata" poster="assets/cover.jpg" width="1080" height="1920" aria-label="去做正事十秒动漫宣传短片，含中文女声和字幕"><source src="assets/phone-focus-anime-10s.mp4" type="video/mp4"><track kind="captions" src="assets/captions.vtt" srclang="zh" label="中文"><p>浏览器无法播放视频，请<a href="assets/phone-focus-anime-10s.mp4" download>下载 MP4</a>观看。</p></video><a class="film-download" href="assets/phone-focus-anime-10s.mp4" download>下载宣传视频 <span aria-hidden="true">↓</span></a></div></div>
+    </section>
+
+    <section class="screens wrap" aria-labelledby="screens-title"><div class="screens-copy"><p class="eyebrow">视频里的页面，在手机里使用</p><h2 id="screens-title">一段时间，<br>一个明确的边界。</h2><p>最多 8 个每日时段；支持跨午夜。<br>已有计划可修改、关闭或删除。</p><div class="use-case"><span>适合这些时刻</span><p>备考刷题 / 读书写作 / 日常学习<br>家长陪孩子一起安排手机时间</p></div><p class="screens-note">以下为用户提供的设置页与禁用页截图，保留原有页面状态。</p></div><div class="phone-gallery"><figure><img src="assets/schedule.jpg" alt="每日时段设置页：开始16:24，结束17:00，计划总开关尚未开启" width="640" height="1280" loading="lazy"><figcaption>设置页 · 添加与独立管理时段</figcaption></figure><figure><img src="assets/focus.jpg" alt="禁用时段页面：显示到点恢复时间、剩余时长及电话和授权设置入口" width="640" height="1280" loading="lazy"><figcaption>专注页 · 到点撤下拦截</figcaption></figure></div></section>
+
+    <section class="download-section wrap" id="download" aria-labelledby="download-title"><div><p class="eyebrow">从今天的一段专注开始</p><h2 id="download-title">给正事，留一段时间。</h2><p>免费 Android 安装包，代码与使用说明在 GitHub。</p></div><div class="download-actions"><a class="button primary" href="download/phone-focus-1.3.1.apk" download>下载 APK · v1.3.1 <span aria-hidden="true">↓</span></a><a href="https://github.com/zouchuheiye/phone-focus/releases/tag/v1.3.1" target="_blank" rel="noreferrer">查看版本与校验信息 ↗</a></div></section>
+    <section class="details wrap" aria-label="使用须知"><details><summary>首次使用，需要做什么？</summary><p>安装后添加时段、开启每日计划，并在系统设置中启用“去做正事 · 每日时段”无障碍服务。允许准时闹钟、后台运行与自启动。全部设置可以在手机上完成，无需电脑配置设备所有者。</p></details><details><summary>可以完全阻止提前退出吗？</summary><p>手机授权模式可通过撤销权限、修改时段、卸载或强行停止绕过。它帮助你执行自己的计划，不承诺绝对强制。不会随机修改系统密码。不同品牌后台策略和兼容性需要在目标手机上验证。</p></details><details><summary>会读取聊天、密码或上传数据吗？</summary><p>Android 应用没有网络权限。每日模式仅通过无障碍窗口事件判断当前应用标识，不读取屏幕文字、聊天或密码，不截图、不模拟点击；应用标识不保存、不上传。页面本身也不使用统计追踪或登录。</p></details></section>
+  </main>
+  <footer class="footer wrap"><a class="brand" href="#"><img src="assets/mark.svg" width="32" height="32" alt=""><span>去做正事</span></a><p>把注意力，留给眼前。</p><a href="https://github.com/zouchuheiye/phone-focus" target="_blank" rel="noreferrer">GitHub 仓库 ↗</a></footer>
+</body>
+</html>

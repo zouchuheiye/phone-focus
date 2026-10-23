@@ -1,0 +1,14 @@
+{
+  "format": "1080x1920 / 30fps / 36s / H.264 yuv420p + AAC stereo",
+  "bytes": 2301287,
+  "sha256": "872d66a4ac4d5fd0175dc1dff7089729c8dcab3f7fd2e9cd8fa0034e7cf41807",
+  "full_decode_exit": 0,
+  "audio_peak": 0.8603337407112122,
+  "audio_rms": 0.14893034100532532,
+  "encoded_demo_changes": {
+    "independent_switch_off": 3.5964106081390033,
+    "independent_switch_restored": 3.3717169638774576,
+    "focus_to_free_gap": 144.84376205632717,
+    "free_gap_to_focus": 144.67750208976338
+  }
+}

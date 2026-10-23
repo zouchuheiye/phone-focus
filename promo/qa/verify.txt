@@ -1,0 +1,8 @@
+{
+  "format": "1080x1920 / 30fps / 32 seconds / H.264 yuv420p + AAC stereo",
+  "bytes": 2622568,
+  "sha256": "3caa56f3d656370f839fcaecaf4be5a4296d73e83f8f3bb9535ff38095382eaa",
+  "full_decode_exit": 0,
+  "audio_peak": 0.8619728684425354,
+  "audio_rms": 0.12649381160736084
+}

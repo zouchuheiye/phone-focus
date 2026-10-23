@@ -1,0 +1,41 @@
+{
+  "evidence_id": "E-20261021-PROMO-MV-01",
+  "verified_at": "2026-10-21T20:00:52.880326+08:00",
+  "artifact": "D:\\游戏\\phone-focus\\promo\\output\\phone-focus-promo-vertical-1080p.mp4",
+  "sha256": "3caa56f3d656370f839fcaecaf4be5a4296d73e83f8f3bb9535ff38095382eaa",
+  "bytes": 2622568,
+  "format": "1080x1920 / 30fps / 32 seconds / H.264 yuv420p + AAC stereo",
+  "video_frames": 960,
+  "full_decode_exit": 0,
+  "audio_peak": 0.8619728684425354,
+  "audio_rms": 0.12649381160736084,
+  "two_second_audio_rms": [
+    0.11099428683519363,
+    0.11867563426494598,
+    0.13742053508758545,
+    0.13768775761127472,
+    0.1437332183122635,
+    0.1439359486103058,
+    0.14418953657150269,
+    0.14091013371944427,
+    0.09062018990516663,
+    0.1142117977142334,
+    0.11680103838443756,
+    0.11246126145124435,
+    0.12405065447092056,
+    0.12148301303386688,
+    0.12388958036899567,
+    0.12922930717468262
+  ],
+  "original_score": true,
+  "external_images_music_voices": false,
+  "handset_footage": false,
+  "visual_review": "PASS: inspected encoded-contact-sheet.jpg covering eight encoded scenes; Chinese text readable, margins clean, accelerated countdown and black-screen transition visible, demo/authorization labels included.",
+  "scope": "Media format, decode, audio signal, and sampled visual review only; not handset feature acceptance",
+  "source_sha256": {
+    "render_mv.py": "781851dc12734f4398b2389083e763ff5edfb0c1b9f9d8f41964737222f67645",
+    "music.py": "0f578139205feba8ba79c7e643a9c51eaaac2de3310430551f463bc62d827dfa",
+    "storyboard.json": "8158c03cac5ec565a67ff96c3e90091f256d51440f80a7ed3eb59861bca128d8",
+    "verify_mv.py": "1e6e87ded95e0d26bc4526a1a3cbc650b3a67a93e72ece7dd2c5b8e7295c6cbe"
+  }
+}

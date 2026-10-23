@@ -1,0 +1,17 @@
+Render 00/32s, elapsed 0.1s
+Render 02/32s, elapsed 3.6s
+Render 04/32s, elapsed 7.5s
+Render 06/32s, elapsed 11.1s
+Render 08/32s, elapsed 14.5s
+Render 10/32s, elapsed 18.4s
+Render 12/32s, elapsed 22.4s
+Render 14/32s, elapsed 23.7s
+Render 16/32s, elapsed 25.0s
+Render 18/32s, elapsed 26.4s
+Render 20/32s, elapsed 27.5s
+Render 22/32s, elapsed 28.4s
+Render 24/32s, elapsed 29.5s
+Render 26/32s, elapsed 30.3s
+Render 28/32s, elapsed 31.2s
+Render 30/32s, elapsed 32.3s
+Render complete: D:\��Ϸ\phone-focus\promo\output\phone-focus-promo-vertical-1080p.mp4; elapsed 33.5s

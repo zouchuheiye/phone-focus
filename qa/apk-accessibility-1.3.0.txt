@@ -1,0 +1,9 @@
+N: android=http://schemas.android.com/apk/res/android
+  E: accessibility-service (line=9)
+    A: android:description(0x01010020)=@0x7f020002
+    A: android:settingsActivity(0x01010225)="com.phonefocus.guard.ScheduleSetupActivity" (Raw: "com.phonefocus.guard.ScheduleSetupActivity")
+    A: android:accessibilityEventTypes(0x01010380)=(type 0x11)0x20
+    A: android:accessibilityFeedbackType(0x01010382)=(type 0x11)0x10
+    A: android:notificationTimeout(0x01010383)=(type 0x10)0x32
+    A: android:canRetrieveWindowContent(0x01010385)=(type 0x12)0x0
+    A: android:isAccessibilityTool(0x01010641)=(type 0x12)0x0

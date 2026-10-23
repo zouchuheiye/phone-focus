@@ -1,0 +1,16 @@
+{
+  "evidence_id": "E-20261022-TIMED-FOCUS-FEASIBILITY",
+  "checked_at": "2026-10-22T14:27:00.109786+08:00",
+  "method": "Read local admin policy and DeviceLocker; verify official DevicePolicyManager and Lock Task Mode docs",
+  "result": "Current force-lock APK cannot implement random system password plus guaranteed timed recovery; managed-device lock-task route depends on device information",
+  "report": "qa/timed-focus-feasibility-20261022.md",
+  "report_sha256": "04b8c16ae035a5fddb9454c3317ee775e7fe6e11fd13e7179691b3ae9e3803c6",
+  "app_changed": false,
+  "device_state_changed": false,
+  "phone_model_known": false,
+  "sources": [
+    "https://developer.android.com/reference/android/app/admin/DevicePolicyManager",
+    "https://developer.android.com/work/dpc/dedicated-devices/lock-task-mode"
+  ],
+  "validity": "API/source feasibility only; provisioning and physical behavior untested"
+}

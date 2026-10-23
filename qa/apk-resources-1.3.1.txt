@@ -1,0 +1,45 @@
+Package Groups (1)
+Package Group 0 id=0x7f packageCount=1 name=com.phonefocus.guard
+  Package 0 id=0x7f name=com.phonefocus.guard
+    type 0 configCount=1 entryCount=2
+      spec resource 0x7f010000 com.phonefocus.guard:drawable/ic_launcher: flags=0x00000000
+      spec resource 0x7f010001 com.phonefocus.guard:drawable/ic_notification: flags=0x00000000
+      config (default):
+        resource 0x7f010000 com.phonefocus.guard:drawable/ic_launcher: t=0x03 d=0x00000002 (s=0x0008 r=0x00)
+          (string8) "res/r2.xml"
+        resource 0x7f010001 com.phonefocus.guard:drawable/ic_notification: t=0x03 d=0x00000003 (s=0x0008 r=0x00)
+          (string8) "res/vO.xml"
+    type 1 configCount=1 entryCount=3
+      spec resource 0x7f020000 com.phonefocus.guard:string/lock_admin_description: flags=0x00000000
+      spec resource 0x7f020001 com.phonefocus.guard:string/permission_status: flags=0x00000000
+      spec resource 0x7f020002 com.phonefocus.guard:string/schedule_accessibility_description: flags=0x00000000
+      config (default):
+        resource 0x7f020000 com.phonefocus.guard:string/lock_admin_description: t=0x03 d=0x00000008 (s=0x0008 r=0x00)
+          (string8) "连续亮屏满3分钟后自动息屏并锁屏。锁屏后可能需要输入PIN、图案或密码解锁。仅使用锁屏权限，可随时在应用内停止并解除授权。"
+        resource 0x7f020001 com.phonefocus.guard:string/permission_status: t=0x03 d=0x00000005 (s=0x0008 r=0x00)
+          (string8) "%1$s\n%2$s\n%3$s"
+        resource 0x7f020002 com.phonefocus.guard:string/schedule_accessibility_description: t=0x03 d=0x00000007 (s=0x0008 r=0x00)
+          (string8) "按你保存的每日时段自动显示专注拦截页。仅判断窗口所属应用，不读取屏幕内容、不截图、不模拟点击、不联网。电话、系统设置和撤销授权入口保留。"
+    type 2 configCount=1 entryCount=1
+      spec resource 0x7f030000 com.phonefocus.guard:style/AppTheme: flags=0x00000000
+      config (default):
+        resource 0x7f030000 com.phonefocus.guard:style/AppTheme: <bag>
+          Parent=0x01030241(Resolved=0x01030241), Count=7
+          #0 (Key=0x01010054): (color) #fff5f4ef
+          #1 (Key=0x010102dd): (boolean) true
+          #2 (Key=0x010103ac): (string8) "sans"
+          #3 (Key=0x01010435): (color) #ff426653
+          #4 (Key=0x01010451): (color) #fff5f4ef
+          #5 (Key=0x01010452): (color) #fff5f4ef
+          #6 (Key=0x010104e0): (boolean) true
+    type 3 configCount=1 entryCount=3
+      spec resource 0x7f040000 com.phonefocus.guard:xml/data_extraction_rules: flags=0x00000000
+      spec resource 0x7f040001 com.phonefocus.guard:xml/device_admin: flags=0x00000000
+      spec resource 0x7f040002 com.phonefocus.guard:xml/schedule_accessibility: flags=0x00000000
+      config (default):
+        resource 0x7f040000 com.phonefocus.guard:xml/data_extraction_rules: t=0x03 d=0x00000000 (s=0x0008 r=0x00)
+          (string8) "res/4j.xml"
+        resource 0x7f040001 com.phonefocus.guard:xml/device_admin: t=0x03 d=0x00000001 (s=0x0008 r=0x00)
+          (string8) "res/pO.xml"
+        resource 0x7f040002 com.phonefocus.guard:xml/schedule_accessibility: t=0x03 d=0x00000004 (s=0x0008 r=0x00)
+          (string8) "res/xv.xml"

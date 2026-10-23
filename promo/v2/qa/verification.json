@@ -1,0 +1,85 @@
+{
+  "evidence_id": "E-20261022-PROMO-MV-02",
+  "verified_at": "2026-10-22T16:34:45.164794+08:00",
+  "artifact": "D:\\游戏\\phone-focus\\promo\\v2\\output\\phone-focus-daily-mv-1080p.mp4",
+  "bytes": 2301287,
+  "sha256": "872d66a4ac4d5fd0175dc1dff7089729c8dcab3f7fd2e9cd8fa0034e7cf41807",
+  "app_version_illustrated": "1.3.1",
+  "format": "1080x1920 / 30fps / 36s / H.264 yuv420p + AAC stereo",
+  "video_frames": 1080,
+  "full_decode_exit": 0,
+  "audio_peak": 0.8603337407112122,
+  "audio_rms": 0.14893034100532532,
+  "two_second_audio_rms": [
+    0.12462013959884644,
+    0.1391746699810028,
+    0.1575474888086319,
+    0.16100139915943146,
+    0.14342889189720154,
+    0.1497417539358139,
+    0.1517716944217682,
+    0.15645281970500946,
+    0.1557154357433319,
+    0.15488918125629425,
+    0.15665459632873535,
+    0.16023842990398407,
+    0.1542080193758011,
+    0.14381107687950134,
+    0.132431760430336,
+    0.1398872584104538,
+    0.15600551664829254,
+    0.1368737667798996
+  ],
+  "encoded_demo_changes": {
+    "independent_switch_off": 3.5964106081390033,
+    "independent_switch_restored": 3.3717169638774576,
+    "focus_to_free_gap": 144.84376205632717,
+    "free_gap_to_focus": 144.67750208976338
+  },
+  "encoded_review_times": [
+    1.7,
+    5.8,
+    10.8,
+    12.6,
+    14.4,
+    15.9,
+    17.8,
+    19.7,
+    23.7,
+    28.8,
+    33.2,
+    35.2
+  ],
+  "original_score": true,
+  "external_music_images_voices": false,
+  "handset_footage": false,
+  "visual_review": {
+    "status": "PASS",
+    "reviewed_at": "2026-10-22T16:36:14.131646+08:00",
+    "method": "Viewed 12 encoded-frame contact sheet plus full-size encoded-02.jpg (numeric selectors) and encoded-11.jpg (end card).",
+    "findings": [
+      "Chinese headings, numbers and footnotes readable within frame, no clipping or overlap.",
+      "Independent middle range toggles off and back on before the focus-gap-focus example.",
+      "09:00 and 14:00 focus states separated by 12:00-14:00 free state.",
+      "Persistent animation disclosure, accelerated-time label and end-card permission/revocation limits visible."
+    ],
+    "scope": "Sampled encoded visual review only; not full real-device behavior acceptance or an auditory listening review."
+  },
+  "scope": "Media quality and illustrative feature communication only. No physical-device enforcement, all-model compatibility or permission grant claim.",
+  "source_sha256": {
+    "D:\\游戏\\phone-focus\\promo\\v2\\render_mv.py": "4ce9a3eeb967169137b66eae81bb3397a94ee636486f869ca155063f3548071d",
+    "D:\\游戏\\phone-focus\\promo\\v2\\music.py": "bdcd5090d2e0c8e65899a47c31e2a94453c0e03511c07286721a316db632012d",
+    "D:\\游戏\\phone-focus\\promo\\v2\\storyboard.json": "ede14037d9c9020a0e23e96e5ec3fbc364b3f5fd033265057b493835c7c2d4c1",
+    "D:\\游戏\\phone-focus\\promo\\v2\\verify_mv.py": "bce7de6dcf5a41274ea6c0c43960eaef6ba576339fdea9b95acfa315ab4d513f",
+    "D:\\游戏\\phone-focus\\promo\\render_mv.py": "781851dc12734f4398b2389083e763ff5edfb0c1b9f9d8f41964737222f67645",
+    "D:\\游戏\\phone-focus\\app\\src\\main\\java\\com\\phonefocus\\guard\\DailySchedule.java": "816a0eb4cb253e494bf6890252d2917837fd39fce7a7e775b770a00a3d90b08a",
+    "D:\\游戏\\phone-focus\\app\\src\\main\\java\\com\\phonefocus\\guard\\ScheduleSetupActivity.java": "13861c0c5053d1586259098a359b99d2a98d60e372cc3674da3d140d0c53e928",
+    "D:\\游戏\\phone-focus\\app\\src\\main\\java\\com\\phonefocus\\guard\\TimeRangeEditorDialog.java": "db7964c37c2e6b73322b2442be13473daa6b36c9d5b33e16ee4b3b874e692036"
+  },
+  "asset_sha256": {
+    "output\\cover.jpg": "f8cdcb61b25879ccbc607e6f51a618bb966a117781cdde63a9697a913134fc9a",
+    "output\\original-score.wav": "0760a8ad51576be4260e86b865dc748bbc709a21b311c14a39cfb9d7598fb979",
+    "output\\captions.srt": "efd9b044bf506ffad44de4d93d96309601e938e356aaa0fc59251135269791a5"
+  },
+  "validity": "This exact media hash and source snapshots; app device acceptance remains separate."
+}

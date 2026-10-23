@@ -1,0 +1,52 @@
+{
+  "title": "去做正事 · 亮屏三分钟",
+  "seconds": 32,
+  "format": "1080x1920, 30fps, H.264 + AAC",
+  "app_version": "1.1.0",
+  "visuals": "Original procedural animation, not handset footage",
+  "score": "Original 120 BPM instrumental; no external music or voice",
+  "scenes": [
+    {
+      "start": 0,
+      "end": 4,
+      "caption": "本来，只想看一眼。",
+      "visual": "通知卡片与轻微倾斜的手机，开场钩子"
+    },
+    {
+      "start": 4,
+      "end": 8,
+      "caption": "再刷一下。又是三分钟。",
+      "visual": "深绿色反差、节拍与滚动卡片"
+    },
+    {
+      "start": 8,
+      "end": 12,
+      "caption": "去做正事。给这一次亮屏，设个终点。",
+      "visual": "应用品牌与界面示意"
+    },
+    {
+      "start": 12,
+      "end": 18,
+      "caption": "亮屏3分钟，到点自动息屏。",
+      "visual": "加速计时，16秒屏幕变黑，锁屏音效"
+    },
+    {
+      "start": 18,
+      "end": 24,
+      "caption": "手机放下。先完成这一页。",
+      "visual": "暖色桌面、书页、笔与朝下的手机"
+    },
+    {
+      "start": 24,
+      "end": 28,
+      "caption": "后台检测。熄屏归零。本机运行。",
+      "visual": "三个功能节拍卡点"
+    },
+    {
+      "start": 28,
+      "end": 32,
+      "caption": "去做正事。亮屏三分钟，就到这里。",
+      "visual": "品牌与行动文案、授权说明"
+    }
+  ]
+}

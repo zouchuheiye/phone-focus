@@ -1,0 +1,122 @@
+{
+  "evidenceId": "E-20261021-ENGINEERING",
+  "verifiedAt": "2026-10-21T10:29:24.0774895+08:00",
+  "version": "1.0.0",
+  "packageName": "com.phonefocus.guard",
+  "apk": "releases/phone-focus-1.0.0.apk",
+  "apkBytes": 22820,
+  "apkSha256": "f9ccb7575c311bef5c0f88a6e3669d612a9c26ba78dae3ff24a5ddb9ad052eec",
+  "timerTests": {
+    "exitCode": 0,
+    "checks": 129966,
+    "command": ".\\test.ps1",
+    "log": "qa/timer-test.txt",
+    "scope": "Pure Java screen-session rules, not device behavior"
+  },
+  "releaseBuild": {
+    "exitCode": 0,
+    "signature": "apksigner verify: APK Signature Scheme v2 pass",
+    "command": ".\\build.ps1",
+    "log": "qa/build.txt"
+  },
+  "lint": {
+    "report": "app/build/reports/lint-results-release.html",
+    "warningIds": [
+      "OldTargetApi",
+      "DataExtractionRules",
+      "SetTextI18n"
+    ],
+    "warnings": 3,
+    "errors": 0
+  },
+  "permissions": [
+    "POST_NOTIFICATIONS",
+    "VIBRATE",
+    "FOREGROUND_SERVICE",
+    "FOREGROUND_SERVICE_SPECIAL_USE",
+    "RECEIVE_BOOT_COMPLETED"
+  ],
+  "permissionAudit": {
+    "networkOrUsageContentAccess": false,
+    "passed": true,
+    "log": "qa/apk-permissions.txt"
+  },
+  "physicalDeviceTested": false,
+  "emulatorTested": false,
+  "deviceAcceptance": "Pending; no connected Android device or installed emulator image",
+  "validity": "These exact source/APK hashes only; device acceptance remains separate",
+  "sourceHashes": [
+    {
+      "path": "app/build.gradle",
+      "sha256": "a4e35b6f491d81b5c39d648baaadd4b47c8db10f3abe37dc57ec3e2d3585abb3"
+    },
+    {
+      "path": "app/src/main/AndroidManifest.xml",
+      "sha256": "d033fe05ab455bc7ef6cca3fe5842f65564df6530860313cc21354efe4895365"
+    },
+    {
+      "path": "app/src/main/java/com/phonefocus/guard/AppState.java",
+      "sha256": "48253733414853489a91957b5069d22d3c3a1d40ccc8439fee31811d72fd6a54"
+    },
+    {
+      "path": "app/src/main/java/com/phonefocus/guard/MainActivity.java",
+      "sha256": "762e9d5a170b8ebb8e9bae2e5e69d2d7a8c943f68ab69495ce4759ae40ae6bb7"
+    },
+    {
+      "path": "app/src/main/java/com/phonefocus/guard/Reminders.java",
+      "sha256": "cc58f05ba40a1a25d90ae63b314acc3c49fbdf4905aff9706958964ecc67c819"
+    },
+    {
+      "path": "app/src/main/java/com/phonefocus/guard/RestoreReceiver.java",
+      "sha256": "7d768c371b8f565d4d1dbad802cc0bb61bfd45855d8ea3a75ce8824b9956a22d"
+    },
+    {
+      "path": "app/src/main/java/com/phonefocus/guard/ScreenMonitorService.java",
+      "sha256": "25c47ae28fb0bfbb6624c3b8cd0beb61fb21b7222fc5aa7737afd38868d0b3f7"
+    },
+    {
+      "path": "app/src/main/java/com/phonefocus/guard/ScreenSession.java",
+      "sha256": "044dd04dd1535dcce3a9b5c4ceecc85e9c8131b80ed87bd70178ed12b08109fd"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_launcher.xml",
+      "sha256": "c40fa7314780287cfce963dafcad7acc962a0247f9b06a4ab73ca9e45445a727"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_notification.xml",
+      "sha256": "848a4c81baa0769ed13859d0522ab55fce547921ed4a7c8ff4f2718bee8f2a95"
+    },
+    {
+      "path": "app/src/main/res/values/styles.xml",
+      "sha256": "832fce45809e0db6eabda45edb0b1c3983b7bb5524ae0c3729846c8174387b34"
+    },
+    {
+      "path": "app/src/main/res/xml/data_extraction_rules.xml",
+      "sha256": "eda9dddce1e895de1efd716fe75e244187bf8f91a3bb7444c6ea1731e51c74a8"
+    },
+    {
+      "path": "build.gradle",
+      "sha256": "96a33edb21d173da2c36f5312f50cdfb9f71d9f5078c081c81f2d029547f6cb9"
+    },
+    {
+      "path": "build.ps1",
+      "sha256": "f5f8def7370f832642b1507ddff9181c3c480f1c6267348cea4620bdca316b06"
+    },
+    {
+      "path": "gradle.properties",
+      "sha256": "69598029241634e847935cfee1cb6b874877fabf04a7a6574f02db4ddd0c01c4"
+    },
+    {
+      "path": "qa/ScreenSessionTest.java",
+      "sha256": "175628023c6104271abf974e5f23e9b394faa1f4d90a068869722e2c63b79f60"
+    },
+    {
+      "path": "settings.gradle",
+      "sha256": "54a0901a1846ad299ce693f169a80efc0a496b4855609cf3049c02371797e68a"
+    },
+    {
+      "path": "test.ps1",
+      "sha256": "43e611f3048b300d5f4e5914b4ff3052343b054b6f80277fc8b08acf302bedf2"
+    }
+  ]
+}

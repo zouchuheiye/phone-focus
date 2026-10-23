@@ -1,0 +1,12 @@
+{
+  "method": "PCM sample-index mix",
+  "samples_per_channel": 480000,
+  "sample_rate": 48000,
+  "seconds": 10,
+  "voice_start_sample": 8640,
+  "voice_sample_count": 408960,
+  "complete_voice_kept": true,
+  "music_gain": 0.12,
+  "voice_gain": 1.8058949974435563,
+  "peak": 0.8072888183593749
+}

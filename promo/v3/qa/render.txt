@@ -1,0 +1,11 @@
+Render 0/10s
+Render 1/10s
+Render 2/10s
+Render 3/10s
+Render 4/10s
+Render 5/10s
+Render 6/10s
+Render 7/10s
+Render 8/10s
+Render 9/10s
+MV-03 complete; elapsed 18.9s

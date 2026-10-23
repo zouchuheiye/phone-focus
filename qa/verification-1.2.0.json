@@ -1,0 +1,220 @@
+{
+  "evidenceId": "E-20261022-OWNER-1.2.0",
+  "verifiedAt": "2026-10-22T14:59:41.1398671+08:00",
+  "version": "1.2.0",
+  "versionCode": 3,
+  "packageName": "com.phonefocus.guard",
+  "apk": "releases/phone-focus-1.2.0.apk",
+  "apkBytes": 44768,
+  "apkSha256": "ab5ab5e95330beee13702b8facd329cd880f009f82f250caef4de206c3e8e7a5",
+  "tests": {
+    "autoOffChecks": 382,
+    "log": "qa/timer-test-1.2.0.txt",
+    "exitCode": 0,
+    "command": ".\\test.ps1",
+    "scope": "Pure Java timing, recovery-code verification, policy rollback helper. No Android OS enforcement claim.",
+    "ownerFocusChecks": 3363,
+    "screenSessionChecks": 129966
+  },
+  "setupToolTests": {
+    "command": ".\\qa\\test-owner-setup.ps1",
+    "exitCode": 0,
+    "checks": 12,
+    "scope": "Fake ADB only; verifies read-only default, selected serial, prerequisites stop changes, explicit Apply call path",
+    "log": "qa/owner-setup-tests-1.2.0.txt"
+  },
+  "build": {
+    "log": "qa/build-1.2.0.txt",
+    "lintErrors": 0,
+    "exitCode": 0,
+    "command": ".\\build.ps1",
+    "lintWarnings": 11,
+    "lintReport": "qa/lint-results-1.2.0.txt",
+    "signature": "APK v2 verified; same signer as 1.1.0"
+  },
+  "manifestAudit": {
+    "focusReceiverNotExported": true,
+    "log": "qa/apk-manifest-1.2.0.txt",
+    "directBootFocusComponents": true,
+    "permissions": [
+      "POST_NOTIFICATIONS",
+      "FOREGROUND_SERVICE",
+      "FOREGROUND_SERVICE_SPECIAL_USE",
+      "RECEIVE_BOOT_COMPLETED",
+      "SCHEDULE_EXACT_ALARM"
+    ],
+    "deviceAdminBindProtected": true,
+    "homeAliasDisabledByDefault": true,
+    "exitCode": 0,
+    "networkAndContentPermissions": false
+  },
+  "ownerProvisioning": {
+    "performed": false,
+    "readOnlyLog": "qa/owner-preflight-1.2.0.txt",
+    "connectedDevices": 0,
+    "reason": "No connected Android phone; no actual Apply performed; no accounts deleted or phone reset"
+  },
+  "physicalDeviceTested": false,
+  "emulatorTested": false,
+  "remainingAcceptance": "Target phone owner provisioning, locked task mode, exact expiry, reboot, telephone and emergency recovery. See qa/device-owner-checklist.md.",
+  "knownLimits": [
+    "Strict focus needs Android 9+ and actual Device Owner provisioning",
+    "Original system password remains unchanged",
+    "Expiry removes app restrictions; it does not bypass system credentials",
+    "No all-model or physical/tamper-proof claim",
+    "Cross-reboot timing depends on device wall clock bounded by saved remainder",
+    "Phone off at deadline restores when code can next run",
+    "System default and preinstalled phone apps are allowlisted as whole packages"
+  ],
+  "validity": "These exact source/APK hashes. Engineering evidence only. Device privileges are not granted by building/installing an APK.",
+  "sourceHashes": [
+    {
+      "path": "app/build.gradle",
+      "sha256": "8486321e93042032f8981a74b63ef8b1c237cb536859a9b755af7b7cc2f7b6e6"
+    },
+    {
+      "path": "app/src/main/AndroidManifest.xml",
+      "sha256": "77aea2eaf124ae8ecbebca51f61da8df89e9d154c1cb3ceb3b137773f1ffe41e"
+    },
+    {
+      "path": "app/src/main/java/com/phonefocus/guard/AppState.java",
+      "sha256": "48253733414853489a91957b5069d22d3c3a1d40ccc8439fee31811d72fd6a54"
+    },
+    {
+      "path": "app/src/main/java/com/phonefocus/guard/AutoScreenOff.java",
+      "sha256": "24d2e048ea1e4cdf672ba6a6b0d75e806ec53e492d2d8fdd39754ccfe024d604"
+    },
+    {
+      "path": "app/src/main/java/com/phonefocus/guard/DeviceLocker.java",
+      "sha256": "251ffc7b93f5eb84954a9971aac16e6b71efa11b219c794cc39c70098af88481"
+    },
+    {
+      "path": "app/src/main/java/com/phonefocus/guard/FocusActivity.java",
+      "sha256": "3ff5c771bf5a80131d1c92af8b99812564406516d03804ac5392e75521f89934"
+    },
+    {
+      "path": "app/src/main/java/com/phonefocus/guard/FocusAlarmReceiver.java",
+      "sha256": "4c748ece8cc64057027d202205866686fe5c31caa77367d1337c5ad5ad9524cf"
+    },
+    {
+      "path": "app/src/main/java/com/phonefocus/guard/FocusManager.java",
+      "sha256": "8ee9365b1c27c9e79d39f9bdc1d21713191aa42de734b74224a999724c745b28"
+    },
+    {
+      "path": "app/src/main/java/com/phonefocus/guard/FocusService.java",
+      "sha256": "3a7b7fdd0f152fed8944197687998e1b163d638ca60eea95ba8f4fe350637580"
+    },
+    {
+      "path": "app/src/main/java/com/phonefocus/guard/FocusUi.java",
+      "sha256": "4b002d7ad7dfa7d3335c223c6690a8e0b7a2b0cd35e2c1735fa188db28094011"
+    },
+    {
+      "path": "app/src/main/java/com/phonefocus/guard/FocusWindow.java",
+      "sha256": "76d4704f11bd8a2823b5d9f08c863e85a1d38a0aec978f375aebefe7e0d6f7b1"
+    },
+    {
+      "path": "app/src/main/java/com/phonefocus/guard/LockAdminReceiver.java",
+      "sha256": "97c36ebd2c9bc8d95f46a74843099a8becc5a362e60717e88600674f25827f4c"
+    },
+    {
+      "path": "app/src/main/java/com/phonefocus/guard/MainActivity.java",
+      "sha256": "a24bc3469feb7e7067eb83d842210f29345cb2632abb41076ca2de157d81e684"
+    },
+    {
+      "path": "app/src/main/java/com/phonefocus/guard/OwnerSetupActivity.java",
+      "sha256": "e5327922a73da50924332ae49ccedaedda701fde1da988ba33923f827614691d"
+    },
+    {
+      "path": "app/src/main/java/com/phonefocus/guard/PolicyRollback.java",
+      "sha256": "41f9a76292e512de9ae12e2d8496e0671afc0577d50949b37313ab3f4d2038c5"
+    },
+    {
+      "path": "app/src/main/java/com/phonefocus/guard/RecoveryCode.java",
+      "sha256": "8e5625adc88d840275935cb575c993a4f22c94035ff9d32155dc8e132ce3d33e"
+    },
+    {
+      "path": "app/src/main/java/com/phonefocus/guard/Reminders.java",
+      "sha256": "fc7d669ae94b85c94425f8df51adb06c770e5a6a8032a728dc816f8634692e18"
+    },
+    {
+      "path": "app/src/main/java/com/phonefocus/guard/RestoreReceiver.java",
+      "sha256": "605d3febcd6fd52376dd4f492fb46c69eeecb30407ea41969f6f7cd63ff095f1"
+    },
+    {
+      "path": "app/src/main/java/com/phonefocus/guard/ScreenMonitorService.java",
+      "sha256": "9ae914ddbc119c76d1011df51205b5a757010116e9f15f1a6d64847ed209d76f"
+    },
+    {
+      "path": "app/src/main/java/com/phonefocus/guard/ScreenSession.java",
+      "sha256": "044dd04dd1535dcce3a9b5c4ceecc85e9c8131b80ed87bd70178ed12b08109fd"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_launcher.xml",
+      "sha256": "c40fa7314780287cfce963dafcad7acc962a0247f9b06a4ab73ca9e45445a727"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_notification.xml",
+      "sha256": "848a4c81baa0769ed13859d0522ab55fce547921ed4a7c8ff4f2718bee8f2a95"
+    },
+    {
+      "path": "app/src/main/res/values/strings.xml",
+      "sha256": "202e893af108019a252ec245a22a6a999a778f719329f4716c29a473cec7247e"
+    },
+    {
+      "path": "app/src/main/res/values/styles.xml",
+      "sha256": "832fce45809e0db6eabda45edb0b1c3983b7bb5524ae0c3729846c8174387b34"
+    },
+    {
+      "path": "app/src/main/res/xml/data_extraction_rules.xml",
+      "sha256": "eda9dddce1e895de1efd716fe75e244187bf8f91a3bb7444c6ea1731e51c74a8"
+    },
+    {
+      "path": "app/src/main/res/xml/device_admin.xml",
+      "sha256": "76af01703eb24a59ef16f13eef2025eb30de8cbb6db7f920920e04b6d6de84e6"
+    },
+    {
+      "path": "build.gradle",
+      "sha256": "96a33edb21d173da2c36f5312f50cdfb9f71d9f5078c081c81f2d029547f6cb9"
+    },
+    {
+      "path": "build.ps1",
+      "sha256": "7ad32c82460c5f3805fbed0c6d725d7be06d16120928e250f83b08f63b8d1d4e"
+    },
+    {
+      "path": "DEVICE_OWNER_SETUP.md",
+      "sha256": "9227e37cd42a1a9627b6729ce8eed27c7d7e0a707c6afbba8591e2712ccb1bef"
+    },
+    {
+      "path": "gradle.properties",
+      "sha256": "69598029241634e847935cfee1cb6b874877fabf04a7a6574f02db4ddd0c01c4"
+    },
+    {
+      "path": "qa/AutoScreenOffTest.java",
+      "sha256": "509865004d9d7bec68ab43cb5121c7f010819a20143cfaef9c8d2a92bf378a85"
+    },
+    {
+      "path": "qa/OwnerFocusTest.java",
+      "sha256": "6e32a35e781051f93dc078005b75f29c905bcb93e731c5cfc65265f756182d1a"
+    },
+    {
+      "path": "qa/ScreenSessionTest.java",
+      "sha256": "175628023c6104271abf974e5f23e9b394faa1f4d90a068869722e2c63b79f60"
+    },
+    {
+      "path": "qa/test-owner-setup.ps1",
+      "sha256": "f08b8aaa73351f96fd63f5c71a8704931f29c16f03532d6ef75d9946d6382e7f"
+    },
+    {
+      "path": "settings.gradle",
+      "sha256": "54a0901a1846ad299ce693f169a80efc0a496b4855609cf3049c02371797e68a"
+    },
+    {
+      "path": "test.ps1",
+      "sha256": "ff6666b9d984bab909c54d07709d4375520d4f13ff05bfd6357ffc251f47e87f"
+    },
+    {
+      "path": "tools/manage-device-owner.ps1",
+      "sha256": "cfea74d62368f85e352edd9d0dda421ce021187017d49ae81d78fed1b60ab3ba"
+    }
+  ]
+}

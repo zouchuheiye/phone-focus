@@ -1,0 +1,5 @@
+<resources>
+    <string name="schedule_accessibility_description">按你保存的每日时段自动显示专注拦截页。仅判断窗口所属应用，不读取屏幕内容、不截图、不模拟点击、不联网。电话、系统设置和撤销授权入口保留。</string>
+    <string name="lock_admin_description">连续亮屏满3分钟后自动息屏并锁屏。锁屏后可能需要输入PIN、图案或密码解锁。仅使用锁屏权限，可随时在应用内停止并解除授权。</string>
+    <string name="permission_status">%1$s\n%2$s\n%3$s</string>
+</resources>

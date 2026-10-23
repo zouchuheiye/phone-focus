@@ -1,0 +1,81 @@
+{
+  "evidence_id": "E-20261022-PROMO-MV-03",
+  "verified_at": "2026-10-22T17:02:17.068916+08:00",
+  "artifact": "D:\\游戏\\phone-focus\\promo\\v3\\output\\phone-focus-anime-10s.mp4",
+  "bytes": 3043978,
+  "sha256": "3fd77737e2920ae29c4699a9aa18b8be818188a6d882501012a80eeb94cd9613",
+  "format": "1080x1920 / 30fps / 10 seconds / H.264 yuv420p + AAC stereo",
+  "frames": 300,
+  "full_decode_exit": 0,
+  "female_narration": {
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "generic_synthetic_voice": true,
+    "script": "考研戒手机，学习期间戒手机。帮孩子少玩手机，家长和备考党必备小软件。关注加群，免费领取！",
+    "all_words_present_in_generation_metadata": true,
+    "raw_duration": 8.52,
+    "speech_last_word_end_with_delay": 8.24,
+    "mix_delay_seconds": 0.18,
+    "cut_off": false
+  },
+  "audio_peak": 0.8043743968009949,
+  "audio_rms": 0.12182298302650452,
+  "one_second_audio_rms": [
+    0.15317131578922272,
+    0.12848195433616638,
+    0.09292059391736984,
+    0.14464382827281952,
+    0.12298386543989182,
+    0.1380307823419571,
+    0.1129205971956253,
+    0.16581030189990997,
+    0.06627564877271652,
+    0.008315114304423332
+  ],
+  "character_action": "Same anime student: chooses a time range, taps phone with focus screenshot, puts phone down, writes in notebook.",
+  "animation_method": "Four built-in-imagegen keyframes, local hand/pen mesh motion, camera moves, tap ripple and screenshot perspective compositing.",
+  "built_in_imagegen": true,
+  "external_image_api_fallback_used": false,
+  "user_screenshots": "Both provided images inserted into illustrated phone during opening act (0-4.3s); app status text not rewritten.",
+  "camera_motion_difference": 14.439386004857317,
+  "cta": "关注加群，免费领取",
+  "invented_qr_or_group_number": false,
+  "visual_review": {
+    "status": "PASS",
+    "reviewed_at": "2026-10-22T17:03:19.056117+08:00",
+    "method": "Viewed final 8-frame encoded contact sheet; full-size encoded-01 opening, encoded-03 phone tap and encoded-07 CTA.",
+    "findings": [
+      "Same anime woman, outfit and study desk through all four actions.",
+      "Both provided screenshots composited into handset in opening act; original status labels not rewritten.",
+      "Face, hand/phone and writing action remain visible, character dominates frame.",
+      "Chinese subtitle and CTA legible without overlap; prompt and synthesis disclosure visible.",
+      "Phone insert edges corrected after initial sampled review; final frame has no dark perspective border artifacts."
+    ],
+    "scope": "Sampled encoded visual review, not end-to-end real mobile operation or subjective audio listening."
+  },
+  "audio_listening_review": "Not claimed; generated script metadata and encoded signal checked.",
+  "scope": "Promotional anime re-enactment with provided screenshots. Not real handset video, end-to-end software acceptance, or a guarantee of quitting phone use.",
+  "source_sha256": {
+    "render_mv.py": "7ca9d2297dbbfe25abb292c21938bb9995302fb2bf410279e6f29508af6a1406",
+    "make_voice.py": "0f5380f8180978413d42e749046047cdae766a3d7079ed7233987603fb721e6f",
+    "mix_audio.py": "8455161f2a953c96a0735f573efcaab8852d23a085b23e46738ef4a1a2937f31",
+    "verify_mv.py": "02f45c4e73daa892a2c72498945dd1ef17afe033047fee0c893cc7f430f9f2f8",
+    "storyboard.json": "35122ddc4b38528c18fcbb45636386f7a07420d86303214ec10b2e872ac41deb",
+    "image-prompt.txt": "8a6966df5954ba0590460f7e173622db923dbc01a33e46d557d07d9cd1fe500e",
+    "assets\\layout.json": "1d071b4a286364f8296d2c58cc909c38d52c81a7f503b37cc8fa6eb620ececa6"
+  },
+  "asset_sha256": {
+    "assets\\anime-storyboard.png": "8b765684fcac5e3d16042123e54d13a36ecf9c5176e9960391ed7e0fe9cf36c1",
+    "assets\\user-focus-screen.jpg": "0faf0d0fd3e916af443d7202d7b9d692fb6877497ab255f6c0f1abbd74c9f2da",
+    "assets\\user-schedule-screen.jpg": "0f2f323a66026c16c9162c939bbacf9c80b481d3ca2e52b60f572e865981c645",
+    "output\\female-voice-raw.mp3": "30687edd50f681d0d9380971e520ecdf0638295739791a2a4fa51e4f0930cb60",
+    "output\\soundtrack.wav": "e8326a24403ea59c1f3a64f949795553a73c16bf6cbe68f8b520a16aa6cc4f75",
+    "output\\captions.srt": "8655cd654242e3c4ad3b14bf3cd9b3decb4de6bc4a22c7fb67c3dbd611d0e5d6",
+    "output\\cover.jpg": "58a097718facd7238312259bc29bd9db7ba1b0c65f855d96c031338b12289b1b"
+  },
+  "validity": "Only these media/source/asset hashes. No APK change or external publication.",
+  "resolved_failures": [
+    "First built-in imagegen request returned network error; second built-in request succeeded. No external image API fallback.",
+    "Initial FFmpeg audio mix duration 9.92s persisted after padding attempt; replaced with exact 480000-frame PCM mix and verified 10s audio/video.",
+    "Initial screenshot perspective edge artifacts fixed by valid source pixel corners and cream fill."
+  ]
+}

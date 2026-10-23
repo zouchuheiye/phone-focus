@@ -1,0 +1,118 @@
+D:\游戏\phone-focus\app\src\main\java\com\phonefocus\guard\FocusAlarmReceiver.java:12: Warning: Consider using apply() instead; commit writes its data to persistent storage immediately, whereas apply will handle it in the background [ApplySharedPref]
+            catch (RuntimeException failure) { FocusManager.prefs(c).edit().putString("error","守护恢复失败，请打开应用使用恢复入口。").commit(); }
+                                                                                                                     ~~~~~~~~
+D:\游戏\phone-focus\app\src\main\java\com\phonefocus\guard\FocusManager.java:162: Warning: Consider using apply() instead; commit writes its data to persistent storage immediately, whereas apply will handle it in the background [ApplySharedPref]
+            p.edit().putString("error", "策略尚未全部恢复，请重试或使用紧急恢复："+String.join("；",errors)).commit();
+                                                                                        ~~~~~~~~
+D:\游戏\phone-focus\app\src\main\java\com\phonefocus\guard\FocusManager.java:224: Warning: Consider using apply() instead; commit writes its data to persistent storage immediately, whereas apply will handle it in the background [ApplySharedPref]
+            catch (RuntimeException denied) { prefs(c).edit().putString("error","系统未允许启动守护服务，请解锁并打开应用检查。").commit(); }
+                                                                                                           ~~~~~~~~
+D:\游戏\phone-focus\app\src\main\java\com\phonefocus\guard\FocusService.java:72: Warning: Consider using apply() instead; commit writes its data to persistent storage immediately, whereas apply will handle it in the background [ApplySharedPref]
+            FocusManager.prefs(this).edit().putString("error","专注守护启动失败，已尝试恢复策略。").commit();
+                                                                                   ~~~~~~~~
+D:\游戏\phone-focus\app\src\main\java\com\phonefocus\guard\FocusService.java:85: Warning: Consider using apply() instead; commit writes its data to persistent storage immediately, whereas apply will handle it in the background [ApplySharedPref]
+        catch (RuntimeException denied) { FocusManager.prefs(this).edit().putString("error","无法自动显示专注页；请按主屏幕键或打开应用。").commit(); }
+                                                                                                                      ~~~~~~~~
+D:\游戏\phone-focus\app\src\main\java\com\phonefocus\guard\LockAdminReceiver.java:16: Warning: Consider using apply() instead; commit writes its data to persistent storage immediately, whereas apply will handle it in the background [ApplySharedPref]
+            FocusManager.prefs(context).edit().putLong("system_confirmed_at",System.currentTimeMillis()).commit();
+                                                                                                         ~~~~~~~~
+D:\游戏\phone-focus\app\src\main\java\com\phonefocus\guard\RestoreReceiver.java:20: Warning: Consider using apply() instead; commit writes its data to persistent storage immediately, whereas apply will handle it in the background [ApplySharedPref]
+            FocusManager.prefs(context).edit().remove("resume_monitor_after_unlock").commit();
+                                                                                     ~~~~~~~~
+
+   Explanation for issues of type "ApplySharedPref":
+   Consider using apply() instead of commit on shared preferences. Whereas
+   commit blocks and writes its data to persistent storage immediately, apply
+   will handle it in the background.
+
+D:\游戏\phone-focus\app\src\main\java\com\phonefocus\guard\FocusManager.java:29: Warning: Field requires API level 28 (current min is 26): android.os.UserManager#DISALLOW_CONFIG_DATE_TIME [InlinedApi]
+    static final String[] RESTRICTIONS = {UserManager.DISALLOW_APPS_CONTROL, UserManager.DISALLOW_CONFIG_DATE_TIME, UserManager.DISALLOW_SAFE_BOOT};
+                                                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "InlinedApi":
+   This check scans through all the Android API field references in the
+   application and flags certain constants, such as static final integers and
+   Strings, which were introduced in later versions. These will actually be
+   copied into the class files rather than being referenced, which means that
+   the value is available even when running on older devices. In some cases
+   that's fine, and in other cases it can result in a runtime crash or
+   incorrect behavior. It depends on the context, so consider the code
+   carefully and decide whether it's safe and can be suppressed or whether the
+   code needs to be guarded.
+
+   If you really want to use this API and don't need to support older devices
+   just set the minSdkVersion in your build.gradle or AndroidManifest.xml
+   files.
+
+   If your code is deliberately accessing newer APIs, and you have ensured
+   (e.g. with conditional execution) that this code will only ever be called
+   on a supported platform, then you can annotate your class or method with
+   the @TargetApi annotation specifying the local minimum SDK to apply, such
+   as @TargetApi(11), such that this check considers 11 rather than your
+   manifest file's minimum SDK as the required API level.
+
+D:\游戏\phone-focus\app\build.gradle:8: Warning: Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details. [OldTargetApi]
+        targetSdk 35
+        ~~~~~~~~~~~~
+
+   Explanation for issues of type "OldTargetApi":
+   When your application or sdk runs on a version of Android that is more
+   recent than your targetSdkVersion specifies that it has been tested with,
+   various compatibility modes kick in. This ensures that your application
+   continues to work, but it may look out of place. For example, if the
+   targetSdkVersion is less than 14, your app may get an option button in the
+   UI.
+
+   To fix this issue, set the targetSdkVersion to the highest available value.
+   Then test your app to make sure everything works correctly. You may want to
+   consult the compatibility notes to see what changes apply to each version
+   you are adding support for:
+   https://developer.android.com/reference/android/os/Build.VERSION_CODES.html
+   as well as follow this guide:
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.
+   html
+
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.html
+
+D:\游戏\phone-focus\app\src\main\AndroidManifest.xml:31: Warning: Attribute enableOnBackInvokedCallback is only used in API level 33 and higher (current min is 26) [UnusedAttribute]
+            android:excludeFromRecents="true" android:enableOnBackInvokedCallback="true" />
+                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\游戏\phone-focus\app\src\main\res\xml\schedule_accessibility.xml:9: Warning: Attribute isAccessibilityTool is only used in API level 31 and higher (current min is 26) [UnusedAttribute]
+    android:isAccessibilityTool="false" />
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UnusedAttribute":
+   This check finds attributes set in XML files that were introduced in a
+   version newer than the oldest version targeted by your application (with
+   the minSdkVersion attribute).
+
+   This is not an error; the application will simply ignore the attribute.
+   However, if the attribute is important to the appearance or functionality
+   of your application, you should consider finding an alternative way to
+   achieve the same result with only available attributes, and then you can
+   optionally create a copy of the layout in a layout-vNN folder which will be
+   used on API NN or higher where you can take advantage of the newer
+   attribute.
+
+   Note: This check does not only apply to attributes. For example, some tags
+   can be unused too, such as the new <tag> element in layouts introduced in
+   API 21.
+
+D:\游戏\phone-focus\app\src\main\java\com\phonefocus\guard\OwnerSetupActivity.java:73: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+        selectedTime.setText("本次专注 "+FocusUi.duration(selected)+"\n预计结束："+DateFormat.getDateTimeInstance(DateFormat.SHORT,DateFormat.SHORT).format(new Date(System.currentTimeMillis()+Math.max(0,selected))));
+                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "SetTextI18n":
+   When calling TextView#setText
+   * Never call Number#toString() to format numbers; it will not handle
+   fraction separators and locale-specific digits properly. Consider using
+   String#format with proper format specifications (%d or %f) instead.
+   * Do not pass a string literal (e.g. "Hello") to display text. Hardcoded
+   text can not be properly translated to other languages. Consider using
+   Android resource strings instead.
+   * Do not build messages by concatenating text chunks. Such messages can not
+   be properly translated.
+
+   https://developer.android.com/guide/topics/resources/localization.html
+
+0 errors, 12 warnings

@@ -1,0 +1,66 @@
+{
+  "evidence_id": "E-20261023-GITHUB-SITE",
+  "verified_at": "2026-10-23T16:10:19.562360+08:00",
+  "local_http_status": 200,
+  "browser": "Microsoft Edge via Playwright, headless",
+  "viewports": [
+    {
+      "viewport": 320,
+      "content": 320
+    },
+    {
+      "viewport": 390,
+      "content": 390
+    },
+    {
+      "viewport": 768,
+      "content": 768
+    },
+    {
+      "viewport": 1440,
+      "content": 1440
+    }
+  ],
+  "console_errors": [],
+  "http_failures": [],
+  "download_original_apk_hash_match": true,
+  "video_original_hash_match": true,
+  "video_playback": {
+    "duration": 10,
+    "width": 1080,
+    "height": 1920,
+    "paused": false
+  },
+  "faq_toggle": "PASS",
+  "all_images_loaded": true,
+  "visual_review": {
+    "status": "PASS",
+    "reviewed_at": "2026-10-23T16:11:05.645173+08:00",
+    "method": "Viewed full desktop screenshot and 390px mobile top screenshot after forcing lazy images to load for capture.",
+    "findings": [
+      "Video-matching anime character and phone are main hero visual.",
+      "Desktop and mobile text and controls fit without horizontal clipping.",
+      "Phone setting/focus screenshots visible; video uses original 10s file.",
+      "Source animation disclosure and app permission/exit limitations retained."
+    ]
+  },
+  "apk_sha256": "d434bcedadd15694ade7cfac85101b349331edacbacf40c9e21be883948d0599",
+  "site_files_sha256": {
+    "docs/.nojekyll": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "docs/app.js": "94f52d12889e1c61912c7d21410180eb89361f84bde5239bcf8ce0066f0702b2",
+    "docs/assets/captions.srt": "8655cd654242e3c4ad3b14bf3cd9b3decb4de6bc4a22c7fb67c3dbd611d0e5d6",
+    "docs/assets/captions.vtt": "7d179bd0a634368b41720f011557b4c064b4aa4d7b8707fe00504f90675ef612",
+    "docs/assets/cover.jpg": "58a097718facd7238312259bc29bd9db7ba1b0c65f855d96c031338b12289b1b",
+    "docs/assets/focus.jpg": "f50a2788ef1efcde3fbb1ddc6c4dde5b663a9e2467a20693c2b9975bfb70fc56",
+    "docs/assets/github-cover.jpg": "19936ad5663c656d872f735b0b12ec218e640789bd6668d99c6ac346f41fe43a",
+    "docs/assets/hero.jpg": "89a1a90de01bccd8306273facd6a63812d00af25886fdb3ad6a357f36f83eea0",
+    "docs/assets/mark.svg": "96a2647d6de240b7ea440a9484c4aea398f821acf37ad1b3a83835d44ce20b7a",
+    "docs/assets/phone-focus-anime-10s.mp4": "3fd77737e2920ae29c4699a9aa18b8be818188a6d882501012a80eeb94cd9613",
+    "docs/assets/schedule.jpg": "a54c96099072939994a47288faea4e1271ba10f90d71adc5b10a6955ca7a0559",
+    "docs/download/phone-focus-1.3.1.apk": "d434bcedadd15694ade7cfac85101b349331edacbacf40c9e21be883948d0599",
+    "docs/download/phone-focus-1.3.1.apk.sha256": "44f32372e400a5bf38b2a8b955d23c9fc449d52e911b50a7150b7300db9e8e95",
+    "docs/index.html": "504783ed719f128e05cd0d2185a8ebf7efedde3ed265d4d5dd0f54bf28beced0",
+    "docs/styles.css": "39f95dbab989fa6fc8c36bd7c38c630f15117d367eab49e35cae266e88de1a2c"
+  },
+  "scope": "Website display, responsive layout, video playback and downloadable artifact integrity. Does not prove native Android enforcement."
+}

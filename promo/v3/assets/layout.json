@@ -1,0 +1,9 @@
+{
+  "phone_quads": [
+    [[0.734, 0.377], [0.871, 0.383], [0.818, 0.574], [0.686, 0.564]],
+    [[0.695, 0.353], [0.867, 0.358], [0.820, 0.606], [0.656, 0.599]]
+  ],
+  "tap_point": [0.725, 0.566],
+  "order": ["schedule screenshot while choosing", "focus screenshot while tapping", "phone put down", "writing"],
+  "occlusion": "Keep original skin-colored fingers and dark phone notch in front of app screenshot insert."
+}

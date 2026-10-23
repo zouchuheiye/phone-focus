@@ -1,0 +1,8 @@
+{
+  "mode": "built-in image_gen.imagegen",
+  "initial_attempt": "network error",
+  "retry": "success, 1024x1536",
+  "asset": "assets/anime-storyboard.png",
+  "prompt": "image-prompt.txt",
+  "external_image_api_fallback": false
+}
