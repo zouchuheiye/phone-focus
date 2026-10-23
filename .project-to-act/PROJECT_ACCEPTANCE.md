@@ -2,7 +2,7 @@
 
 ## 当前验收结论
 
-SITE-01本地网页验收通过（E-20261023-GITHUB-SITE）：Edge验证320/390/768/1440宽度、图片加载、无溢出、视频播放10秒1080p、下载APK哈希与原版一致、FAQ、无控制台错误。远端源码、Release与Pages上线核实进行中，未提前宣称发布成功；不改变安卓真机Gate。
+SITE-01本地网页验收通过（E-20261023-GITHUB-SITE）：Edge验证320/390/768/1440宽度、图片加载、无溢出、视频播放10秒1080p、下载APK哈希与原版一致、FAQ、无控制台错误。远端源码公开、Release资产uploaded且GitHub摘要匹配、Pages built及HTTP200已核实（E-20261023-GITHUB-PUBLISHED）；线上页面/样式/脚本/图片/视频/APK与本地哈希一致，一次Edge线上播放10秒1080p通过。后续复查网络超时保留记录；不改变安卓真机Gate。
 
 MV-03媒体交付通过（E-20261022-PROMO-MV-03）：10秒1080p/30fps/300帧，同一动漫角色四动作、用户两截图透视合成、完整中文合成女声/字幕/CTA齐备。完整解码、精确音视频时长、音频信号、语音生成元数据完整性及八张成片抽帧检查通过；开场/手机/领取原尺寸复核。属于动漫分镜演绎加局部动作，不是真实手机全流程录像，不推定应用真机或戒手机效果验收通过。
 
@@ -41,10 +41,14 @@ MV-02媒体交付通过（E-20261022-PROMO-MV-02）：36秒1080p/30fps、原创�
 | A-17 | 1.3.1安装包签名、升级一致、权限及构建 | 通过，0错误16警告 | qa/verify_alarm_release.py、qa/build-1.3.1.txt |
 | A-18 | MV-02格式、完整解码、配乐/字幕及成片视觉 | 通过 | promo/v2/qa/verification.json、encoded-contact-sheet.jpg、encoded-02.jpg、encoded-11.jpg |
 | A-19 | MV-03精确10秒、同一动漫角色使用过程、两截图入开场、女声/字幕/CTA完整 | 媒体检查通过；非连续实机录像 | promo/v3/qa/verification.json、encoded-contact-sheet.jpg、voice-boundaries.json、mix.json |
-| A-20 | SITE-01响应式、原视频播放、原APK下载与截图展示 | 本地浏览器通过，视觉复核及线上核实执行中 | qa/site-verification.json、qa/site-desktop.png、qa/site-mobile.png |
-| A-21 | GitHub上传、Release和Pages发布，排除签名私钥及本地配置 | 进行中，必须核实远端结果 | qa/publish-audit.json，远端发布记录待补 |
+| A-20 | SITE-01响应式、原视频播放、原APK下载与截图展示 | 本地浏览器/视觉通过，线上原文件与一次播放通过 | qa/site-verification.json、qa/site-desktop.png、qa/site-mobile.png、qa/github-publication.json |
+| A-21 | GitHub上传、Release和Pages发布，排除签名私钥及本地配置 | 通过：公开main、Release uploaded、Pages built/HTTP200，远端禁传路径为空 | qa/publish-audit.json、qa/github-publication.json |
 
 ## 证据索引
+
+- E-20261023-GITHUB-PUBLISHED：2026-10-23 16:17（Asia/Shanghai），qa/verify_github_publication.py首轮退出0；核实公开main提交da7369bd50a174f24c1c3b9351fc6e838261498c、Release v1.3.1四资产uploaded及摘要、Pages built（main /docs）和HTML HTTP200。线上样式/脚本/人物图/视频/APK逐字节SHA256与本地一致；Edge线上视频实际播放1080×1920、10秒且无JS错误，截图qa/site-live-desktop.png已视觉复核。证据qa/github-publication.json；后续复查播放和导航遇到超时，记录在同一JSON，不保证任意网络可达。部署工作流https://github.com/zouchuheiye/phone-focus/actions/runs/39923186787为success；签名/本地配置远端路径检查为空。有效范围为该提交的网站和发布资产，不证明Android真机行为。
+
+- E-20261023-GITHUB-SITE：qa/verify_site.py退出0，本地四种宽度无溢出、图片正常、原视频播放和下载原APK哈希一致，FAQ与控制台检查通过；桌面与手机截图视觉复核通过，见qa/site-verification.json。
 
 - E-20261022-PROMO-MV-03：2026-10-22（Asia/Shanghai），精确时间/源码/素材/提示词哈希见promo/v3/qa/verification.json。make_voice.py、mix_audio.py、render_mv.py、verify_mv.py最终退出0。H.264 yuv420p/AAC立体声，1080×1920/30fps/10秒/300帧，3043978字节，SHA256 3fd77737e2920ae29c4699a9aa18b8be818188a6d882501012a80eeb94cd9613；完整音视频解码退出0。
 - MV-03通用女声zh-CN-XiaoxiaoNeural，原声8.52秒、延后0.18秒，词边界元数据覆盖全部文案，最后一词含延迟止于8.24秒，无截断；PCM混音严格480000帧/48kHz，最终音视频均10秒。编码音频峰值0.8044、RMS0.1218；未把元数据检查写成主观听音验收。
@@ -79,6 +83,8 @@ MV-02媒体交付通过（E-20261022-PROMO-MV-02）：36秒1080p/30fps、原创�
 
 ## Gate 记录
 
+- G-09 GitHub发布与SITE-01展示：通过，E-20261023-GITHUB-PUBLISHED及E-20261023-GITHUB-SITE；公开仓库/Release/Pages和私钥排除已验证，网络复查超时留痕；不更改G-02及手机授权验收状态。
+
 - G-08十秒动漫MV-03媒体交付：通过，E-20261022-PROMO-MV-03；不变更实际手机端到端Gate。
 
 - G-07新版宣传MV-02媒体交付：通过，E-20261022-PROMO-MV-02；不变更应用真机Gate。
@@ -95,6 +101,8 @@ MV-02媒体交付通过（E-20261022-PROMO-MV-02）：36秒1080p/30fps、原创�
 - G-02真机可用：待设备，未豁免。
 
 ## 验收记录
+
+- 2026-10-23：按本轮明确授权完成GitHub公开仓库、Release和宣传片同款展示页，线上资源摘要与一次实际播放通过；后续网络超时记录保留。原Android APK与视频不变，未上传签名私钥，不改变真机待验收结论。
 
 - 2026-10-22：MV-03十秒动漫角色短片、女生合成配音、字幕、两张截图合成、封面/提示词/素材/源码完成，最终音视频检查和抽帧视觉通过。旧MV和APK保留，无外部发布或关注/加群动作。
 

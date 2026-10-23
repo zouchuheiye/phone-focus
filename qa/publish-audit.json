@@ -1,9 +1,9 @@
 {
   "evidence_id": "E-20261023-GITHUB-PUBLISH-AUDIT",
-  "verified_at": "2026-10-23T16:11:20.180914+08:00",
+  "verified_at": "2026-10-23T16:22:32.892976+08:00",
   "scope": "Exactly current Git index; rerun after staging any new content. Patterns are a bounded credential audit, not a guarantee of absence of all secret types.",
-  "staged_file_count": 282,
-  "staged_total_bytes": 48051152,
+  "staged_file_count": 285,
+  "staged_total_bytes": 49328623,
   "largest_file_bytes": 6912044,
   "forbidden_paths": [],
   "credential_pattern_findings": [],

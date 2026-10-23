@@ -1,0 +1,108 @@
+{
+  "evidence_id": "E-20261023-GITHUB-PUBLISHED",
+  "verified_at": "2026-10-23T16:17:16.612219+08:00",
+  "repository": "https://github.com/zouchuheiye/phone-focus",
+  "visibility": "PUBLIC",
+  "default_branch": "main",
+  "verified_commit": "da7369bd50a174f24c1c3b9351fc6e838261498c",
+  "release_url": "https://github.com/zouchuheiye/phone-focus/releases/tag/v1.3.1",
+  "release_assets": [
+    {
+      "name": "cover.jpg",
+      "size": 427175,
+      "url": "https://github.com/zouchuheiye/phone-focus/releases/download/v1.3.1/cover.jpg",
+      "state": "uploaded",
+      "digest": "sha256:58a097718facd7238312259bc29bd9db7ba1b0c65f855d96c031338b12289b1b"
+    },
+    {
+      "name": "phone-focus-1.3.1.apk",
+      "size": 60120,
+      "url": "https://github.com/zouchuheiye/phone-focus/releases/download/v1.3.1/phone-focus-1.3.1.apk",
+      "state": "uploaded",
+      "digest": "sha256:d434bcedadd15694ade7cfac85101b349331edacbacf40c9e21be883948d0599"
+    },
+    {
+      "name": "phone-focus-1.3.1.apk.sha256",
+      "size": 88,
+      "url": "https://github.com/zouchuheiye/phone-focus/releases/download/v1.3.1/phone-focus-1.3.1.apk.sha256",
+      "state": "uploaded",
+      "digest": "sha256:44f32372e400a5bf38b2a8b955d23c9fc449d52e911b50a7150b7300db9e8e95"
+    },
+    {
+      "name": "phone-focus-anime-10s.mp4",
+      "size": 3043978,
+      "url": "https://github.com/zouchuheiye/phone-focus/releases/download/v1.3.1/phone-focus-anime-10s.mp4",
+      "state": "uploaded",
+      "digest": "sha256:3fd77737e2920ae29c4699a9aa18b8be818188a6d882501012a80eeb94cd9613"
+    }
+  ],
+  "pages_url": "https://zouchuheiye.github.io/phone-focus/",
+  "pages_source": {
+    "branch": "main",
+    "path": "/docs"
+  },
+  "pages_state": "built",
+  "pages_html_http": 200,
+  "pages_html_sha256": "504783ed719f128e05cd0d2185a8ebf7efedde3ed265d4d5dd0f54bf28beced0",
+  "checked_assets": {
+    "styles.css": {
+      "http": 200,
+      "sha256": "39f95dbab989fa6fc8c36bd7c38c630f15117d367eab49e35cae266e88de1a2c",
+      "matches_local": true
+    },
+    "app.js": {
+      "http": 200,
+      "sha256": "94f52d12889e1c61912c7d21410180eb89361f84bde5239bcf8ce0066f0702b2",
+      "matches_local": true
+    },
+    "assets/hero.jpg": {
+      "http": 200,
+      "sha256": "89a1a90de01bccd8306273facd6a63812d00af25886fdb3ad6a357f36f83eea0",
+      "matches_local": true
+    },
+    "assets/mark.svg": {
+      "http": 200,
+      "sha256": "96a2647d6de240b7ea440a9484c4aea398f821acf37ad1b3a83835d44ce20b7a",
+      "matches_local": true
+    },
+    "assets/phone-focus-anime-10s.mp4": {
+      "http": 200,
+      "sha256": "3fd77737e2920ae29c4699a9aa18b8be818188a6d882501012a80eeb94cd9613",
+      "matches_local": true
+    },
+    "download/phone-focus-1.3.1.apk": {
+      "http": 200,
+      "sha256": "d434bcedadd15694ade7cfac85101b349331edacbacf40c9e21be883948d0599",
+      "matches_local": true
+    }
+  },
+  "live_edge_video_playback": {
+    "duration": 10,
+    "width": 1080,
+    "height": 1920
+  },
+  "live_browser_errors": [],
+  "remote_tree_forbidden_paths": [],
+  "remote_tree_entries": 311,
+  "polls": [
+    {
+      "attempt": 1,
+      "status": "built"
+    }
+  ],
+  "scope": "Repository, release digests, public hosted static byte integrity and actual hosted browser playback. Android behavior gate unchanged.",
+  "visual_review": "PASS: inspected hosted full-page desktop screenshot; original anime hero, video, app screenshots, download and FAQ layout present.",
+  "repeat_observations": [
+    {
+      "result": "TIMEOUT",
+      "step": "Second hosted browser playback wait >0.2 seconds",
+      "timeout_ms": 30000
+    },
+    {
+      "result": "TIMEOUT",
+      "step": "Additional diagnostic navigation waiting for DOMContentLoaded",
+      "timeout_ms": 30000
+    }
+  ],
+  "repeat_observations_note": "Original complete verification process exited 0; repeat network/browser timeouts do not replace or broaden that bounded successful observation. No claim of universal connectivity."
+}

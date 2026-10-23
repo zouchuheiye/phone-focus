@@ -3,14 +3,14 @@
 ## 当前版本
 
 - versionName：1.3.1；versionCode：5；包名：com.phonefocus.guard。
-- 安装包：releases/phone-focus-1.3.1.apk；60120字节；原签名包不变，2026-10-23按用户授权准备GitHub发布。
+- 安装包：releases/phone-focus-1.3.1.apk；60120字节；原签名包不变，2026-10-23已按用户授权发布至GitHub Release v1.3.1。
 - SHA256：d434bcedadd15694ade7cfac85101b349331edacbacf40c9e21be883948d0599。
 - minSdk26 / targetSdk35 / compileSdk36；每日模式需手机无障碍授权，不要求设备所有者或设备管理员。与1.3.0同签名可覆盖升级；旧两列时段读取为各段开启，新三列保存独立开关。
-- 签名材料在.local中不交付；最后更新2026-10-22（Asia/Shanghai）。真实设备权限配置未执行。
+- 签名材料在.local中不交付；最后更新2026-10-23（Asia/Shanghai）。真实设备权限配置未执行。
 
 ## 版本历史
 
-- 展示页SITE-01 / 2026-10-23：/docs静态HTML/CSS/JS，宣传片同款人物、原10秒视频、页面和APK下载；本地浏览器检查通过，GitHub Pages部署进行中。Android版本与原二进制哈希不变。
+- 展示页SITE-01 / 2026-10-23：/docs静态HTML/CSS/JS，宣传片同款人物、原10秒视频、页面和APK下载；本地浏览器和视觉复核通过；GitHub Pages已built并返回HTTP200，线上文件校验及一次Edge视频播放通过。仓库zouchuheiye/phone-focus公开，Release v1.3.1含原签名APK。Android版本与原二进制哈希不变；证据qa/github-publication.json。
 
 - 宣传素材MV-03 / 2026-10-22：10秒竖屏1080p/30fps，同一动漫女生操作手机后学习，两张用户截图入画，中文通用合成女声、字幕与领取CTA。输出promo/v3/output/phone-focus-anime-10s.mp4，3043978字节，SHA256 3fd77737e2920ae29c4699a9aa18b8be818188a6d882501012a80eeb94cd9613；证据promo/v3/qa/verification.json。独立媒体版，APK与旧MV保留不变。
 
