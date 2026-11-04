@@ -22,11 +22,11 @@ public class AgnesClientTest {
         return new JSONObject().put("category",category).put("confidence",confidence).put("reason","synthetic test").toString();
     }
     @Test public void onlyHighConfidenceEntertainmentLocks() throws Exception {
-        assertTrue(AgnesProtocol.parse(envelope(verdict("entertainment",.90))).shouldLock());
-        assertTrue(AgnesProtocol.parse(envelope(verdict("entertainment",1))).shouldLock());
-        assertFalse(AgnesProtocol.parse(envelope(verdict("entertainment",.8999))).shouldLock());
+        assertTrue(AgnesProtocol.parse(envelope(verdict("entertainment",.90))).shouldBlock());
+        assertTrue(AgnesProtocol.parse(envelope(verdict("entertainment",1))).shouldBlock());
+        assertFalse(AgnesProtocol.parse(envelope(verdict("entertainment",.8999))).shouldBlock());
         for (String category:new String[]{"study","work","essential","uncertain"})
-            assertFalse(AgnesProtocol.parse(envelope(verdict(category,1))).shouldLock());
+            assertFalse(AgnesProtocol.parse(envelope(verdict(category,1))).shouldBlock());
     }
     @Test public void invalidSchemaNeverBecomesLockDecision() throws Exception {
         String[] bad={"{}","[]","null","hello",verdict("entertainment","0.99"),verdict("entertainment",true),
@@ -61,7 +61,7 @@ public class AgnesClientTest {
             server.enqueue(new MockResponse().setBody(envelope(verdict("entertainment",.95))));server.start();
             AgnesClient client=new AgnesClient();
             try {
-                assertTrue(client.perform(server.url("/v1/chat/completions").toString(),"test-placeholder",AgnesProtocol.DEFAULT_MODEL,"test.app","AAAA").shouldLock());
+                assertTrue(client.perform(server.url("/v1/chat/completions").toString(),"test-placeholder",AgnesProtocol.DEFAULT_MODEL,"test.app","AAAA").shouldBlock());
                 RecordedRequest request=server.takeRequest(2,TimeUnit.SECONDS);assertNotNull(request);
                 assertEquals("Bearer test-placeholder",request.getHeader("Authorization"));
                 assertEquals(AgnesProtocol.DEFAULT_MODEL,new JSONObject(request.getBody().readUtf8()).getString("model"));

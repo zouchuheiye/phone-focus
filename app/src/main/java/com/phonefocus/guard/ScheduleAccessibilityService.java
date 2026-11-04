@@ -36,8 +36,10 @@ public final class ScheduleAccessibilityService extends AccessibilityService {
     private final Handler handler = new Handler(Looper.getMainLooper());
     private final Set<String> allowed = new HashSet<>();
     private String foreground = "";
+    private String beforeScreenOff = "";
     private LinearLayout overlay;
     private TextView deadline;
+    private TextView reason;
     private boolean registered;
     private long foregroundRevision;
     private EntertainmentMonitor entertainment;
@@ -58,8 +60,14 @@ public final class ScheduleAccessibilityService extends AccessibilityService {
         @Override public void onReceive(Context c, Intent i) {
             foregroundRevision++;
             if (entertainment!=null) entertainment.invalidate();
-            if (Intent.ACTION_SCREEN_OFF.equals(i.getAction())) { foreground = ""; hide(); }
-            else evaluate();
+            if (Intent.ACTION_SCREEN_OFF.equals(i.getAction())) {
+                try { EntertainmentBlock.checkpoint(ScheduleAccessibilityService.this); } catch (RuntimeException ignored) { }
+                beforeScreenOff=foreground; foreground = ""; hide();
+            }
+            else {
+                if (Intent.ACTION_USER_PRESENT.equals(i.getAction()) && (foreground.isEmpty() || foreground.equals("com.android.systemui"))) foreground=beforeScreenOff;
+                evaluate();
+            }
         }
     };
     @Override protected void onServiceConnected() {
@@ -81,6 +89,7 @@ public final class ScheduleAccessibilityService extends AccessibilityService {
         if (Build.VERSION.SDK_INT >= 33) registerReceiver(screen, f, Context.RECEIVER_NOT_EXPORTED); else registerReceiver(screen, f);
         registered = true;
         entertainment = new EntertainmentMonitor(this);
+        try { EntertainmentBlock.checkpoint(this); } catch (RuntimeException ignored) { }
         ScheduleManager.arm(this);
         handler.removeCallbacks(tick); handler.post(tick);
     }
@@ -100,7 +109,7 @@ public final class ScheduleAccessibilityService extends AccessibilityService {
     String foregroundPackage() { return foreground; }
     long foregroundRevision() { return foregroundRevision; }
     boolean entertainmentEligible() {
-        if (!EntertainmentSettings.supported() || overlay!=null || FocusManager.hasSession(this)
+        if (!EntertainmentSettings.supported() || overlay!=null || EntertainmentBlock.active(this) || FocusManager.hasSession(this)
                 || foreground.isEmpty() || allowed.contains(foreground)) return false;
         PowerManager power=getSystemService(PowerManager.class);
         KeyguardManager keyguard=getSystemService(KeyguardManager.class);
@@ -110,16 +119,28 @@ public final class ScheduleAccessibilityService extends AccessibilityService {
         return mode==AudioManager.MODE_NORMAL; // Skip calls, ringing and VoIP, including floating call UI.
     }
     private void evaluate() {
-        boolean visible = ScheduleManager.active(this) && !FocusManager.hasSession(this)
+        long blockRemaining=EntertainmentBlock.remaining(this);
+        boolean daily=ScheduleManager.active(this);
+        AudioManager audio=getSystemService(AudioManager.class);
+        boolean visible = (daily || blockRemaining>0) && !FocusManager.hasSession(this)
             && getSystemService(PowerManager.class).isInteractive()
             && !getSystemService(KeyguardManager.class).isKeyguardLocked()
+            && audio!=null && audio.getMode()==AudioManager.MODE_NORMAL
             && !foreground.isEmpty() && !allowed.contains(foreground);
         if (!visible) { hide(); return; }
         if (overlay == null) show();
+        if (reason!=null) reason.setText(blockRemaining>0?"识别到娱乐，当前禁止使用手机":"现在是你设定的禁用时段");
         if (deadline != null) {
-            Instant next = ScheduleManager.schedule(this).nextChange(Instant.now(), ZoneId.systemDefault());
-            deadline.setText(next == null ? "每日时段已连续覆盖全天\n请在时段设置中调整" : "恢复使用：" + DateTimeFormatter.ofPattern("MM月dd日 HH:mm").withZone(ZoneId.systemDefault()).format(next)
-                + "\n剩余 " + FocusUi.duration(next.toEpochMilli() - System.currentTimeMillis()));
+            String text="";
+            if (blockRemaining>0) text="娱乐禁用剩余 "+FocusUi.duration(blockRemaining)+"\n本次结束："
+                +DateTimeFormatter.ofPattern("MM月dd日 HH:mm").withZone(ZoneId.systemDefault()).format(Instant.ofEpochMilli(System.currentTimeMillis()+blockRemaining));
+            if (daily) {
+                Instant next=ScheduleManager.schedule(this).nextChange(Instant.now(),ZoneId.systemDefault());
+                if (!text.isEmpty()) text+="\n\n每日计划也在生效\n";
+                text+=next==null?"每日时段已连续覆盖全天": "每日恢复："+DateTimeFormatter.ofPattern("MM月dd日 HH:mm").withZone(ZoneId.systemDefault()).format(next)
+                    +"\n剩余 "+FocusUi.duration(next.toEpochMilli()-System.currentTimeMillis());
+            }
+            deadline.setText(text);
         }
     }
     private TextView label(String value, int size) {
@@ -143,7 +164,7 @@ public final class ScheduleAccessibilityService extends AccessibilityService {
             }
         }; overlay.setOrientation(LinearLayout.VERTICAL); overlay.setGravity(Gravity.CENTER);
         int pad = (int)(28 * getResources().getDisplayMetrics().density); overlay.setPadding(pad,pad,pad,pad); overlay.setBackgroundColor(FocusUi.BG);
-        label("去做正事", 32); label("现在是你设定的禁用时段", 19); deadline = label("", 18);
+        label("去做正事", 32); reason=label("",19); deadline = label("", 18);
         label("放下手机，到点自动恢复。", 16);
         button("电话 / 紧急呼叫", () -> open(new Intent(Intent.ACTION_DIAL, android.net.Uri.parse("tel:"))));
         button("时段与授权设置", () -> open(new Intent(this, ScheduleSetupActivity.class)));
@@ -160,7 +181,7 @@ public final class ScheduleAccessibilityService extends AccessibilityService {
     private void hide() {
         if (overlay != null) {
             try { getSystemService(WindowManager.class).removeView(overlay); } catch (RuntimeException ignored) { }
-            overlay = null; deadline = null;
+            overlay = null; deadline = null; reason=null;
         }
     }
     @Override public void onInterrupt() { foregroundRevision++; if (entertainment!=null) entertainment.invalidate(); evaluate(); }

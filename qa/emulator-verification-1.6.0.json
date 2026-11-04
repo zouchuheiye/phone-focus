@@ -1,0 +1,103 @@
+{
+  "evidenceId": "E-20261104-ANDROID11-BLOCK-EMULATOR",
+  "verifiedAt": "2026-11-04T17:24:30.181685+08:00",
+  "environment": {
+    "type": "official Android Emulator",
+    "api": 30,
+    "systemImage": "system-images;android-30;default;x86_64",
+    "acceleration": "WHPX",
+    "serial": "emulator-5580"
+  },
+  "testedArtifact": {
+    "version": "1.6.0-personal",
+    "versionCode": 10,
+    "sha256": "0fd86f57fdf0801b2db52598b6c804461e69bd267cec847e05d9c941df739222",
+    "installedApkHashMatches": true,
+    "privateApkNotPublished": true
+  },
+  "realModelEndpoint": "https://apihub.agnes-ai.com/v1/chat/completions",
+  "model": "agnes-2.5-flash",
+  "cases": [
+    {
+      "keystoreDecryptMatchesBundledConfig": true,
+      "storedAsCiphertext": true,
+      "noManualImport": true,
+      "cloudDefaultOff": true,
+      "case": "automatic-config"
+    },
+    {
+      "enabledThroughRealUi": true,
+      "remainingInitialMs": 599307,
+      "defaultBlockMinutes": 30,
+      "serviceGrantedByTestAdb": true,
+      "case": "consent-cadence-default"
+    },
+    {
+      "screenStaysInteractive": true,
+      "blockingOverlayVisible": true,
+      "remainingMs": 1799956,
+      "testDetectionDeadlineInjected": true,
+      "case": "accelerated-game"
+    },
+    {
+      "nextTriggerMinutes": 5,
+      "currentBlockStillThirtyMinutes": true,
+      "case": "duration-ui"
+    },
+    {
+      "studyStillBlockedDuringHold": true,
+      "differentPackageAlsoBlocked": true,
+      "case": "cross-app-block"
+    },
+    {
+      "stillBlockedAfterWake": true,
+      "pauseDoesNotReleaseCurrentBlock": true,
+      "case": "wake-and-pause"
+    },
+    {
+      "overlayRemovedAtExpiredDeadline": true,
+      "testBlockDeadlineInjected": true,
+      "case": "expiry"
+    },
+    {
+      "noNewBlock": true,
+      "screenInteractive": true,
+      "case": "study-non-trigger"
+    },
+    {
+      "noNewBlock": true,
+      "case": "blank-non-trigger"
+    },
+    {
+      "noScreenshot": true,
+      "screenInteractive": true,
+      "case": "simulated-voip-protection"
+    },
+    {
+      "remainingMs": 299956,
+      "configuredMinutes": 5,
+      "case": "edited-duration-applied"
+    },
+    {
+      "elapsedMs": 602391,
+      "wallElapsedMs": 602390,
+      "noEarlyBlock": true,
+      "screenStaysInteractive": true,
+      "overlayVisible": true,
+      "blockRemainingMs": 1799924,
+      "detectionDeadlineInjection": false,
+      "case": "natural-ten-minute-game"
+    }
+  ],
+  "passed": true,
+  "method": "Original personal APK unchanged. Same-signer test instrumentation; service enabled by test ADB and cloud consent clicked through real UI. Fast cases inject test deadlines in emulator memory/state; the final detection interval waits the original full600 seconds with no deadline injection. Screens are synthetic fixtures.",
+  "scope": "Actual Android11 emulator runtime, Keystore, screenshot, live model and blocking overlay. Not an OEM physical-phone acceptance or measured screenshot accuracy benchmark. Block expiry is accelerated, not a real30-minute wait.",
+  "sourceLogsPrivate": ".local/simulation/instrumentation16.txt",
+  "testDriverSha256": "b5985403b7918a2970e4b19342bc53db1b80a3c91fdb24ffdcdf46139e6303f0",
+  "postRunChecks": {
+    "blockRestoredAfterServiceReconnect": true,
+    "realOverlayVisibleInAdbScreenshot": true,
+    "phoneButtonOpensDialerWithoutCalling": true,
+    "ordinaryAppBlockedAgainAfterDialer": true
+  }
+}

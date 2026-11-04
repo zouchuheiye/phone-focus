@@ -2,6 +2,10 @@
 
 ## 当前验收结论
 
+1.6.0持续禁用工程与模拟器加速场景通过（E-20261104-ENTERTAINMENT-BLOCK-1.6.0），原600秒已通过（602391ms触发），现已完成完整周期。Android11实际运行原私有APK，自动预置/Keystore、真实截图与Agnes、30分钟禁用覆盖/屏幕仍亮、跨包拦截、息屏亮起/暂停仍禁用、时长改5分钟下次触发才生效、课程/空白不触发、模拟VoIP跳过、加速到期撤下均通过。不是实际品牌手机验收；加速到期不等于真实等待30分钟。
+
+自用预置版1.5.0-personal/versionCode8已通过隔离构建和包装检查（E-20261104-PERSONAL-APK）：1082730字节，与公开1.5.0同包名/签名可覆盖升级；包内Agnes配置与私有来源匹配，首次打开一次性保存到既有Keystore实现，无需输入/导入，删除后不自动补回，云端检查仍需明确开启。产物.local/personal-release/phone-focus-1.5.0-personal.apk，SHA256 02d919756674284dc73b11107e04a11c4529bfd659a7e525fef9dd1415cd214c，Git忽略且本机账户/SYSTEM访问，不上传GitHub或替换公开包。公开1.5.0字节与无预置配置状态保持。手机首开初始化/授权/物理锁屏待验收。
+
 1.5.0 Agnes云端视觉工程交付通过（E-20261104-AGNES-1.5.0）：8项严格JSON/HTTP错误/重定向拒绝/超时/取消测试、35项旧样本与当前10分钟/45秒结果保护及原回归通过，Release/Lint0错误22警告、原签名升级和最终APK能力/网络/Keystore符号审查通过。生产同一客户端与提示词调用Agnes2.5 Flash，三张合成图游戏/课程/空白分别返回娱乐/学习/不确定，只有游戏达到锁屏门槛；不是真实截图准确率或Android物理锁屏证明。实际密钥未进入公开文件或APK；云端开关默认关闭。GitHub源码/Release v1.5.0已发布，Pages success及HTML/APK实际下载摘要匹配（E-20261104-GITHUB-1.5.0），真机待验收。
 
 1.4.0娱乐截图检查工程交付通过（E-20261104-ENTERTAINMENT-1.4.0）：35项规则/单调10分钟周期/开关与旧结果保护通过，原129966/382/3363/173284项回归通过；Release与Lint0错误20警告，同签名升级、最终APK截图能力/无控件读取/内置中英文OCR模型/无网络权限审查通过。网站下载与新披露在四种宽度及视觉检查通过。无连接手机，不验证实际截图、OCR准确率、物理锁屏或后台；GitHub源码/Release v1.4.0已发布，Pages success及HTML HTTP200/摘要匹配（E-20261104-GITHUB-1.4.0）。
@@ -54,7 +58,19 @@ MV-02媒体交付通过（E-20261022-PROMO-MV-02）：36秒1080p/30fps、原创�
 | A-24 | Agnes结构化决策、HTTP错误、拒绝重定向、限时取消 | 8项模拟单元测试通过 | qa/agnes-unit-tests.xml、AgnesClientTest.java |
 | A-25 | 实际Agnes图片输入与密钥排除 | 三张合成图接口通过；APK及公开文件无实际密钥；真实手机待验收 | qa/agnes-live-verification.json、qa/verification-1.5.0.json、qa/agnes-device-checklist.md |
 
+| A-26 | 预置API私有自用包，签名/配置及不公开分发 | 包装通过；手机首开/授权待验收 | .local/personal-release/verification.json、build.txt、signature.txt |
+
+| A-27 | 1.6.0持续禁用持久截止点、原签名与无密钥公共包 | 工程通过 | qa/verification-1.6.0.json、qa/build-1.6.0.txt |
+| A-28 | Android11实际模拟器：30分钟覆盖、改时长/跨应用/亮屏/到期、原600秒 | 加速场景通过，原600秒已通过（602391ms触发）；真实手机待验收 | .local/simulation/device16/simulation16/report.json |
+
 ## 证据索引
+
+- E-20261104-ANDROID11-BLOCK-EMULATOR：精确时间、测试驱动SHA256及12项实际运行结果见qa/emulator-verification-1.6.0.json。原私有1.6.0-personal/code10实际安装APK从模拟器拉回，SHA256与交付0fd86f57fdf0801b2db52598b6c804461e69bd267cec847e05d9c941df739222完全一致。Keystore解密与内置配置匹配、云端默认关闭/真实对话框开启、实际截图送Agnes并进入30分钟覆盖均通过。原600秒自然等待602391ms（壁钟602390ms）触发，提前阶段持续检查无覆盖/屏幕保持亮，触发剩余1799924ms；普通应用被禁用。其他场景的检测/到期明确加速注入，不写成真实等待30分钟。UI改为5分钟不缩短本次、下次确实采用5分钟；跨包、息屏再亮、暂停不解除；课程/空白不触发；模拟VoIP无截图均通过。测试后再验证服务重连恢复、真实拨号入口打开（未拨号）及返回普通应用重新拦截。qa/emulator-block-1.6.0.png为实际ADB截屏，已视觉复核；不代表所有品牌手机或真实内容准确率。
+
+- E-20261104-ENTERTAINMENT-BLOCK-1.6.0：test.ps1、build.ps1 -WithTests、verify_block_release.py退出0，公开APK SHA256 3f91cbb38848c62575f3aa5ea448ecac72277d8c49c6257ad1872b46e8235d54；私有code10 SHA256 0fd86f57fdf0801b2db52598b6c804461e69bd267cec847e05d9c941df739222。最终DEX有EntertainmentBlock/FocusWindow，无performGlobalAction引用；仍保留旧三分钟设备管理员路径。API语义/错误/取消8项及原回归通过，源码哈希在qa/verification-1.6.0.json。初次漏导入截图回调所需AccessibilityService，已恢复并重建通过，失败log保留。
+- 当前模拟环境为官方Android11/API30默认x86_64镜像、WHPX，serial emulator-5580，原私有包已安装且未修改；同签名独立测试驱动通过ADB设置模拟器服务授权、通过真实App对话框启用云端。部分场景通过测试反射提前deadline，输出显式标注；原600秒实等通过，30分钟本体到期用加速测试，不虚构真实等待。所有截图/报告留.local/simulation，不含API值。首轮fixture未刷新导致仍测游戏、第二轮service清理残留导致绑定失败，测试隔离修复后新流程继续，旧日志保留。
+
+- E-20261104-PERSONAL-APK：精确时间与摘要见.local/personal-release/verification.json；隔离Gradle assembleRelease/lintRelease、aapt、apksigner退出0，Lint0错误19警告；自用预置版1.5.0-personal/versionCode8已通过隔离构建和包装检查（E-20261104-PERSONAL-APK）：1082730字节，与公开1.5.0同包名/签名可覆盖升级；包内Agnes配置与私有来源匹配，首次打开一次性保存到既有Keystore实现，无需输入/导入，删除后不自动补回，云端检查仍需明确开启。产物.local/personal-release/phone-focus-1.5.0-personal.apk，SHA256 02d919756674284dc73b11107e04a11c4529bfd659a7e525fef9dd1415cd214c，Git忽略且本机账户/SYSTEM访问，不上传GitHub或替换公开包。公开1.5.0字节与无预置配置状态保持。手机首开初始化/授权/物理锁屏待验收。 网络客户端/协议/监控/Keystore源码逐字节与已测公开1.5.0一致。API值不写入管理文档；私有配置与构建目录不入Git。
 
 - E-20261104-GITHUB-1.5.0：公开main提交bae380367750d097e4abc480812eabcc54ed5c12与Release v1.5.0已发布；APK资产uploaded，GitHub digest匹配原签名包。Pages工作流41799806061成功，线上HTML和实际APK下载HTTP200且SHA256与本地一致。公开树无.local私有配置与签名材料，证据qa/github-publication-1.5.0.json。只核实发布，不豁免真机验收。
 
@@ -104,6 +120,10 @@ MV-02媒体交付通过（E-20261022-PROMO-MV-02）：36秒1080p/30fps、原创�
 - E-20261021-ENGINEERING（1.0.0）：历史验证已归档qa/v1.0.0，旧APK保留，不适用于1.1.0变更。
 
 ## Gate 记录
+
+- G-13 1.6.0 Android11实际模拟验收：通过，原私有APK、12项场景及4项后置恢复/电话检查；检测600秒真实等待，到期30分钟用加速，不虚构实等。目标品牌手机、真实来电/OEM后台/全场景准确率仍待验收。
+
+- G-12 私有自用包装交付：通过；私有包不上传，真实Keystore首开、无障碍授权、后台和物理锁屏仍待设备，不豁免。
 
 - G-11 Agnes1.5.0工程与合成图接口：通过；真实手机Keystore、导入/同意、截图/模型误判率、物理锁屏、通话和后台Gate仍待设备，按qa/agnes-device-checklist.md，不豁免。
 

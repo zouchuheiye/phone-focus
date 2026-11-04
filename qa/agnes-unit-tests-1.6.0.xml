@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.phonefocus.guard.AgnesClientTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-04T09:10:48.938Z" hostname="DESKTOP-GH75RDN" time="4.237">
+  <properties/>
+  <testcase name="errorsAndRedirectsAreNotFollowedOrRetried" classname="com.phonefocus.guard.AgnesClientTest" time="0.19"/>
+  <testcase name="truncatedRefusedAndToolCallingResponsesAreRejected" classname="com.phonefocus.guard.AgnesClientTest" time="0.0"/>
+  <testcase name="invalidSchemaNeverBecomesLockDecision" classname="com.phonefocus.guard.AgnesClientTest" time="0.001"/>
+  <testcase name="onlyHighConfidenceEntertainmentLocks" classname="com.phonefocus.guard.AgnesClientTest" time="0.001"/>
+  <testcase name="successfulHttpUsesBearerAndReturnsStructuredVerdict" classname="com.phonefocus.guard.AgnesClientTest" time="0.004"/>
+  <testcase name="requestsCarryImageAndUntrustedContextWithoutTools" classname="com.phonefocus.guard.AgnesClientTest" time="0.0"/>
+  <testcase name="callTimeoutAndExplicitCancellationAreBounded" classname="com.phonefocus.guard.AgnesClientTest" time="4.027"/>
+  <testcase name="oversizedResponseIsRejected" classname="com.phonefocus.guard.AgnesClientTest" time="0.012"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

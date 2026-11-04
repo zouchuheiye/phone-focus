@@ -1,0 +1,29 @@
+{
+  "evidenceId": "E-20261104-SITE-1.6.0",
+  "verifiedAt": "2026-11-04T17:17:41.266838+08:00",
+  "viewports": [
+    {
+      "width": 320,
+      "content": 320
+    },
+    {
+      "width": 390,
+      "content": 390
+    },
+    {
+      "width": 768,
+      "content": 768
+    },
+    {
+      "width": 1440,
+      "content": 1440
+    }
+  ],
+  "apkDownloadSha256Matches": true,
+  "apkSha256": "3f91cbb38848c62575f3aa5ea448ecac72277d8c49c6257ad1872b46e8235d54",
+  "entertainmentAndScreenshotDisclosure": "PASS",
+  "consoleErrors": [],
+  "httpFailures": [],
+  "visualReview": "PASS: inspected 390px mobile full-page screenshot. New persistent-block explanation and download remain readable and within page width; four viewport checks passed.",
+  "scope": "Local website update and download; Android runtime not tested."
+}

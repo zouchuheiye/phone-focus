@@ -1,5 +1,5 @@
 <resources>
-    <string name="schedule_accessibility_description">每日时段按窗口应用显示专注拦截页。另行配置密钥并开启Agnes检查后，Android11及以上每10分钟截取当前画面，将压缩截图和应用标识发送给Agnes视觉模型判断娱乐并请求锁屏。可能包含私人信息，平台处理按其政策；应用不保存画面或模型原文，不读取控件或模拟点击。电话、设置和撤权入口保留。</string>
+    <string name="schedule_accessibility_description">每日时段按窗口应用显示专注拦截页。另行配置密钥并开启Agnes检查后，Android11及以上每10分钟截取当前画面，将压缩截图和应用标识发送给Agnes视觉模型判断娱乐并进入定时禁用页面（默认30分钟，可修改）。可能包含私人信息，平台处理按其政策；应用不保存画面或模型原文，不读取控件或模拟点击。电话、设置和撤权入口保留。</string>
     <string name="lock_admin_description">连续亮屏满3分钟后自动息屏并锁屏。锁屏后可能需要输入PIN、图案或密码解锁。仅使用锁屏权限，可随时在应用内停止并解除授权。</string>
     <string name="permission_status">%1$s\n%2$s\n%3$s</string>
 </resources>

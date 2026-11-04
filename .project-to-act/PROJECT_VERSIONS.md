@@ -2,14 +2,21 @@
 
 ## 当前版本
 
-- versionName：1.5.0；versionCode：7；包名com.phonefocus.guard。
-- APK：releases/phone-focus-1.5.0.apk；1081950字节；SHA256：1a294c3b796075fe0ccf0a2594e8ec30370a80ed7b83fb4b695b03319e020a83。
-- 同1.4.0签名；原每日时段数据保留，min26/target35/compile36，截图仍需API30。
-- Agnes默认agnes-2.5-flash，官方HTTPS + data URI图片；个人密钥手机Keystore加密，公开APK与仓库不含密钥，不再打包旧OCR模型/关键词规则。
-- 云端开关用新字段，升级默认关闭，必须导入个人配置并确认上传用途；保存/删除配置会暂停。
-- 8项协议/HTTP模拟、三张合成画面生产客户端实测、原回归、构建/Lint0错误22警告与签名/权限检查通过；GitHub源码/Release v1.5.0已发布，Pages success及HTML/APK实际下载摘要匹配（E-20261104-GITHUB-1.5.0）；无手机，真实Keystore/截图/后台/物理锁屏未验收。
+- 1.6.0/versionCode9，公开工程APK releases/phone-focus-1.6.0.apk，1084042字节，SHA256：3f91cbb38848c62575f3aa5ea448ecac72277d8c49c6257ad1872b46e8235d54。不含个人密钥。
+- 私有预置版1.6.0-personal/versionCode10，.local/personal-release-1.6.0/phone-focus-1.6.0-personal.apk，1084714字节，SHA256：0fd86f57fdf0801b2db52598b6c804461e69bd267cec847e05d9c941df739222。仅本机交付，不上传。
+- 两者与1.5.0同签名、同包名；min26/target35/compile36，截图需Android11+。默认30分钟持续禁用，1—1440可改且下次生效；息屏再亮/暂停不解除，截止后自动撤下。
+- 1.6.0编译/Lint0错误21警告、8项协议/HTTP与原回归通过；私有包Lint0错误18警告。模拟器加速场景通过，原600秒测试通过；目标手机仍待验收。公开GitHub同步准备中，旧1.5.0保留。
+
+## 私有自用包
+
+- 自用预置版1.5.0-personal/versionCode8已通过隔离构建和包装检查（E-20261104-PERSONAL-APK）：1082730字节，与公开1.5.0同包名/签名可覆盖升级；包内Agnes配置与私有来源匹配，首次打开一次性保存到既有Keystore实现，无需输入/导入，删除后不自动补回，云端检查仍需明确开启。产物.local/personal-release/phone-focus-1.5.0-personal.apk，SHA256 02d919756674284dc73b11107e04a11c4529bfd659a7e525fef9dd1415cd214c，Git忽略且本机账户/SYSTEM访问，不上传GitHub或替换公开包。公开1.5.0字节与无预置配置状态保持。手机首开初始化/授权/物理锁屏待验收。
+- Lint0错误19警告；客户端、协议、监控和Keystore源码与已测公开1.5.0相同。该包内含个人凭据，只供本人安装，不加入公开Release。
 
 ## 版本历史
+
+- 1.6.0 / 2026-11-04：用户要求娱乐后进入旧式持续禁用页，默认30分钟可改；新增持久倒计时与旧每日覆盖并行，取消娱乐检测的系统息屏动作。Android11实际模拟中，私有API包仅.local交付。
+
+- 2026-11-04：用户明确要求预置API，新增1.5.0-personal私有包；证据.local/personal-release/verification.json，不记录任何密钥值。
 
 - 1.5.0 / 2026-11-04：用户指定Agnes视觉模型，新增个人配置与新云端同意，移除生产OCR/关键词判断。30秒网络超时、45秒结果保护；公开APK无实际密钥，同签名覆盖升级。证据qa/verification-1.5.0.json；旧1.4.0保留。
 

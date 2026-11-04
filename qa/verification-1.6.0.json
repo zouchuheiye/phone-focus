@@ -1,0 +1,147 @@
+{
+  "evidenceId": "E-20261104-ENTERTAINMENT-BLOCK-1.6.0",
+  "verifiedAt": "2026-11-04T17:25:46.712040+08:00",
+  "version": "1.6.0",
+  "versionCode": 9,
+  "apk": "releases/phone-focus-1.6.0.apk",
+  "apkBytes": 1084042,
+  "apkSha256": "3f91cbb38848c62575f3aa5ea448ecac72277d8c49c6257ad1872b46e8235d54",
+  "signerSha256": "60f4fe96b3ea2259c45ff413505f256f48924870893cf3cf75c0a98e9a71e2f8",
+  "sameSignerAs": "1.5.0",
+  "build": {
+    "exitCode": 0,
+    "lintErrors": 0,
+    "lintWarnings": 21
+  },
+  "inheritedVisionSmokeFrom15": {
+    "endpoint": "https://apihub.agnes-ai.com/v1/chat/completions",
+    "checks": [
+      {
+        "milliseconds": 1975,
+        "confidence": 0.95,
+        "wouldLock": true,
+        "category": "entertainment",
+        "scene": "game"
+      },
+      {
+        "milliseconds": 1172,
+        "confidence": 0.9,
+        "wouldLock": false,
+        "category": "study",
+        "scene": "study"
+      },
+      {
+        "milliseconds": 1215,
+        "confidence": 0.95,
+        "wouldLock": false,
+        "category": "uncertain",
+        "scene": "blank"
+      }
+    ],
+    "scope": "Production protocol/client smoke test only. Not real screenshot accuracy or Android runtime acceptance.",
+    "model": "agnes-2.5-flash",
+    "syntheticOnly": true,
+    "verifiedAt": "2026-11-04T16:27:53.531783+08:00",
+    "inputSha256": {
+      "qa/agnes-synthetic-game.jpg": "ae4f711e63cbc926f2a689fbfa654f6865c732bdb4dd7258ac8dc4a27ae1f941",
+      "qa/agnes-synthetic-study.jpg": "d55f07e6fe2cebda4aa82624bde63d7415f1e2dad65e258c055c021a2ad10979",
+      "qa/agnes-synthetic-blank.jpg": "db697404043a31e7bfa930b238afb50a8741ecf49567d6eeb4ebb84b9e2ec183"
+    },
+    "initialModelAttempt": {
+      "model": "agnes-3.0-flash",
+      "outcome": "timeout",
+      "seconds": 36.33,
+      "selectedDefault": "agnes-2.5-flash"
+    }
+  },
+  "accountKeyInPublishableFiles": false,
+  "tests": {
+    "legacyPolicyFixturesAndCurrentCadence": 35,
+    "protocolAndHttpTests": 8,
+    "screenSession": 129966,
+    "autoScreenOff": 382,
+    "ownerFocus": 3363,
+    "dailySchedule": 173284,
+    "scope": "Legacy Java fixtures, current cadence and shared FocusWindow persistence deadlines plus protocol/HTTP mock tests. Personal emulator acceptance is recorded separately."
+  },
+  "apkAudit": {
+    "canTakeScreenshot": true,
+    "canRetrieveWindowContent": false,
+    "canPerformGestures": false,
+    "internetPermission": true,
+    "accessNetworkStatePermission": false,
+    "contentPersistence": "No bitmap/model text storage; key encrypted using device Android Keystore; fixed result/time/settings only.",
+    "bundledOcrModels": [],
+    "accountKeyEmbeddedInApk": false,
+    "cloudConsentFreshDefaultOff": true,
+    "model": "agnes-2.5-flash",
+    "endpoint": "https://apihub.agnes-ai.com/v1/chat/completions",
+    "action": "persistent focus overlay",
+    "defaultBlockMinutes": 30,
+    "editableMinutesRange": [
+      1,
+      1440
+    ],
+    "blockExpiry": "Existing FocusWindow monotonic/boot-aware persisted deadline",
+    "screenshotMinSdk": 30,
+    "originalDailyScheduleMinSdk": 26
+  },
+  "connectedDeviceCount": 1,
+  "deviceAcceptance": "Physical phones remain pending. A separate original personal APK is running on the isolated Android11 emulator; see .local/simulation/ for emulator evidence.",
+  "knownLimits": [
+    "Visual model can misclassify; self-reported confidence >=0.90 is a gate, not measured accuracy.",
+    "Cloud screenshot+package transfer requires explicit fresh opt-in and personal credential import.",
+    "Confirmed entertainment starts persistent app-block overlay, default30min/editable1-1440. Detector pause or duration edits do not shorten current block; no global system screen lock.",
+    "Network/error/invalid/uncertain/stale/changed-window responses skip without OCR fallback.",
+    "Provider handles screenshots under its policy; application does not persist images or model answers.",
+    "API call timeout 30s; total result-age cap 45s; no wakeup, ten-minute cadence restarts on reconnect."
+  ],
+  "initialFailure": "Initial1.6 compile missed AccessibilityService import still required by screenshot callback types; restored it and rebuilt, log qa/build-1.6.0-initial-failure.txt.",
+  "sourceSha256": {
+    "app/src/main/AndroidManifest.xml": "0b57d923bda6c47879bd1a6d472ff2e2b623235c88d9be73a3e5c08cd1b7eba4",
+    "app/src/main/java/com/phonefocus/guard/AgnesClient.java": "f91ce3befa183ffb528c404286ed37ab599a729566ba563aca67f26a072c7ede",
+    "app/src/main/java/com/phonefocus/guard/AgnesConfig.java": "39e4b85ffd5a25ecb2bbf2e26948776eec3a5e0606e5006ec6d0a57385362fde",
+    "app/src/main/java/com/phonefocus/guard/AgnesProtocol.java": "35ab314c7ee021bca3c4f6f5307657979d5825e18f35a2cbf9f9c858f2e95d87",
+    "app/src/main/java/com/phonefocus/guard/AgnesSetupActivity.java": "9ce3c9d97bb6728d9281abb601ac10fe8f5c560af4882d37f5f289f5b0e7b48c",
+    "app/src/main/java/com/phonefocus/guard/AppState.java": "48253733414853489a91957b5069d22d3c3a1d40ccc8439fee31811d72fd6a54",
+    "app/src/main/java/com/phonefocus/guard/AutoScreenOff.java": "24d2e048ea1e4cdf672ba6a6b0d75e806ec53e492d2d8fdd39754ccfe024d604",
+    "app/src/main/java/com/phonefocus/guard/DailySchedule.java": "816a0eb4cb253e494bf6890252d2917837fd39fce7a7e775b770a00a3d90b08a",
+    "app/src/main/java/com/phonefocus/guard/DeviceLocker.java": "251ffc7b93f5eb84954a9971aac16e6b71efa11b219c794cc39c70098af88481",
+    "app/src/main/java/com/phonefocus/guard/EntertainmentBlock.java": "7289fe1db8b7b23fc2823cc12a1b35ab2e35194933ce97e5c09bb2c160495c82",
+    "app/src/main/java/com/phonefocus/guard/EntertainmentCadence.java": "0061e713ae3641f33a1b4a66045fab50016e0ec973b87af9167bcc4b342692cb",
+    "app/src/main/java/com/phonefocus/guard/EntertainmentMonitor.java": "b972c965a6d587a7e5be7e38755c123798671cab29a03cd818de123ea97aac18",
+    "app/src/main/java/com/phonefocus/guard/EntertainmentSettings.java": "73d02334fa397f78718761f82e4979e2c9f2ed8a2e319155e378e1e217785e62",
+    "app/src/main/java/com/phonefocus/guard/FocusActivity.java": "3ff5c771bf5a80131d1c92af8b99812564406516d03804ac5392e75521f89934",
+    "app/src/main/java/com/phonefocus/guard/FocusAlarmReceiver.java": "4c748ece8cc64057027d202205866686fe5c31caa77367d1337c5ad5ad9524cf",
+    "app/src/main/java/com/phonefocus/guard/FocusManager.java": "8ee9365b1c27c9e79d39f9bdc1d21713191aa42de734b74224a999724c745b28",
+    "app/src/main/java/com/phonefocus/guard/FocusService.java": "3a7b7fdd0f152fed8944197687998e1b163d638ca60eea95ba8f4fe350637580",
+    "app/src/main/java/com/phonefocus/guard/FocusUi.java": "4b002d7ad7dfa7d3335c223c6690a8e0b7a2b0cd35e2c1735fa188db28094011",
+    "app/src/main/java/com/phonefocus/guard/FocusWindow.java": "76d4704f11bd8a2823b5d9f08c863e85a1d38a0aec978f375aebefe7e0d6f7b1",
+    "app/src/main/java/com/phonefocus/guard/LockAdminReceiver.java": "97c36ebd2c9bc8d95f46a74843099a8becc5a362e60717e88600674f25827f4c",
+    "app/src/main/java/com/phonefocus/guard/MainActivity.java": "05a9d636ab5479e8bf3a5f662a668754cea820d551ee1d596ec2b376796a8983",
+    "app/src/main/java/com/phonefocus/guard/OwnerSetupActivity.java": "e5327922a73da50924332ae49ccedaedda701fde1da988ba33923f827614691d",
+    "app/src/main/java/com/phonefocus/guard/PolicyRollback.java": "41f9a76292e512de9ae12e2d8496e0671afc0577d50949b37313ab3f4d2038c5",
+    "app/src/main/java/com/phonefocus/guard/RecoveryCode.java": "8e5625adc88d840275935cb575c993a4f22c94035ff9d32155dc8e132ce3d33e",
+    "app/src/main/java/com/phonefocus/guard/Reminders.java": "fc7d669ae94b85c94425f8df51adb06c770e5a6a8032a728dc816f8634692e18",
+    "app/src/main/java/com/phonefocus/guard/RestoreReceiver.java": "274b29a994e6fba6302c64ecc3c0a3a6c2fb7b6a29daf6bc32b23c33dc94d108",
+    "app/src/main/java/com/phonefocus/guard/ScheduleAccessibilityService.java": "12304823b105a90cf513992949c959a9dcf52c0fdb4ff32ec040eb44ae9f4bea",
+    "app/src/main/java/com/phonefocus/guard/ScheduleAlarmReceiver.java": "9a45d50d190a87d00b91c437b3e6895fa4e4df46ba0de3dd3a726758b0daf5db",
+    "app/src/main/java/com/phonefocus/guard/ScheduleManager.java": "8e1c00b8b6883a114d15f82c58a8d3ba744ad26053cb6351feea1e4648567b8d",
+    "app/src/main/java/com/phonefocus/guard/ScheduleSetupActivity.java": "751b4a5456402117b17beea33a6a031fab9037fc8fe1d7ab74dc2bb462fa78b8",
+    "app/src/main/java/com/phonefocus/guard/ScreenMonitorService.java": "9ae914ddbc119c76d1011df51205b5a757010116e9f15f1a6d64847ed209d76f",
+    "app/src/main/java/com/phonefocus/guard/ScreenSession.java": "044dd04dd1535dcce3a9b5c4ceecc85e9c8131b80ed87bd70178ed12b08109fd",
+    "app/src/main/java/com/phonefocus/guard/TimeRangeEditorDialog.java": "db7964c37c2e6b73322b2442be13473daa6b36c9d5b33e16ee4b3b874e692036",
+    "app/src/main/res/drawable/ic_launcher.xml": "c40fa7314780287cfce963dafcad7acc962a0247f9b06a4ab73ca9e45445a727",
+    "app/src/main/res/drawable/ic_notification.xml": "848a4c81baa0769ed13859d0522ab55fce547921ed4a7c8ff4f2718bee8f2a95",
+    "app/src/main/res/values/strings.xml": "0ae99a77b1cbfcbc9ed04a94f7a81febee35f69b9e6905b3ba47fb8062f84fd7",
+    "app/src/main/res/values/styles.xml": "832fce45809e0db6eabda45edb0b1c3983b7bb5524ae0c3729846c8174387b34",
+    "app/src/main/res/xml/data_extraction_rules.xml": "eda9dddce1e895de1efd716fe75e244187bf8f91a3bb7444c6ea1731e51c74a8",
+    "app/src/main/res/xml/device_admin.xml": "76af01703eb24a59ef16f13eef2025eb30de8cbb6db7f920920e04b6d6de84e6",
+    "app/src/main/res/xml/schedule_accessibility.xml": "a7b8faa72c281a5ba4b5a2a5d1d40fb8940ddca4fbc42d4e42811b7dc022de1f"
+  },
+  "references": [
+    "https://developer.android.com/reference/android/accessibilityservice/AccessibilityService",
+    "https://agnes-ai.com/zh-Hans/docs/agnes-25-flash"
+  ],
+  "validity": "Only these APK/source hashes; actual phone behavior must pass qa/agnes-device-checklist.md."
+}

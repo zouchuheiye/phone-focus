@@ -64,21 +64,33 @@ public final class ScheduleSetupActivity extends Activity {
     }
     private void addEntertainmentControls(LinearLayout page) {
         FocusUi.text(this,page,"每10分钟 · Agnes视觉检查",22,FocusUi.INK);
-        FocusUi.text(this,page,"开启后独立于每日时段运行。每10分钟检查一次：将正在使用的画面交给Agnes视觉模型理解，明确判断为娱乐后锁屏。",14,FocusUi.MUTED);
+        FocusUi.text(this,page,"开启后独立于每日时段运行。每10分钟检查一次：将正在使用的画面交给Agnes视觉模型理解，明确判断为娱乐后进入持续禁用页面。",14,FocusUi.MUTED);
         entertainmentStatus=FocusUi.text(this,page,"",14,FocusUi.GREEN);
+        FocusUi.button(this,page,"识别娱乐后禁用："+EntertainmentSettings.blockMinutes(this)+"分钟（修改）",false,this::editEntertainmentDuration);
         FocusUi.button(this,page,"Agnes模型与密钥设置",false,() -> startActivity(new Intent(this,AgnesSetupActivity.class)));
         FocusUi.button(this,page,EntertainmentSettings.enabled(this)?"暂停娱乐检查":"开启娱乐截图检查",true,() -> {
             if (EntertainmentSettings.enabled(this)) { EntertainmentSettings.setEnabled(this,false); build(); return; }
             if (!EntertainmentSettings.supported()) { toast("截图识别需要Android 11及以上；原每日时段功能仍可使用"); return; }
             if (!AgnesConfig.present(this)) { toast("请先配置个人Agnes密钥");startActivity(new Intent(this,AgnesSetupActivity.class));return; }
             new AlertDialog.Builder(this).setTitle("允许每10分钟发送截图给Agnes？")
-                .setMessage("开启后，亮屏未锁定时每10分钟截图，将压缩画面和当前应用标识通过HTTPS发送给Agnes视觉模型。画面可能包含聊天、账号等私人信息。平台的数据保留和计费按其政策；应用本身不保存画面或模型原文。\n\n模型综合画面判断学习、工作、娱乐、必要操作或不确定。仅娱乐且模型自报置信度≥90%才请求锁屏；此置信度不是实测准确率，可能误判。未知、失败、超时、换窗或通话时不锁屏，不回落关键词规则。\n\n电话、设置、锁屏和本应用不检测。每次只请求锁屏一次，不修改密码，仍可解锁。每日时段与原3分钟功能独立执行。\n\n需要Android11+及本人无障碍授权；升级后如截图失败，请关闭再开启服务。可随时暂停上传或撤权。")
+                .setMessage("开启后，亮屏未锁定时每10分钟截图，将压缩画面和当前应用标识通过HTTPS发送给Agnes视觉模型。画面可能包含聊天、账号等私人信息。平台的数据保留和计费按其政策；应用本身不保存画面或模型原文。\n\n模型综合画面判断学习、工作、娱乐、必要操作或不确定。仅娱乐且模型自报置信度≥90%才进入禁用模式；此置信度不是实测准确率，可能误判。未知、失败、超时、换窗或通话时不触发禁用，不回落关键词规则。\n\n电话、设置、锁屏和本应用不检测。触发后默认禁用30分钟，时长可在首页修改；修改只影响下次。普通应用持续显示“去做正事”页面，息屏再亮仍拦截，到期自动解除。暂停检测或删除密钥不会提前解除本次禁用。不修改系统密码，电话/设置保留；每日时段和原3分钟息屏功能独立执行。\n\n需要Android11+及本人无障碍授权；升级后如截图失败，请关闭再开启服务。可随时暂停上传或撤权。")
                 .setPositiveButton("同意并开启",(d,w) -> {
                     EntertainmentSettings.setEnabled(this,true); build();
                     if (!ScheduleManager.permissionEnabled(this)) safeOpen(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
                 }).setNegativeButton("取消",null).show();
         });
-        FocusUi.text(this,page,"Android 11+；需要网络与个人Agnes密钥。首次开启或服务重连10分钟后取样，息屏不唤醒。断网/超时/低置信度跳过，仍可手动解锁。",12,FocusUi.MUTED);
+        FocusUi.text(this,page,"Android 11+；需要网络与个人Agnes密钥。首次开启或服务重连10分钟后取样，息屏不唤醒。断网/超时/低置信度跳过。触发后持续拦截普通应用，到期自动恢复。",12,FocusUi.MUTED);
+    }
+    private void editEntertainmentDuration() {
+        android.widget.EditText input=new android.widget.EditText(this);
+        input.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);input.setSingleLine(true);
+        input.setText(String.valueOf(EntertainmentSettings.blockMinutes(this)));input.selectAll();
+        new AlertDialog.Builder(this).setTitle("娱乐后禁用多久？")
+            .setMessage("单位：分钟，范围1—1440。默认30分钟。修改用于下一次触发，不会缩短已经开始的禁用。")
+            .setView(input).setPositiveButton("保存",(d,w) -> {
+                try { EntertainmentSettings.setBlockMinutes(this,Integer.parseInt(input.getText().toString().trim()));build(); }
+                catch (RuntimeException e) { toast("请输入1—1440之间的整数分钟"); }
+            }).setNegativeButton("取消",null).show();
     }
     private void addTimeRangeCard(LinearLayout page,DailySchedule s,int index) {
         DailySchedule.Window window = s.windows.get(index);
@@ -147,7 +159,7 @@ public final class ScheduleSetupActivity extends Activity {
     }
     private void disclosure() {
         new AlertDialog.Builder(this).setTitle("授权用途与使用范围")
-            .setMessage("每日计划通过无障碍窗口所属应用标识显示专注覆盖页，本身不截图。\n\n另行开启Agnes娱乐检查后，Android11+每10分钟在亮屏未锁定时截图，发送压缩画面和应用标识到Agnes官方HTTPS接口，由视觉模型判断是否娱乐并请求锁屏。截图可能含私人信息，平台处理按其政策；应用不保存画面或模型原文，不读取控件树或模拟点击。\n\n电话和系统设置保留，可随时撤权或暂停。请在手机无障碍设置打开「去做正事 · 时段与娱乐检查」。升级后若截图能力未更新，请关闭再开启服务；安装来源限制时，在应用信息查看是否需要允许受限设置。")
+            .setMessage("每日计划通过无障碍窗口所属应用标识显示专注覆盖页，本身不截图。\n\n另行开启Agnes娱乐检查后，Android11+每10分钟在亮屏未锁定时截图，发送压缩画面和应用标识到Agnes官方HTTPS接口，由视觉模型判断是否娱乐并进入定时禁用界面。截图可能含私人信息，平台处理按其政策；应用不保存画面或模型原文，不读取控件树或模拟点击。\n\n电话和系统设置保留，可随时撤权或暂停。请在手机无障碍设置打开「去做正事 · 时段与娱乐检查」。升级后若截图能力未更新，请关闭再开启服务；安装来源限制时，在应用信息查看是否需要允许受限设置。")
             .setPositiveButton("同意并打开授权",(d,w)->safeOpen(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)))
             .setNegativeButton("暂不授权",null).show();
     }
@@ -176,6 +188,8 @@ public final class ScheduleSetupActivity extends Activity {
                 !ScheduleManager.permissionEnabled(this)?"已开启 · 等待无障碍授权":!ScheduleAccessibilityService.connected()?"已开启 · 服务未连接，请检查授权与后台":"● 每10分钟Agnes检查 · 已启用";
             long checked=EntertainmentSettings.prefs(this).getLong("last_check",0);
             if (EntertainmentSettings.enabled(this)) text+="\n"+EntertainmentSettings.prefs(this).getString("last_result","等待首次10分钟检查");
+            long blocked=EntertainmentBlock.remaining(this);
+            if (blocked>0) text+="\n● 当前娱乐禁用剩余 "+FocusUi.duration(blocked)+"\n暂停检测、删除密钥或修改时长，不会提前解除本次禁用。";
             if (checked>0) text+="\n上次取样："+DateTimeFormatter.ofPattern("MM-dd HH:mm:ss").withZone(ZoneId.systemDefault()).format(Instant.ofEpochMilli(checked));
             entertainmentStatus.setText(text);
         }

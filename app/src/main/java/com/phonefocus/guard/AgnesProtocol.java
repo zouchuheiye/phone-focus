@@ -32,7 +32,7 @@ public final class AgnesProtocol {
         public final String category;
         public final double confidence;
         Verdict(String category,double confidence) { this.category=category; this.confidence=confidence; }
-        public boolean shouldLock() { return category.equals("entertainment") && confidence>=0.90; }
+        public boolean shouldBlock() { return category.equals("entertainment") && confidence>=0.90; }
     }
     public static Verdict parse(String response) throws JSONException {
         JSONObject envelope=objectOnly(response);

@@ -12,7 +12,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/** Opt-in screenshot -> Agnes vision -> strict verdict -> current-window check -> system lock. */
+/** Screenshot -> Agnes -> strict verdict -> current-window check -> persistent focus overlay. */
 final class EntertainmentMonitor {
     private final ScheduleAccessibilityService service;
     private final EntertainmentCadence cadence=new EntertainmentCadence();
@@ -82,12 +82,12 @@ final class EntertainmentMonitor {
             main.post(() -> {
                 busy=false;
                 if (!current(id,revision,pkg,started)) return;
-                if (error || value==null) { report("Agnes请求失败、超时或结果格式无效，本轮未锁屏；请检查网络、密钥和额度");return; }
-                if (!value.shouldLock()) { report("Agnes未明确确认娱乐，本轮未锁屏");return; }
+                if (error || value==null) { report("Agnes请求失败、超时或结果格式无效，本轮未禁用；请检查网络、密钥和额度");return; }
+                if (!value.shouldBlock()) { report("Agnes未明确确认娱乐，本轮未禁用");return; }
                 try {
-                    boolean accepted=service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_LOCK_SCREEN);
-                    report(accepted?"Agnes明确判断娱乐（置信度≥90%），已发送锁屏指令":"Agnes判断娱乐，但系统未接受锁屏指令");
-                } catch (RuntimeException failure) { report("Agnes判断娱乐，但系统拒绝锁屏；请检查无障碍授权"); }
+                    EntertainmentBlock.start(service);
+                    report("Agnes明确判断娱乐，已进入"+EntertainmentSettings.blockMinutes(service)+"分钟禁用模式");
+                } catch (RuntimeException failure) { report("Agnes判断娱乐，但禁用状态保存失败，本轮未进入禁用"); }
             });
         }
     }

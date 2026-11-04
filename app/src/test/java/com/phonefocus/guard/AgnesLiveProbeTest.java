@@ -24,13 +24,13 @@ public class AgnesLiveProbeTest {
                 String encoded=Base64.getEncoder().encodeToString(Files.readAllBytes(root.resolve("qa/agnes-synthetic-"+name+".jpg")));
                 AgnesProtocol.Verdict verdict=client.classify(config.getString("api_key"),config.getString("model"),"synthetic.test",encoded,() -> true);
                 JSONObject row=new JSONObject().put("scene",name).put("category",verdict.category).put("confidence",verdict.confidence)
-                    .put("wouldLock",verdict.shouldLock()).put("milliseconds",(System.nanoTime()-started)/1_000_000);
+                    .put("wouldBlock",verdict.shouldBlock()).put("milliseconds",(System.nanoTime()-started)/1_000_000);
                 checks.put(row);
                 JSONObject record=new JSONObject().put("model",config.getString("model")).put("endpoint",AgnesProtocol.ENDPOINT)
                     .put("syntheticOnly",true).put("checks",checks).put("scope","Production protocol/client smoke test only. Not real screenshot accuracy or Android runtime acceptance.");
                 Files.write(root.resolve("qa/agnes-live-verification.json"),record.toString(2).getBytes(StandardCharsets.UTF_8));
-                if (name.equals("game")) assertTrue("Synthetic game was not confidently classified",verdict.shouldLock());
-                else assertFalse("Non-entertainment synthetic scene must not lock",verdict.shouldLock());
+                if (name.equals("game")) assertTrue("Synthetic game was not confidently classified",verdict.shouldBlock());
+                else assertFalse("Non-entertainment synthetic scene must not lock",verdict.shouldBlock());
             }
         } finally { client.close(); }
     }
