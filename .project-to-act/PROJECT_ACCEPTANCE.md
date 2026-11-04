@@ -2,7 +2,7 @@
 
 ## 当前验收结论
 
-1.4.0娱乐截图检查工程交付通过（E-20261104-ENTERTAINMENT-1.4.0）：35项规则/单调10分钟周期/开关与旧结果保护通过，原129966/382/3363/173284项回归通过；Release与Lint0错误20警告，同签名升级、最终APK截图能力/无控件读取/内置中英文OCR模型/无网络权限审查通过。网站下载与新披露在四种宽度及视觉检查通过。无连接手机，不验证实际截图、OCR准确率、物理锁屏或后台；GitHub同步中。
+1.4.0娱乐截图检查工程交付通过（E-20261104-ENTERTAINMENT-1.4.0）：35项规则/单调10分钟周期/开关与旧结果保护通过，原129966/382/3363/173284项回归通过；Release与Lint0错误20警告，同签名升级、最终APK截图能力/无控件读取/内置中英文OCR模型/无网络权限审查通过。网站下载与新披露在四种宽度及视觉检查通过。无连接手机，不验证实际截图、OCR准确率、物理锁屏或后台；GitHub源码/Release v1.4.0已发布，Pages success及HTML HTTP200/摘要匹配（E-20261104-GITHUB-1.4.0）。
 
 SITE-01本地网页验收通过（E-20261023-GITHUB-SITE）：Edge验证320/390/768/1440宽度、图片加载、无溢出、视频播放10秒1080p、下载APK哈希与原版一致、FAQ、无控制台错误。远端源码公开、Release资产uploaded且GitHub摘要匹配、Pages built及HTTP200已核实（E-20261023-GITHUB-PUBLISHED）；线上页面/样式/脚本/图片/视频/APK与本地哈希一致，一次Edge线上播放10秒1080p通过。后续复查网络超时保留记录；不改变安卓真机Gate。
 
@@ -50,6 +50,8 @@ MV-02媒体交付通过（E-20261022-PROMO-MV-02）：36秒1080p/30fps、原创�
 | A-23 | 1.4.0签名/权限/内置模型/构建与网页披露 | 工程及网页通过，手机授权待验收 | qa/verification-1.4.0.json、qa/site-verification-1.4.0.json |
 
 ## 证据索引
+
+- E-20261104-GITHUB-1.4.0：源码提交0d3ca7721804019a80210d2d97422cf4e71d4c64已推送公开main；Release https://github.com/zouchuheiye/phone-focus/releases/tag/v1.4.0 已上传原签名APK与SHA256文件，GitHub资产digest与本地一致。Pages工作流41796222246成功，展示页HTML HTTP200并与本地逐字节摘要匹配；证据qa/github-publication-1.4.0.json。不代表实际安卓设备验收。
 
 - E-20261104-ENTERTAINMENT-1.4.0：完整时间/源码哈希见qa/verification-1.4.0.json；test.ps1、build.ps1、verify_entertainment_release.py退出0。APK46224534字节，SHA256 da8882e5275365eecfd89c740521afea53121922391187cb8a8a69e1a5828491；证书同1.3.1，最终APK含截图能力、内置OCR中文/拉丁模型，无INTERNET/ACCESS_NETWORK_STATE/控件树/手势权限。Lint0错误20警告，含旧警告及截图API适用范围/原生Switch/RequiresApi建议，未屏蔽。初次依赖AndroidX开关失败日志保留qa/build-1.4.0-initial-failure.txt；null包名规则测试修复后通过。设备0，纯Java样本不是实际截图OCR推断或准确率证明。每10分钟一次锁屏可手动解锁，不是不可解除封禁。
 
@@ -113,7 +115,7 @@ MV-02媒体交付通过（E-20261022-PROMO-MV-02）：36秒1080p/30fps、原创�
 
 ## 验收记录
 
-- 2026-11-04：1.4.0娱乐截图检查源码、签名APK、35项新规则/周期/旧结果保护、回归/构建/权限/模型检查和网页披露完成；工程通过，真机待验收，GitHub同步中。
+- 2026-11-04：1.4.0娱乐截图检查源码、签名APK、35项新规则/周期/旧结果保护、回归/构建/权限/模型检查和网页披露完成；工程通过，真机待验收，GitHub源码/Release v1.4.0已发布，Pages success及HTML HTTP200/摘要匹配（E-20261104-GITHUB-1.4.0）。
 
 - 2026-10-23：按本轮明确授权完成GitHub公开仓库、Release和宣传片同款展示页，线上资源摘要与一次实际播放通过；后续网络超时记录保留。原Android APK与视频不变，未上传签名私钥，不改变真机待验收结论。
 

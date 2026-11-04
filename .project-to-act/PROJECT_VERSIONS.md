@@ -7,7 +7,7 @@
 - 与1.3.1同签名，原时段/开关数据兼容；min26/target35/compile36，截图能力需API30（Android11）。
 - 新开关默认关闭；本人确认截图用途并在系统启用无障碍服务。可能需要关闭再开启旧服务更新能力。
 - 内置ML Kit text-recognition-chinese:16.0.1中文/拉丁模型，最终APK无网络权限；不保存截图/OCR原文。
-- 2026-11-04工程交付通过；GitHub同步中；真机及实际OCR准确率待验收。签名材料仍在.local，不上传。
+- 2026-11-04工程交付通过；GitHub源码/Release v1.4.0已发布，Pages success及HTML HTTP200/摘要匹配（E-20261104-GITHUB-1.4.0）；真机及实际OCR准确率待验收。签名材料仍在.local，不上传。
 
 ## 版本历史
 

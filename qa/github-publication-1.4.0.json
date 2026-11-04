@@ -1,0 +1,18 @@
+{
+  "evidenceId": "E-20261104-GITHUB-1.4.0",
+  "commit": "0d3ca7721804019a80210d2d97422cf4e71d4c64",
+  "releaseUrl": "https://github.com/zouchuheiye/phone-focus/releases/tag/v1.4.0",
+  "apkUrl": "https://github.com/zouchuheiye/phone-focus/releases/download/v1.4.0/phone-focus-1.4.0.apk",
+  "apkSha256": "da8882e5275365eecfd89c740521afea53121922391187cb8a8a69e1a5828491",
+  "assetUploaded": true,
+  "githubAssetDigestMatches": true,
+  "pagesUrl": "https://zouchuheiye.github.io/phone-focus/",
+  "pagesState": "built",
+  "liveHtmlMatches": true,
+  "verifiedAt": "2026-11-04T16:02:00.937240+08:00",
+  "pagesDeploymentWorkflow": "https://github.com/zouchuheiye/phone-focus/actions/runs/41796222246",
+  "pagesDeploymentConclusion": "success",
+  "liveHtmlHttp": 200,
+  "liveHtmlSha256": "205f456d489b4e1e4ee2b197fa8c0a19ed52c0efe7f913e0298792427847e766",
+  "scope": "Remote source commit, uploaded GitHub Release digest and deployed HTML. Local website APK hash already checked; no Android runtime acceptance."
+}
