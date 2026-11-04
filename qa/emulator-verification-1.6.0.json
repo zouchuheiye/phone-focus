@@ -99,5 +99,11 @@
     "realOverlayVisibleInAdbScreenshot": true,
     "phoneButtonOpensDialerWithoutCalling": true,
     "ordinaryAppBlockedAgainAfterDialer": true
+  },
+  "cleanup": {
+    "testPackagesRemovedFromOwnedAvd": true,
+    "ownedEmulatorShutdown": true,
+    "physicalPhonesTouched": false,
+    "privateApkRetainedForUser": true
   }
 }

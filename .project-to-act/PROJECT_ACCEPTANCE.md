@@ -65,6 +65,8 @@ MV-02媒体交付通过（E-20261022-PROMO-MV-02）：36秒1080p/30fps、原创�
 
 ## 证据索引
 
+- E-20261104-GITHUB-1.6.0：公开源码/Release v1.6.0及Pages工作流41807491104成功；线上HTML与公开APK实际下载HTTP200，SHA256匹配本地；Release摘要匹配原签名包。私有API包始终只在.local，不随公开Release上传。证据qa/github-publication-1.6.0.json。
+
 - E-20261104-ANDROID11-BLOCK-EMULATOR：精确时间、测试驱动SHA256及12项实际运行结果见qa/emulator-verification-1.6.0.json。原私有1.6.0-personal/code10实际安装APK从模拟器拉回，SHA256与交付0fd86f57fdf0801b2db52598b6c804461e69bd267cec847e05d9c941df739222完全一致。Keystore解密与内置配置匹配、云端默认关闭/真实对话框开启、实际截图送Agnes并进入30分钟覆盖均通过。原600秒自然等待602391ms（壁钟602390ms）触发，提前阶段持续检查无覆盖/屏幕保持亮，触发剩余1799924ms；普通应用被禁用。其他场景的检测/到期明确加速注入，不写成真实等待30分钟。UI改为5分钟不缩短本次、下次确实采用5分钟；跨包、息屏再亮、暂停不解除；课程/空白不触发；模拟VoIP无截图均通过。测试后再验证服务重连恢复、真实拨号入口打开（未拨号）及返回普通应用重新拦截。qa/emulator-block-1.6.0.png为实际ADB截屏，已视觉复核；不代表所有品牌手机或真实内容准确率。
 
 - E-20261104-ENTERTAINMENT-BLOCK-1.6.0：test.ps1、build.ps1 -WithTests、verify_block_release.py退出0，公开APK SHA256 3f91cbb38848c62575f3aa5ea448ecac72277d8c49c6257ad1872b46e8235d54；私有code10 SHA256 0fd86f57fdf0801b2db52598b6c804461e69bd267cec847e05d9c941df739222。最终DEX有EntertainmentBlock/FocusWindow，无performGlobalAction引用；仍保留旧三分钟设备管理员路径。API语义/错误/取消8项及原回归通过，源码哈希在qa/verification-1.6.0.json。初次漏导入截图回调所需AccessibilityService，已恢复并重建通过，失败log保留。

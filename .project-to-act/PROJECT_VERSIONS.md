@@ -5,7 +5,7 @@
 - 1.6.0/versionCode9，公开工程APK releases/phone-focus-1.6.0.apk，1084042字节，SHA256：3f91cbb38848c62575f3aa5ea448ecac72277d8c49c6257ad1872b46e8235d54。不含个人密钥。
 - 私有预置版1.6.0-personal/versionCode10，.local/personal-release-1.6.0/phone-focus-1.6.0-personal.apk，1084714字节，SHA256：0fd86f57fdf0801b2db52598b6c804461e69bd267cec847e05d9c941df739222。仅本机交付，不上传。
 - 两者与1.5.0同签名、同包名；min26/target35/compile36，截图需Android11+。默认30分钟持续禁用，1—1440可改且下次生效；息屏再亮/暂停不解除，截止后自动撤下。
-- 1.6.0编译/Lint0错误21警告、8项协议/HTTP与原回归通过；私有包Lint0错误18警告。模拟器加速场景通过，原600秒测试通过；目标手机仍待验收。公开GitHub同步准备中，旧1.5.0保留。
+- 1.6.0编译/Lint0错误21警告、8项协议/HTTP与原回归通过；私有包Lint0错误18警告。模拟器加速场景通过，原600秒测试通过；目标手机仍待验收。公开源码/Release1.6.0与Pages已发布，线上HTML/APK摘要匹配，旧1.5.0保留。
 
 ## 私有自用包
 

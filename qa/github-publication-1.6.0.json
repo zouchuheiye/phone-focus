@@ -1,0 +1,16 @@
+{
+  "evidenceId": "E-20261104-GITHUB-1.6.0",
+  "verifiedAt": "2026-11-04T17:27:19.007337+08:00",
+  "releaseUrl": "https://github.com/zouchuheiye/phone-focus/releases/tag/v1.6.0",
+  "assetUploaded": true,
+  "githubAssetDigestMatches": true,
+  "publicApkSha256": "3f91cbb38848c62575f3aa5ea448ecac72277d8c49c6257ad1872b46e8235d54",
+  "privateApiApkNotUploaded": true,
+  "pagesWorkflow": "https://github.com/zouchuheiye/phone-focus/actions/runs/41807491104",
+  "pagesState": "built",
+  "liveHtmlHttp": 200,
+  "liveHtmlSha256": "e12da87a538dc345eb960f242680650a0814893dd284bd1409c394e0fc240f88",
+  "liveApkHttp": 200,
+  "liveApkSha256": "3f91cbb38848c62575f3aa5ea448ecac72277d8c49c6257ad1872b46e8235d54",
+  "pagesWorkflowConclusion": "success"
+}

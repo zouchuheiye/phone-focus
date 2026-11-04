@@ -1,7 +1,7 @@
 # 项目总览
 
 - 名称：去做正事 / Phone Focus；项目 ID：phone-focus
-- 当前版本：开发1.6.0；自用1.6.0-personal（预置API与持续禁用）；最后更新：2026-11-04（Asia/Shanghai）
+- 当前版本：公开1.6.0；自用1.6.0-personal（预置API，模拟器通过）；最后更新：2026-11-04（Asia/Shanghai）
 
 ## 项目目标
 
