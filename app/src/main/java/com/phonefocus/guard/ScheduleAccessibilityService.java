@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
+import android.media.AudioManager;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
@@ -28,7 +29,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.lang.ref.WeakReference;
 
-/** Package names only, held in memory. No nodes, text, gestures, screenshots or network. */
+/** Package events drive daily overlays; separately opted-in screenshots use local OCR only. */
 public final class ScheduleAccessibilityService extends AccessibilityService {
     private static final String OVERLAY_CLASS = "com.phonefocus.guard.DailyBlockingOverlay";
     private static WeakReference<ScheduleAccessibilityService> instance = new WeakReference<>(null);
@@ -38,13 +39,25 @@ public final class ScheduleAccessibilityService extends AccessibilityService {
     private LinearLayout overlay;
     private TextView deadline;
     private boolean registered;
+    private long foregroundRevision;
+    private EntertainmentMonitor entertainment;
     static boolean connected() { return instance.get() != null; }
-    static void refreshNow() { ScheduleAccessibilityService service = instance.get(); if (service != null) service.handler.post(service::evaluate); }
+    static void refreshNow() {
+        ScheduleAccessibilityService service=instance.get();
+        if (service!=null) service.handler.post(() -> {
+            service.foregroundRevision++;
+            if (service.entertainment!=null) service.entertainment.invalidate();
+            service.evaluate();
+            if (service.entertainment!=null) service.entertainment.poll();
+        });
+    }
     private final Runnable tick = new Runnable() {
-        @Override public void run() { evaluate(); handler.postDelayed(this, 1000); }
+        @Override public void run() { evaluate(); if (entertainment!=null) entertainment.poll(); handler.postDelayed(this, 1000); }
     };
     private final BroadcastReceiver screen = new BroadcastReceiver() {
         @Override public void onReceive(Context c, Intent i) {
+            foregroundRevision++;
+            if (entertainment!=null) entertainment.invalidate();
             if (Intent.ACTION_SCREEN_OFF.equals(i.getAction())) { foreground = ""; hide(); }
             else evaluate();
         }
@@ -54,9 +67,11 @@ public final class ScheduleAccessibilityService extends AccessibilityService {
         instance = new WeakReference<>(this);
         allowed.add(getPackageName()); allowed.add("android"); allowed.add("com.android.systemui");
         allowed.add("com.android.settings"); allowed.add("com.android.server.telecom");
+        allowed.add("com.android.phone"); allowed.add("com.android.emergency");
         allowed.add("com.android.permissioncontroller"); allowed.add("com.google.android.permissioncontroller");
         addResolved(new Intent(Settings.ACTION_SETTINGS));
         addResolved(new Intent(Intent.ACTION_DIAL, android.net.Uri.parse("tel:")));
+        addResolved(new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME));
         TelecomManager telecom = getSystemService(TelecomManager.class);
         if (telecom != null) {
             String dialer = telecom.getDefaultDialerPackage(); if (dialer != null) allowed.add(dialer);
@@ -65,6 +80,7 @@ public final class ScheduleAccessibilityService extends AccessibilityService {
         IntentFilter f = new IntentFilter(Intent.ACTION_SCREEN_OFF); f.addAction(Intent.ACTION_SCREEN_ON); f.addAction(Intent.ACTION_USER_PRESENT);
         if (Build.VERSION.SDK_INT >= 33) registerReceiver(screen, f, Context.RECEIVER_NOT_EXPORTED); else registerReceiver(screen, f);
         registered = true;
+        entertainment = new EntertainmentMonitor(this);
         ScheduleManager.arm(this);
         handler.removeCallbacks(tick); handler.post(tick);
     }
@@ -77,7 +93,20 @@ public final class ScheduleAccessibilityService extends AccessibilityService {
         // Our overlay must not be mistaken for the app's settings activity and hide itself.
         if (OVERLAY_CLASS.contentEquals(event.getClassName() == null ? "" : event.getClassName())) return;
         foreground = event.getPackageName().toString();
+        foregroundRevision++;
         evaluate();
+    }
+    String foregroundPackage() { return foreground; }
+    long foregroundRevision() { return foregroundRevision; }
+    boolean entertainmentEligible() {
+        if (!EntertainmentSettings.supported() || overlay!=null || FocusManager.hasSession(this)
+                || foreground.isEmpty() || allowed.contains(foreground)) return false;
+        PowerManager power=getSystemService(PowerManager.class);
+        KeyguardManager keyguard=getSystemService(KeyguardManager.class);
+        AudioManager audio=getSystemService(AudioManager.class);
+        if (power==null || !power.isInteractive() || keyguard==null || keyguard.isKeyguardLocked() || audio==null) return false;
+        int mode=audio.getMode();
+        return mode==AudioManager.MODE_NORMAL; // Skip calls, ringing and VoIP, including floating call UI.
     }
     private void evaluate() {
         boolean visible = ScheduleManager.active(this) && !FocusManager.hasSession(this)
@@ -133,8 +162,9 @@ public final class ScheduleAccessibilityService extends AccessibilityService {
             overlay = null; deadline = null;
         }
     }
-    @Override public void onInterrupt() { evaluate(); }
+    @Override public void onInterrupt() { foregroundRevision++; if (entertainment!=null) entertainment.invalidate(); evaluate(); }
     @Override public void onDestroy() {
+        if (entertainment!=null) entertainment.close();
         handler.removeCallbacksAndMessages(null); hide();
         if (registered) { unregisterReceiver(screen); registered = false; }
         if (instance.get() == this) instance.clear();

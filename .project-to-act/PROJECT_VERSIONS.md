@@ -2,13 +2,16 @@
 
 ## 当前版本
 
-- versionName：1.3.1；versionCode：5；包名：com.phonefocus.guard。
-- 安装包：releases/phone-focus-1.3.1.apk；60120字节；原签名包不变，2026-10-23已按用户授权发布至GitHub Release v1.3.1。
-- SHA256：d434bcedadd15694ade7cfac85101b349331edacbacf40c9e21be883948d0599。
-- minSdk26 / targetSdk35 / compileSdk36；每日模式需手机无障碍授权，不要求设备所有者或设备管理员。与1.3.0同签名可覆盖升级；旧两列时段读取为各段开启，新三列保存独立开关。
-- 签名材料在.local中不交付；最后更新2026-10-23（Asia/Shanghai）。真实设备权限配置未执行。
+- versionName：1.4.0；versionCode：6；包名com.phonefocus.guard。
+- APK：releases/phone-focus-1.4.0.apk；46224534字节；SHA256：da8882e5275365eecfd89c740521afea53121922391187cb8a8a69e1a5828491。
+- 与1.3.1同签名，原时段/开关数据兼容；min26/target35/compile36，截图能力需API30（Android11）。
+- 新开关默认关闭；本人确认截图用途并在系统启用无障碍服务。可能需要关闭再开启旧服务更新能力。
+- 内置ML Kit text-recognition-chinese:16.0.1中文/拉丁模型，最终APK无网络权限；不保存截图/OCR原文。
+- 2026-11-04工程交付通过；GitHub同步中；真机及实际OCR准确率待验收。签名材料仍在.local，不上传。
 
 ## 版本历史
+
+- 1.4.0 / 2026-11-04：每10分钟本机截图OCR规则识别娱乐并请求锁屏，35项规则/周期/结果有效性检查与原回归通过；构建/Lint0错误20警告、同签名及最终APK截图/模型/无网络权限通过。证据qa/verification-1.4.0.json；设备计数0。
 
 - 展示页SITE-01 / 2026-10-23：/docs静态HTML/CSS/JS，宣传片同款人物、原10秒视频、页面和APK下载；本地浏览器和视觉复核通过；GitHub Pages已built并返回HTTP200，线上文件校验及一次Edge视频播放通过。仓库zouchuheiye/phone-focus公开，Release v1.3.1含原签名APK。Android版本与原二进制哈希不变；证据qa/github-publication.json。
 

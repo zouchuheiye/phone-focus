@@ -1,0 +1,29 @@
+{
+  "evidenceId": "E-20261104-SITE-1.4.0",
+  "verifiedAt": "2026-11-04T15:58:42.565992+08:00",
+  "viewports": [
+    {
+      "width": 320,
+      "content": 320
+    },
+    {
+      "width": 390,
+      "content": 390
+    },
+    {
+      "width": 768,
+      "content": 768
+    },
+    {
+      "width": 1440,
+      "content": 1440
+    }
+  ],
+  "apkDownloadSha256Matches": true,
+  "apkSha256": "da8882e5275365eecfd89c740521afea53121922391187cb8a8a69e1a5828491",
+  "entertainmentAndScreenshotDisclosure": "PASS",
+  "consoleErrors": [],
+  "httpFailures": [],
+  "visualReview": "PASS: viewed full desktop and 390px mobile screenshots; updated download and both screenshot/entertainment disclosures fit and remain readable.",
+  "scope": "Local website update and download; Android runtime not tested."
+}

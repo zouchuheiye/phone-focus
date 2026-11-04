@@ -6,8 +6,8 @@ android {
         applicationId 'com.phonefocus.guard'
         minSdk 26
         targetSdk 35
-        versionCode 5
-        versionName '1.3.1'
+        versionCode 6
+        versionName '1.4.0'
     }
     signingConfigs {
         release {
@@ -19,4 +19,8 @@ android {
     }
     buildTypes { release { signingConfig signingConfigs.release; minifyEnabled false } }
     compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+}
+dependencies {
+    // Bundled Chinese + Latin OCR: works offline, no Play Services download required.
+    implementation 'com.google.mlkit:text-recognition-chinese:16.0.1'
 }

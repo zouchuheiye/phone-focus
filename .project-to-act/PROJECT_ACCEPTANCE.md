@@ -2,6 +2,8 @@
 
 ## 当前验收结论
 
+1.4.0娱乐截图检查工程交付通过（E-20261104-ENTERTAINMENT-1.4.0）：35项规则/单调10分钟周期/开关与旧结果保护通过，原129966/382/3363/173284项回归通过；Release与Lint0错误20警告，同签名升级、最终APK截图能力/无控件读取/内置中英文OCR模型/无网络权限审查通过。网站下载与新披露在四种宽度及视觉检查通过。无连接手机，不验证实际截图、OCR准确率、物理锁屏或后台；GitHub同步中。
+
 SITE-01本地网页验收通过（E-20261023-GITHUB-SITE）：Edge验证320/390/768/1440宽度、图片加载、无溢出、视频播放10秒1080p、下载APK哈希与原版一致、FAQ、无控制台错误。远端源码公开、Release资产uploaded且GitHub摘要匹配、Pages built及HTTP200已核实（E-20261023-GITHUB-PUBLISHED）；线上页面/样式/脚本/图片/视频/APK与本地哈希一致，一次Edge线上播放10秒1080p通过。后续复查网络超时保留记录；不改变安卓真机Gate。
 
 MV-03媒体交付通过（E-20261022-PROMO-MV-03）：10秒1080p/30fps/300帧，同一动漫角色四动作、用户两截图透视合成、完整中文合成女声/字幕/CTA齐备。完整解码、精确音视频时长、音频信号、语音生成元数据完整性及八张成片抽帧检查通过；开场/手机/领取原尺寸复核。属于动漫分镜演绎加局部动作，不是真实手机全流程录像，不推定应用真机或戒手机效果验收通过。
@@ -44,7 +46,14 @@ MV-02媒体交付通过（E-20261022-PROMO-MV-02）：36秒1080p/30fps、原创�
 | A-20 | SITE-01响应式、原视频播放、原APK下载与截图展示 | 本地浏览器/视觉通过，线上原文件与一次播放通过 | qa/site-verification.json、qa/site-desktop.png、qa/site-mobile.png、qa/github-publication.json |
 | A-21 | GitHub上传、Release和Pages发布，排除签名私钥及本地配置 | 通过：公开main、Release uploaded、Pages built/HTTP200，远端禁传路径为空 | qa/publish-audit.json、qa/github-publication.json |
 
+| A-22 | 每10分钟、娱乐规则、开关与结果有效性保护 | 35项纯Java检查通过；真实OCR与锁屏待设备 | qa/EntertainmentGuardTest.java、qa/timer-test-1.4.0.txt |
+| A-23 | 1.4.0签名/权限/内置模型/构建与网页披露 | 工程及网页通过，手机授权待验收 | qa/verification-1.4.0.json、qa/site-verification-1.4.0.json |
+
 ## 证据索引
+
+- E-20261104-ENTERTAINMENT-1.4.0：完整时间/源码哈希见qa/verification-1.4.0.json；test.ps1、build.ps1、verify_entertainment_release.py退出0。APK46224534字节，SHA256 da8882e5275365eecfd89c740521afea53121922391187cb8a8a69e1a5828491；证书同1.3.1，最终APK含截图能力、内置OCR中文/拉丁模型，无INTERNET/ACCESS_NETWORK_STATE/控件树/手势权限。Lint0错误20警告，含旧警告及截图API适用范围/原生Switch/RequiresApi建议，未屏蔽。初次依赖AndroidX开关失败日志保留qa/build-1.4.0-initial-failure.txt；null包名规则测试修复后通过。设备0，纯Java样本不是实际截图OCR推断或准确率证明。每10分钟一次锁屏可手动解锁，不是不可解除封禁。
+
+- E-20261104-SITE-1.4.0：qa/verify_site_1_4.py退出0，320/390/768/1440无横向溢出，原签名APK下载哈希匹配，新娱乐/截图披露与FAQ可用，图片及控制台/HTTP无异常；桌面和390px全页截图视觉通过，证据qa/site-verification-1.4.0.json。仅网页，不验证Android界面。
 
 - E-20261023-GITHUB-PUBLISHED：2026-10-23 16:17（Asia/Shanghai），qa/verify_github_publication.py首轮退出0；核实公开main提交da7369bd50a174f24c1c3b9351fc6e838261498c、Release v1.3.1四资产uploaded及摘要、Pages built（main /docs）和HTML HTTP200。线上样式/脚本/人物图/视频/APK逐字节SHA256与本地一致；Edge线上视频实际播放1080×1920、10秒且无JS错误，截图qa/site-live-desktop.png已视觉复核。证据qa/github-publication.json；后续复查播放和导航遇到超时，记录在同一JSON，不保证任意网络可达。部署工作流https://github.com/zouchuheiye/phone-focus/actions/runs/39923186787为success；签名/本地配置远端路径检查为空。有效范围为该提交的网站和发布资产，不证明Android真机行为。
 
@@ -83,6 +92,8 @@ MV-02媒体交付通过（E-20261022-PROMO-MV-02）：36秒1080p/30fps、原创�
 
 ## Gate 记录
 
+- G-10 1.4.0娱乐检查工程：通过，E-20261104-ENTERTAINMENT-1.4.0；真实截图/OCR准确率/物理锁屏/电话/后台新Gate待设备，按qa/entertainment-device-checklist.md执行，不豁免。
+
 - G-09 GitHub发布与SITE-01展示：通过，E-20261023-GITHUB-PUBLISHED及E-20261023-GITHUB-SITE；公开仓库/Release/Pages和私钥排除已验证，网络复查超时留痕；不更改G-02及手机授权验收状态。
 
 - G-08十秒动漫MV-03媒体交付：通过，E-20261022-PROMO-MV-03；不变更实际手机端到端Gate。
@@ -101,6 +112,8 @@ MV-02媒体交付通过（E-20261022-PROMO-MV-02）：36秒1080p/30fps、原创�
 - G-02真机可用：待设备，未豁免。
 
 ## 验收记录
+
+- 2026-11-04：1.4.0娱乐截图检查源码、签名APK、35项新规则/周期/旧结果保护、回归/构建/权限/模型检查和网页披露完成；工程通过，真机待验收，GitHub同步中。
 
 - 2026-10-23：按本轮明确授权完成GitHub公开仓库、Release和宣传片同款展示页，线上资源摘要与一次实际播放通过；后续网络超时记录保留。原Android APK与视频不变，未上传签名私钥，不改变真机待验收结论。
 

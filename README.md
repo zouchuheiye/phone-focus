@@ -1,6 +1,6 @@
-# 去做正事 · 每日时段版 1.3.1
+# 去做正事 · 时段与娱乐检查版 1.4.0
 
-**[打开展示页](https://zouchuheiye.github.io/phone-focus/) · [下载 Android APK](https://github.com/zouchuheiye/phone-focus/releases/download/v1.3.1/phone-focus-1.3.1.apk) · [查看版本与校验](https://github.com/zouchuheiye/phone-focus/releases/tag/v1.3.1)**
+**[打开展示页](https://zouchuheiye.github.io/phone-focus/) · [下载 Android APK](https://github.com/zouchuheiye/phone-focus/releases/download/v1.4.0/phone-focus-1.4.0.apk) · [查看版本与校验](https://github.com/zouchuheiye/phone-focus/releases/tag/v1.4.0)**
 
 [![去做正事 · 宣传片同款展示页](docs/assets/github-cover.jpg)](https://zouchuheiye.github.io/phone-focus/)
 
@@ -10,10 +10,10 @@
 
 ## 手机安装和设置
 
-1. 安装 `releases/phone-focus-1.3.1.apk`。与旧版包名、签名一致，可覆盖升级；Android8.0及以上，实际兼容性以目标手机验收为准。
+1. 安装 `releases/phone-focus-1.4.0.apk`。与旧版包名、签名一致，可覆盖升级；Android8.0及以上，实际兼容性以目标手机验收为准。
 2. 首页点“添加每日禁用时段”：开始和结束为横排的两个矩形选择框，上下滑动数字滚轮选择小时、分钟，24小时制，不使用钟面选时。选择后点“保存”，也可取消；最多8段，每天重复，结束早于开始表示次日。相同时间不接受。
 3. 每个时段像闹钟一样单独显示“开始时间—结束时间”，可单独开关、点时间框修改、确认删除。可设置09:00—12:00、14:00—18:00两个分离时段，12:00—14:00不拦截；关闭的时段不参与限制，重叠和相邻的已开启时段按并集执行。
-4. 点“开启每日计划”启用总开关；“暂停全部时段”保留所有时段及各自开关状态。至少打开一个时段开关才能开启计划。阅读用途说明后，在手机无障碍设置中打开“去做正事 · 每日时段”。这是本机授权，应用不能自行确认。
+4. 点“开启每日计划”启用总开关；“暂停全部时段”保留所有时段及各自开关状态。至少打开一个时段开关才能开启计划。阅读用途说明后，在手机无障碍设置中打开“去做正事 · 时段与娱乐检查”。这是本机授权，应用不能自行确认。
 5. 在首页“准时执行 · 闹钟权限”中放行闹钟；允许应用后台运行，并按手机品牌开启自启动、电池不受限制。无准时闹钟时会显示延迟提示。
 6. 返回桌面。禁用时段内打开/切换普通应用会显示专注拦截页，已识别的普通应用在时段开始时也会被拦截；结束时自动撤下。每天重复，不需要再次点开始。
 
@@ -29,6 +29,16 @@
 - **手机授权模式可以通过关闭无障碍、修改计划、卸载或强行停止绕过，不能承诺绝对强制。**系统省电、OEM后台管理、权限收回可能暂停执行；恢复时检查真实当前时间，不补做过期限制。重叠时段覆盖全天时不会虚构结束时间。
 - 没有随机更改系统密码，不会到点自动通过原系统锁屏；到点解除的是本应用的拦截页面，系统原有PIN/指纹照常。
 
+## 每10分钟截图识别娱乐（1.4.0）
+
+首页点击“开启娱乐截图检查”，阅读说明并确认，然后本人启用无障碍服务。此独立开关默认关闭，不受每日计划总开关影响；截图能力需Android11及以上，原每日计划仍支持Android8及以上。升级后若系统仍沿用旧无障碍能力，请关闭再开启服务。
+
+开启或服务重连10分钟后首次取样，随后按单调时钟每10分钟取样。手机息屏/锁定、电话/VoIP/响铃、桌面/系统设置/权限页、本应用以及已有专注覆盖时跳过。不会唤醒手机；后台休眠或系统清理会延迟。识别过程中切换窗口、关闭开关、锁屏/来电或结果超过15秒时丢弃，不据旧画面锁当前新应用。
+
+截图在内存中缩放，通过内置ML Kit中英文OCR处理，再以文字组合和推荐流应用标识判断部分游戏、直播、追剧和短视频界面。学习文字优先跳过；不明、无文字、受保护画面或截图/OCR失败时不锁。**这是OCR规则识别，不是通用画面语义AI；可能误判或漏判，尚无真实截图识别准确率或手机验收。** 确认娱乐后通过无障碍全局动作请求锁屏，状态页区分识别、指令失败和已发送，不把系统返回值等同于物理息屏已验证。
+
+每次检查只请求一次锁屏，仍可用原密码/指纹解锁，之后按10分钟周期继续；不是不可解锁封禁。要在学习期间持续限制应用，仍用每日时段。若旧3分钟息屏也开启，会更早锁屏，可在“可选功能”中暂停。
+
 ## 可选功能与管理模式
 
 “连续亮屏3分钟息屏”保留独立开关和锁屏管理员授权；不是每日时段的前置条件。开启后使用 `DevicePolicyManager.lockNow`，锁屏后可能要求原PIN/图案/密码。停止并解除管理员后可以卸载。
@@ -37,7 +47,7 @@
 
 ## 隐私与权限
 
-全部本机运行，没有网络权限。每日模式仅使用无障碍窗口状态事件中的应用标识，在内存判断是否为电话、系统设置等保留入口，不存储或上传该标识。不读取节点、文字、聊天、密码，不截图，不模拟手势；服务配置 `canRetrieveWindowContent=false`。应用用 `TYPE_ACCESSIBILITY_OVERLAY` 显示专注页，不申请普通悬浮窗权限。
+全部本机运行，最终APK移除OCR依赖传入的网络权限，不上传数据，不需要API密钥或Google Play服务下载模型。每日计划本身只接收窗口应用标识，不截图；另行明确开启娱乐检查后才截图并OCR。截图可能包含当前可见的私人信息，仅在内存处理并在任务结束释放，不写相册/文件，不保存OCR原文、应用历史或截图。仅保存开关、上次检查时间与固定分类/错误状态。服务配置 `canRetrieveWindowContent=false`、`canTakeScreenshot=true`，不读取控件树、不模拟手势；使用 `TYPE_ACCESSIBILITY_OVERLAY` 显示专注页，不申请普通悬浮窗权限。
 
 本地保存每日计划、开关和简短错误；三分钟功能保存启用状态及最近锁屏指令时间；高级管理模式保存策略快照、到期状态和恢复码摘要。设备保护存储用于重启重算。签名材料在 `.local`，不交付、不分享。
 
@@ -48,6 +58,8 @@
 .\build.ps1
 ```
 
-脚本支持 `-ToolchainRoot`；无Gradle缓存可 `build.ps1 -Online`。工程检查涵盖每日/跨午夜/重叠/夏令时/每日重复、三分钟计时、恢复码和回滚；不能代替手机验证。当前没有连接安卓手机，按 [每日模式真机清单](qa/daily-schedule-device-checklist.md) 验证授权、实际拦截、紧急电话、到点恢复、后台与重启。历史APK及原验证记录保留。
+脚本支持 `-ToolchainRoot`；无Gradle缓存可 `build.ps1 -Online`。工程检查涵盖每日/跨午夜/重叠/夏令时/每日重复、三分钟计时、恢复码和回滚；不能代替手机验证。新增35项周期/识别规则/过期结果检查不等于OCR准确率验证。当前没有连接安卓手机，另按 [娱乐检查真机清单](qa/entertainment-device-checklist.md) 及 [每日模式真机清单](qa/daily-schedule-device-checklist.md) 验证授权、实际拦截、紧急电话、到点恢复、后台与重启。历史APK及原验证记录保留。
 
 Android官方依据：[无障碍服务与覆盖窗口](https://developer.android.com/reference/android/accessibilityservice/AccessibilityService)、[内容访问能力配置](https://developer.android.com/reference/android/accessibilityservice/AccessibilityServiceInfo)、[准时闹钟](https://developer.android.com/develop/background-work/services/alarms/schedule)。
+
+截图与本地OCR依据：[Android takeScreenshot](https://developer.android.com/reference/android/accessibilityservice/AccessibilityService#takeScreenshot(int,java.util.concurrent.Executor,android.accessibilityservice.AccessibilityService.TakeScreenshotCallback))、[ML Kit 内置中文模型](https://developers.google.com/ml-kit/vision/text-recognition/v2/android)。

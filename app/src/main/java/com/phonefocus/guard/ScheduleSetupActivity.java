@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 public final class ScheduleSetupActivity extends Activity {
     private TextView status;
+    private TextView entertainmentStatus;
     private final Handler handler = new Handler(Looper.getMainLooper());
     private final Runnable refresh = new Runnable() { @Override public void run() { renderStatus(); handler.postDelayed(this, 1000); } };
     @Override public void onCreate(Bundle state) { super.onCreate(state); build(); }
@@ -56,9 +57,26 @@ public final class ScheduleSetupActivity extends Activity {
             .setPositiveButton("打开应用设置",(d,w)->safeOpen(new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,android.net.Uri.parse("package:"+getPackageName())))).setNegativeButton("返回",null).show());
         FocusUi.text(this,page,"时段内用专注页面拦截普通应用，到结束时间自动撤下。电话、紧急呼叫、系统设置及本应用的配置入口保留。",14,FocusUi.MUTED);
         FocusUi.text(this,page,"手机授权模式无法阻止本人关闭权限、修改时段或卸载；不修改系统密码，也不能保证所有安卓型号持续运行。",13,FocusUi.MUTED);
+        addEntertainmentControls(page);
         FocusUi.button(this,page,"可选功能 · 连续亮屏3分钟息屏",false,()->startActivity(new Intent(this,MainActivity.class)));
         FocusUi.button(this,page,"高级 · 受管设备模式",false,()->startActivity(new Intent(this,OwnerSetupActivity.class)));
         renderStatus();
+    }
+    private void addEntertainmentControls(LinearLayout page) {
+        FocusUi.text(this,page,"每10分钟 · 娱乐检查",22,FocusUi.INK);
+        FocusUi.text(this,page,"开启后独立于每日时段运行。每10分钟检查一次：正在使用手机时截图，在本机识别中英文文字和娱乐界面特征，确认娱乐后自动锁屏。",14,FocusUi.MUTED);
+        entertainmentStatus=FocusUi.text(this,page,"",14,FocusUi.GREEN);
+        FocusUi.button(this,page,EntertainmentSettings.enabled(this)?"暂停娱乐检查":"开启娱乐截图检查",true,() -> {
+            if (EntertainmentSettings.enabled(this)) { EntertainmentSettings.setEnabled(this,false); build(); return; }
+            if (!EntertainmentSettings.supported()) { toast("截图识别需要Android 11及以上；原每日时段功能仍可使用"); return; }
+            new AlertDialog.Builder(this).setTitle("开启每10分钟截图识别？")
+                .setMessage("开启后，手机亮屏且未锁定时，每10分钟通过无障碍服务截取当前画面，在本机进行文字识别与娱乐规则判断。截图及识别文字仅在内存处理，不保存、不上传。\n\n可识别部分短视频推荐流、游戏、直播和追剧界面；不是通用图片理解，可能误判或漏判。学习类文字会优先跳过。电话、系统设置、锁屏和本应用不检测；不明或截图失败时不锁屏。\n\n识别到娱乐后请求系统锁屏，不修改密码。重新解锁后仍按10分钟周期检查；不是不可解锁的封禁。若原3分钟息屏功能开启，它仍会更早锁屏。\n\n需要本人启用无障碍服务；升级后如截图失败，请关闭再开启服务以更新截图能力。你可以随时暂停或撤销授权。")
+                .setPositiveButton("同意并开启",(d,w) -> {
+                    EntertainmentSettings.setEnabled(this,true); build();
+                    if (!ScheduleManager.permissionEnabled(this)) safeOpen(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
+                }).setNegativeButton("取消",null).show();
+        });
+        FocusUi.text(this,page,"Android 11+；首次开启或服务重连10分钟后取样。息屏不唤醒手机，后台清理或休眠会延迟。识别不明不锁屏，仍可手动解锁。",12,FocusUi.MUTED);
     }
     private void addTimeRangeCard(LinearLayout page,DailySchedule s,int index) {
         DailySchedule.Window window = s.windows.get(index);
@@ -127,7 +145,7 @@ public final class ScheduleSetupActivity extends Activity {
     }
     private void disclosure() {
         new AlertDialog.Builder(this).setTitle("授权用途与使用范围")
-            .setMessage("为了在每日时段内拦截应用，本应用通过无障碍服务接收当前窗口所属的应用标识，并显示专注覆盖页面。应用标识仅在内存中判断，不保存、不上传。\n\n不读取屏幕文字、聊天内容或密码，不截图，不模拟点击。你可随时在系统设置撤销授权；电话和系统权限设置保留。\n\n同意后，在手机无障碍设置中打开「去做正事 · 每日时段」。如果安装来源导致服务不可用，可在系统应用信息中查看是否需要先允许受限设置。")
+            .setMessage("每日计划通过无障碍服务接收当前窗口所属应用标识，并显示专注覆盖页。每日计划本身不截图、不读取控件文字。\n\n仅在你另行开启「娱乐截图检查」后，Android11+每10分钟在亮屏未锁定时截图，在本机OCR识别文字与娱乐特征，确认娱乐后请求锁屏。截图与识别文字仅在内存处理，不保存、不上传，不模拟点击；可能误判或漏判。电话和系统设置保留。\n\n同意后，在手机无障碍设置中打开「去做正事 · 时段与娱乐检查」。可随时撤权或暂停。升级后若截图能力未更新，请关闭再开启服务。安装来源导致服务不可用时，请在应用信息中查看是否需要允许受限设置。")
             .setPositiveButton("同意并打开授权",(d,w)->safeOpen(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)))
             .setNegativeButton("暂不授权",null).show();
     }
@@ -151,6 +169,14 @@ public final class ScheduleSetupActivity extends Activity {
         if (FocusManager.hasSession(this)) value += "\n当前受管设备专注优先，结束后恢复每日计划";
         value += "\n" + ScheduleManager.prefs(this).getString("alarm_error","") + ScheduleManager.prefs(this).getString("overlay_error","");
         status.setText(value.trim());
+        if (entertainmentStatus!=null) {
+            String text=!EntertainmentSettings.supported()?"此手机低于Android11，截图识别不可用":!EntertainmentSettings.enabled(this)?"娱乐检查：未启用":
+                !ScheduleManager.permissionEnabled(this)?"已开启 · 等待无障碍授权":!ScheduleAccessibilityService.connected()?"已开启 · 服务未连接，请检查授权与后台":"● 每10分钟检查 · 已启用";
+            long checked=EntertainmentSettings.prefs(this).getLong("last_check",0);
+            if (EntertainmentSettings.enabled(this)) text+="\n"+EntertainmentSettings.prefs(this).getString("last_result","等待首次10分钟检查");
+            if (checked>0) text+="\n上次取样："+DateTimeFormatter.ofPattern("MM-dd HH:mm:ss").withZone(ZoneId.systemDefault()).format(Instant.ofEpochMilli(checked));
+            entertainmentStatus.setText(text);
+        }
     }
     private void toast(String text) { Toast.makeText(this,text,Toast.LENGTH_LONG).show(); }
     private void safeOpen(Intent intent) { try { startActivity(intent); } catch (RuntimeException e) { toast("请在手机系统设置中找到对应权限"); } }
