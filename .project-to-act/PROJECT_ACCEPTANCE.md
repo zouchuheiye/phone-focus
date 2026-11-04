@@ -2,7 +2,7 @@
 
 ## 当前验收结论
 
-1.5.0 Agnes云端视觉工程交付通过（E-20261104-AGNES-1.5.0）：8项严格JSON/HTTP错误/重定向拒绝/超时/取消测试、35项旧样本与当前10分钟/45秒结果保护及原回归通过，Release/Lint0错误22警告、原签名升级和最终APK能力/网络/Keystore符号审查通过。生产同一客户端与提示词调用Agnes2.5 Flash，三张合成图游戏/课程/空白分别返回娱乐/学习/不确定，只有游戏达到锁屏门槛；不是真实截图准确率或Android物理锁屏证明。实际密钥未进入公开文件或APK；云端开关默认关闭。GitHub同步中，真机待验收。
+1.5.0 Agnes云端视觉工程交付通过（E-20261104-AGNES-1.5.0）：8项严格JSON/HTTP错误/重定向拒绝/超时/取消测试、35项旧样本与当前10分钟/45秒结果保护及原回归通过，Release/Lint0错误22警告、原签名升级和最终APK能力/网络/Keystore符号审查通过。生产同一客户端与提示词调用Agnes2.5 Flash，三张合成图游戏/课程/空白分别返回娱乐/学习/不确定，只有游戏达到锁屏门槛；不是真实截图准确率或Android物理锁屏证明。实际密钥未进入公开文件或APK；云端开关默认关闭。GitHub源码/Release v1.5.0已发布，Pages success及HTML/APK实际下载摘要匹配（E-20261104-GITHUB-1.5.0），真机待验收。
 
 1.4.0娱乐截图检查工程交付通过（E-20261104-ENTERTAINMENT-1.4.0）：35项规则/单调10分钟周期/开关与旧结果保护通过，原129966/382/3363/173284项回归通过；Release与Lint0错误20警告，同签名升级、最终APK截图能力/无控件读取/内置中英文OCR模型/无网络权限审查通过。网站下载与新披露在四种宽度及视觉检查通过。无连接手机，不验证实际截图、OCR准确率、物理锁屏或后台；GitHub源码/Release v1.4.0已发布，Pages success及HTML HTTP200/摘要匹配（E-20261104-GITHUB-1.4.0）。
 
@@ -55,6 +55,8 @@ MV-02媒体交付通过（E-20261022-PROMO-MV-02）：36秒1080p/30fps、原创�
 | A-25 | 实际Agnes图片输入与密钥排除 | 三张合成图接口通过；APK及公开文件无实际密钥；真实手机待验收 | qa/agnes-live-verification.json、qa/verification-1.5.0.json、qa/agnes-device-checklist.md |
 
 ## 证据索引
+
+- E-20261104-GITHUB-1.5.0：公开main提交bae380367750d097e4abc480812eabcc54ed5c12与Release v1.5.0已发布；APK资产uploaded，GitHub digest匹配原签名包。Pages工作流41799806061成功，线上HTML和实际APK下载HTTP200且SHA256与本地一致。公开树无.local私有配置与签名材料，证据qa/github-publication-1.5.0.json。只核实发布，不豁免真机验收。
 
 - E-20261104-AGNES-1.5.0：时间与源码哈希见qa/verification-1.5.0.json。test.ps1、build.ps1 -WithTests、verify_agnes_release.py退出0。APK1081950字节，SHA256 1a294c3b796075fe0ccf0a2594e8ec30370a80ed7b83fb4b695b03319e020a83，同1.4.0证书，最终APK含INTERNET、截图能力与Keystore/AES-GCM实现，无控件树/手势或普通悬浮窗权限；无MLKit模型和EntertainmentPolicy运行类。对实际密钥逐字节检查APK及Git可发布文件无命中；私有配置仅.local，未泄露密钥值。Lint0错误22警告，未屏蔽。
 - 生产协议/HTTP：8项JUnit通过，qa/agnes-unit-tests.xml；覆盖门槛、类型/范围/多对象/拒答/截断/工具调用、data URI、认证头、HTTP401/429/500/302、响应大小、超时及取消。Gradle中文路径首次类加载失败，build.ps1临时ASCII映射后通过并清理映射；测试Files接口兼容已修复，摘要qa/build-1.5.0-initial-failure.txt。
@@ -126,7 +128,7 @@ MV-02媒体交付通过（E-20261022-PROMO-MV-02）：36秒1080p/30fps、原创�
 
 ## 验收记录
 
-- 2026-11-04：Agnes本地密钥已找到并验证，生产视觉客户端三合成图与8项协议/HTTP测试通过，Release/权限/签名/真实密钥排除检查通过；升级云端需要新同意。GitHub同步中，实际手机仍待验收。
+- 2026-11-04：Agnes本地密钥已找到并验证，生产视觉客户端三合成图与8项协议/HTTP测试通过，Release/权限/签名/真实密钥排除检查通过；升级云端需要新同意。GitHub源码/Release v1.5.0已发布，Pages success及HTML/APK实际下载摘要匹配（E-20261104-GITHUB-1.5.0），实际手机仍待验收。
 
 - 2026-11-04：1.4.0娱乐截图检查源码、签名APK、35项新规则/周期/旧结果保护、回归/构建/权限/模型检查和网页披露完成；工程通过，真机待验收，GitHub源码/Release v1.4.0已发布，Pages success及HTML HTTP200/摘要匹配（E-20261104-GITHUB-1.4.0）。
 
