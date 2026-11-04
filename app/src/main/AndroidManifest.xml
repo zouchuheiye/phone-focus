@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
-    <!-- Bundled OCR runs on-device. Remove transitive SDK network access. -->
-    <uses-permission android:name="android.permission.INTERNET" tools:node="remove" />
+    <!-- Explicitly opted-in screenshots go only to the official Agnes HTTPS endpoint. -->
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" tools:node="remove" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -14,7 +14,7 @@
         <intent><action android:name="android.settings.SETTINGS" /></intent>
     </queries>
     <application android:label="去做正事" android:icon="@drawable/ic_launcher"
-        android:theme="@style/AppTheme" android:allowBackup="false"
+        android:theme="@style/AppTheme" android:allowBackup="false" android:usesCleartextTraffic="false"
         android:dataExtractionRules="@xml/data_extraction_rules" android:fullBackupContent="false" android:supportsRtl="true">
         <activity android:name=".ScheduleSetupActivity" android:exported="true">
             <intent-filter>
@@ -23,6 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" android:exported="false" />
+        <activity android:name=".AgnesSetupActivity" android:exported="false" />
         <service android:name=".ScheduleAccessibilityService" android:exported="true"
             android:label="去做正事 · 时段与娱乐检查" android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter><action android:name="android.accessibilityservice.AccessibilityService" /></intent-filter>

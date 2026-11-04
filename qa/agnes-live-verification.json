@@ -1,0 +1,41 @@
+{
+  "endpoint": "https://apihub.agnes-ai.com/v1/chat/completions",
+  "checks": [
+    {
+      "milliseconds": 1975,
+      "confidence": 0.95,
+      "wouldLock": true,
+      "category": "entertainment",
+      "scene": "game"
+    },
+    {
+      "milliseconds": 1172,
+      "confidence": 0.9,
+      "wouldLock": false,
+      "category": "study",
+      "scene": "study"
+    },
+    {
+      "milliseconds": 1215,
+      "confidence": 0.95,
+      "wouldLock": false,
+      "category": "uncertain",
+      "scene": "blank"
+    }
+  ],
+  "scope": "Production protocol/client smoke test only. Not real screenshot accuracy or Android runtime acceptance.",
+  "model": "agnes-2.5-flash",
+  "syntheticOnly": true,
+  "verifiedAt": "2026-11-04T16:27:53.531783+08:00",
+  "inputSha256": {
+    "qa/agnes-synthetic-game.jpg": "ae4f711e63cbc926f2a689fbfa654f6865c732bdb4dd7258ac8dc4a27ae1f941",
+    "qa/agnes-synthetic-study.jpg": "d55f07e6fe2cebda4aa82624bde63d7415f1e2dad65e258c055c021a2ad10979",
+    "qa/agnes-synthetic-blank.jpg": "db697404043a31e7bfa930b238afb50a8741ecf49567d6eeb4ebb84b9e2ec183"
+  },
+  "initialModelAttempt": {
+    "model": "agnes-3.0-flash",
+    "outcome": "timeout",
+    "seconds": 36.33,
+    "selectedDefault": "agnes-2.5-flash"
+  }
+}

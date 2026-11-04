@@ -6,8 +6,8 @@ android {
         applicationId 'com.phonefocus.guard'
         minSdk 26
         targetSdk 35
-        versionCode 6
-        versionName '1.4.0'
+        versionCode 7
+        versionName '1.5.0'
     }
     signingConfigs {
         release {
@@ -19,8 +19,11 @@ android {
     }
     buildTypes { release { signingConfig signingConfigs.release; minifyEnabled false } }
     compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+    testOptions { unitTests.all { systemProperty 'phonefocus.agnes.live', System.getProperty('phonefocus.agnes.live','false') } }
 }
 dependencies {
-    // Bundled Chinese + Latin OCR: works offline, no Play Services download required.
-    implementation 'com.google.mlkit:text-recognition-chinese:16.0.1'
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.json:json:20240303'
+    testImplementation 'com.squareup.okhttp3:mockwebserver:4.12.0'
 }

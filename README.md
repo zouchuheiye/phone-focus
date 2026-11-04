@@ -1,6 +1,6 @@
-# 去做正事 · 时段与娱乐检查版 1.4.0
+# 去做正事 · Agnes视觉判断版 1.5.0
 
-**[打开展示页](https://zouchuheiye.github.io/phone-focus/) · [下载 Android APK](https://github.com/zouchuheiye/phone-focus/releases/download/v1.4.0/phone-focus-1.4.0.apk) · [查看版本与校验](https://github.com/zouchuheiye/phone-focus/releases/tag/v1.4.0)**
+**[打开展示页](https://zouchuheiye.github.io/phone-focus/) · [下载 Android APK](https://github.com/zouchuheiye/phone-focus/releases/download/v1.5.0/phone-focus-1.5.0.apk) · [查看版本与校验](https://github.com/zouchuheiye/phone-focus/releases/tag/v1.5.0)**
 
 [![去做正事 · 宣传片同款展示页](docs/assets/github-cover.jpg)](https://zouchuheiye.github.io/phone-focus/)
 
@@ -10,7 +10,7 @@
 
 ## 手机安装和设置
 
-1. 安装 `releases/phone-focus-1.4.0.apk`。与旧版包名、签名一致，可覆盖升级；Android8.0及以上，实际兼容性以目标手机验收为准。
+1. 安装 `releases/phone-focus-1.5.0.apk`。与旧版包名、签名一致，可覆盖升级；Android8.0及以上，实际兼容性以目标手机验收为准。
 2. 首页点“添加每日禁用时段”：开始和结束为横排的两个矩形选择框，上下滑动数字滚轮选择小时、分钟，24小时制，不使用钟面选时。选择后点“保存”，也可取消；最多8段，每天重复，结束早于开始表示次日。相同时间不接受。
 3. 每个时段像闹钟一样单独显示“开始时间—结束时间”，可单独开关、点时间框修改、确认删除。可设置09:00—12:00、14:00—18:00两个分离时段，12:00—14:00不拦截；关闭的时段不参与限制，重叠和相邻的已开启时段按并集执行。
 4. 点“开启每日计划”启用总开关；“暂停全部时段”保留所有时段及各自开关状态。至少打开一个时段开关才能开启计划。阅读用途说明后，在手机无障碍设置中打开“去做正事 · 时段与娱乐检查”。这是本机授权，应用不能自行确认。
@@ -29,15 +29,21 @@
 - **手机授权模式可以通过关闭无障碍、修改计划、卸载或强行停止绕过，不能承诺绝对强制。**系统省电、OEM后台管理、权限收回可能暂停执行；恢复时检查真实当前时间，不补做过期限制。重叠时段覆盖全天时不会虚构结束时间。
 - 没有随机更改系统密码，不会到点自动通过原系统锁屏；到点解除的是本应用的拦截页面，系统原有PIN/指纹照常。
 
-## 每10分钟截图识别娱乐（1.4.0）
+## 每10分钟Agnes视觉判断（1.5.0）
 
-首页点击“开启娱乐截图检查”，阅读说明并确认，然后本人启用无障碍服务。此独立开关默认关闭，不受每日计划总开关影响；截图能力需Android11及以上，原每日计划仍支持Android8及以上。升级后若系统仍沿用旧无障碍能力，请关闭再开启服务。
+这版将截图直接交给Agnes多模态模型理解，不再使用OCR关键词判断娱乐。默认模型 `agnes-2.5-flash`，官方HTTPS接口固定为 `https://apihub.agnes-ai.com/v1/chat/completions`，图片以JPEG data URI随请求发送，不上传到公开图床。
 
-开启或服务重连10分钟后首次取样，随后按单调时钟每10分钟取样。手机息屏/锁定、电话/VoIP/响铃、桌面/系统设置/权限页、本应用以及已有专注覆盖时跳过。不会唤醒手机；后台休眠或系统清理会延迟。识别过程中切换窗口、关闭开关、锁屏/来电或结果超过15秒时丢弃，不据旧画面锁当前新应用。
+1. Android11+在首页进入“Agnes模型与密钥设置”，输入个人密钥，或用系统文件选择器导入私有JSON配置。配置包含 `api_key`、`model` 和可选 `base_url`（只接受上述官方地址的 `/v1`）；不要分享私有配置文件。公开源码和APK不携带开发者/机主密钥。
+2. 密钥通过Android Keystore AES-GCM加密保存，旧密钥不回显，配置页禁用截图/自动填充/视图保存；保存或删除配置会暂停检查。应用备份关闭。导入并保存后可删除明文配置文件。
+3. 回首页阅读云端用途，再开启“娱乐截图检查”。升级自1.4.0后新云端开关默认关闭，不会沿用旧的本地截图同意；本人启用无障碍服务，必要时关闭再开启服务更新截图能力。
+4. 独立于每日计划运行。首次开启或服务重连等待完整10分钟，然后每10分钟取样。只在亮屏未锁定且非电话/桌面/设置/本应用/已有专注覆盖时截图，不唤醒手机。网络请求最长30秒，超过45秒的画面结果丢弃，窗口变化/暂停/撤权时取消在途请求。
+5. 模型判断 `entertainment / study / work / essential / uncertain`。仅分类为娱乐且模型自报置信度至少0.90时请求一次系统锁屏；这个数值是门槛，不是测得的准确率。拒答、截断、工具调用、JSON/类型/范围错误、断网/超时/额度错误、不明确或切换页面均不锁屏，不回退旧关键词规则。
 
-截图在内存中缩放，通过内置ML Kit中英文OCR处理，再以文字组合和推荐流应用标识判断部分游戏、直播、追剧和短视频界面。学习文字优先跳过；不明、无文字、受保护画面或截图/OCR失败时不锁。**这是OCR规则识别，不是通用画面语义AI；可能误判或漏判，尚无真实截图识别准确率或手机验收。** 确认娱乐后通过无障碍全局动作请求锁屏，状态页区分识别、指令失败和已发送，不把系统返回值等同于物理息屏已验证。
+截图中的文字是待分析数据，提示模型不要遵从画面内指令。模型输出只解析固定分类和数值，不执行生成代码或工具。仍可能被误导或误判，不能保证识别所有娱乐，也没有真实手机准确率评估。合成图验证只证明接口与客户端可通。
 
-每次检查只请求一次锁屏，仍可用原密码/指纹解锁，之后按10分钟周期继续；不是不可解锁封禁。要在学习期间持续限制应用，仍用每日时段。若旧3分钟息屏也开启，会更早锁屏，可在“可选功能”中暂停。
+**云端隐私：开启后会将压缩截图和当前应用标识发送给Agnes，可能包含聊天、账号等私人信息；服务商数据处理/保留与计费按其政策。应用本身不保存截图或模型原文，仅保存固定状态/时间。**最终APK新增网络权限，只在用户确认后调用Agnes。
+
+每轮只请求锁屏一次，仍可用原密码/指纹解锁。要在学习期间持续限制使用，仍用每日时段。若原3分钟息屏同时开启，会更早锁屏。权限撤销、系统清理、卸载及OEM省电仍可能暂停执行，不承诺全型号或不可解除封禁。
 
 ## 可选功能与管理模式
 
@@ -47,7 +53,7 @@
 
 ## 隐私与权限
 
-全部本机运行，最终APK移除OCR依赖传入的网络权限，不上传数据，不需要API密钥或Google Play服务下载模型。每日计划本身只接收窗口应用标识，不截图；另行明确开启娱乐检查后才截图并OCR。截图可能包含当前可见的私人信息，仅在内存处理并在任务结束释放，不写相册/文件，不保存OCR原文、应用历史或截图。仅保存开关、上次检查时间与固定分类/错误状态。服务配置 `canRetrieveWindowContent=false`、`canTakeScreenshot=true`，不读取控件树、不模拟手势；使用 `TYPE_ACCESSIBILITY_OVERLAY` 显示专注页，不申请普通悬浮窗权限。
+每日计划、3分钟息屏和受管设备模式本身在手机本机运行。**Agnes视觉检查是另行开启的联网功能**：上传压缩截图及当前应用标识到Agnes官方HTTPS接口；不使用公共图床，不保存截图/OCR或模型原文，也不将原文写入日志。平台数据处理按其政策。密钥仅私有配置导入/手动输入并在手机Keystore加密，不写进公开仓库或APK。无障碍 `canRetrieveWindowContent=false`、`canTakeScreenshot=true`，不读控件树、不模拟手势；原每日拦截使用无障碍覆盖，不申请普通悬浮窗权限。
 
 本地保存每日计划、开关和简短错误；三分钟功能保存启用状态及最近锁屏指令时间；高级管理模式保存策略快照、到期状态和恢复码摘要。设备保护存储用于重启重算。签名材料在 `.local`，不交付、不分享。
 
@@ -58,8 +64,8 @@
 .\build.ps1
 ```
 
-脚本支持 `-ToolchainRoot`；无Gradle缓存可 `build.ps1 -Online`。工程检查涵盖每日/跨午夜/重叠/夏令时/每日重复、三分钟计时、恢复码和回滚；不能代替手机验证。新增35项周期/识别规则/过期结果检查不等于OCR准确率验证。当前没有连接安卓手机，另按 [娱乐检查真机清单](qa/entertainment-device-checklist.md) 及 [每日模式真机清单](qa/daily-schedule-device-checklist.md) 验证授权、实际拦截、紧急电话、到点恢复、后台与重启。历史APK及原验证记录保留。
+脚本支持 `-ToolchainRoot`；无Gradle缓存可 `build.ps1 -Online`。工程检查涵盖每日/跨午夜/重叠/夏令时/每日重复、三分钟计时、恢复码和回滚；不能代替手机验证。新增结构化返回/HTTP错误/取消/超时测试与合成画面接口验证，不等于真实手机识别准确率。当前没有连接安卓手机，另按 [Agnes检查真机清单](qa/agnes-device-checklist.md) 及 [每日模式真机清单](qa/daily-schedule-device-checklist.md) 验证授权、实际拦截、紧急电话、到点恢复、后台与重启。历史APK及原验证记录保留。
 
 Android官方依据：[无障碍服务与覆盖窗口](https://developer.android.com/reference/android/accessibilityservice/AccessibilityService)、[内容访问能力配置](https://developer.android.com/reference/android/accessibilityservice/AccessibilityServiceInfo)、[准时闹钟](https://developer.android.com/develop/background-work/services/alarms/schedule)。
 
-截图与本地OCR依据：[Android takeScreenshot](https://developer.android.com/reference/android/accessibilityservice/AccessibilityService#takeScreenshot(int,java.util.concurrent.Executor,android.accessibilityservice.AccessibilityService.TakeScreenshotCallback))、[ML Kit 内置中文模型](https://developers.google.com/ml-kit/vision/text-recognition/v2/android)。
+截图与模型依据：[Android takeScreenshot](https://developer.android.com/reference/android/accessibilityservice/AccessibilityService#takeScreenshot(int,java.util.concurrent.Executor,android.accessibilityservice.AccessibilityService.TakeScreenshotCallback))、[Agnes 2.5 Flash](https://agnes-ai.com/zh-Hans/docs/agnes-25-flash)。

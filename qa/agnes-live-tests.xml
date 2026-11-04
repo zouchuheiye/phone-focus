@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.phonefocus.guard.AgnesLiveProbeTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-11-04T08:23:59.678Z" hostname="DESKTOP-GH75RDN" time="4.486">
+  <properties/>
+  <testcase name="syntheticVisionUsingPrivateLocalConfiguration" classname="com.phonefocus.guard.AgnesLiveProbeTest" time="4.486"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

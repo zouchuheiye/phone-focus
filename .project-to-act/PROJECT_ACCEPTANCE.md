@@ -2,6 +2,8 @@
 
 ## 当前验收结论
 
+1.5.0 Agnes云端视觉工程交付通过（E-20261104-AGNES-1.5.0）：8项严格JSON/HTTP错误/重定向拒绝/超时/取消测试、35项旧样本与当前10分钟/45秒结果保护及原回归通过，Release/Lint0错误22警告、原签名升级和最终APK能力/网络/Keystore符号审查通过。生产同一客户端与提示词调用Agnes2.5 Flash，三张合成图游戏/课程/空白分别返回娱乐/学习/不确定，只有游戏达到锁屏门槛；不是真实截图准确率或Android物理锁屏证明。实际密钥未进入公开文件或APK；云端开关默认关闭。GitHub同步中，真机待验收。
+
 1.4.0娱乐截图检查工程交付通过（E-20261104-ENTERTAINMENT-1.4.0）：35项规则/单调10分钟周期/开关与旧结果保护通过，原129966/382/3363/173284项回归通过；Release与Lint0错误20警告，同签名升级、最终APK截图能力/无控件读取/内置中英文OCR模型/无网络权限审查通过。网站下载与新披露在四种宽度及视觉检查通过。无连接手机，不验证实际截图、OCR准确率、物理锁屏或后台；GitHub源码/Release v1.4.0已发布，Pages success及HTML HTTP200/摘要匹配（E-20261104-GITHUB-1.4.0）。
 
 SITE-01本地网页验收通过（E-20261023-GITHUB-SITE）：Edge验证320/390/768/1440宽度、图片加载、无溢出、视频播放10秒1080p、下载APK哈希与原版一致、FAQ、无控制台错误。远端源码公开、Release资产uploaded且GitHub摘要匹配、Pages built及HTTP200已核实（E-20261023-GITHUB-PUBLISHED）；线上页面/样式/脚本/图片/视频/APK与本地哈希一致，一次Edge线上播放10秒1080p通过。后续复查网络超时保留记录；不改变安卓真机Gate。
@@ -49,7 +51,14 @@ MV-02媒体交付通过（E-20261022-PROMO-MV-02）：36秒1080p/30fps、原创�
 | A-22 | 每10分钟、娱乐规则、开关与结果有效性保护 | 35项纯Java检查通过；真实OCR与锁屏待设备 | qa/EntertainmentGuardTest.java、qa/timer-test-1.4.0.txt |
 | A-23 | 1.4.0签名/权限/内置模型/构建与网页披露 | 工程及网页通过，手机授权待验收 | qa/verification-1.4.0.json、qa/site-verification-1.4.0.json |
 
+| A-24 | Agnes结构化决策、HTTP错误、拒绝重定向、限时取消 | 8项模拟单元测试通过 | qa/agnes-unit-tests.xml、AgnesClientTest.java |
+| A-25 | 实际Agnes图片输入与密钥排除 | 三张合成图接口通过；APK及公开文件无实际密钥；真实手机待验收 | qa/agnes-live-verification.json、qa/verification-1.5.0.json、qa/agnes-device-checklist.md |
+
 ## 证据索引
+
+- E-20261104-AGNES-1.5.0：时间与源码哈希见qa/verification-1.5.0.json。test.ps1、build.ps1 -WithTests、verify_agnes_release.py退出0。APK1081950字节，SHA256 1a294c3b796075fe0ccf0a2594e8ec30370a80ed7b83fb4b695b03319e020a83，同1.4.0证书，最终APK含INTERNET、截图能力与Keystore/AES-GCM实现，无控件树/手势或普通悬浮窗权限；无MLKit模型和EntertainmentPolicy运行类。对实际密钥逐字节检查APK及Git可发布文件无命中；私有配置仅.local，未泄露密钥值。Lint0错误22警告，未屏蔽。
+- 生产协议/HTTP：8项JUnit通过，qa/agnes-unit-tests.xml；覆盖门槛、类型/范围/多对象/拒答/截断/工具调用、data URI、认证头、HTTP401/429/500/302、响应大小、超时及取消。Gradle中文路径首次类加载失败，build.ps1临时ASCII映射后通过并清理映射；测试Files接口兼容已修复，摘要qa/build-1.5.0-initial-failure.txt。
+- 实际云端：明确启用的AgnesLiveProbeTest通过，qa/agnes-live-tests.xml及qa/agnes-live-verification.json。使用私有密钥和默认agnes-2.5-flash，三张合成JPEG直接data URI，不上传真实个人截图；无文字方块游戏娱乐0.95/约1975ms、课程学习0.9/约1172ms、空白不确定0.95/约1215ms。输入图固定于qa/agnes-synthetic-*.jpg。门槛0.90是模型自报值，不是测量准确率；3.0初次超时，未作为默认。
 
 - E-20261104-GITHUB-1.4.0：源码提交0d3ca7721804019a80210d2d97422cf4e71d4c64已推送公开main；Release https://github.com/zouchuheiye/phone-focus/releases/tag/v1.4.0 已上传原签名APK与SHA256文件，GitHub资产digest与本地一致。Pages工作流41796222246成功，展示页HTML HTTP200并与本地逐字节摘要匹配；证据qa/github-publication-1.4.0.json。不代表实际安卓设备验收。
 
@@ -94,6 +103,8 @@ MV-02媒体交付通过（E-20261022-PROMO-MV-02）：36秒1080p/30fps、原创�
 
 ## Gate 记录
 
+- G-11 Agnes1.5.0工程与合成图接口：通过；真实手机Keystore、导入/同意、截图/模型误判率、物理锁屏、通话和后台Gate仍待设备，按qa/agnes-device-checklist.md，不豁免。
+
 - G-10 1.4.0娱乐检查工程：通过，E-20261104-ENTERTAINMENT-1.4.0；真实截图/OCR准确率/物理锁屏/电话/后台新Gate待设备，按qa/entertainment-device-checklist.md执行，不豁免。
 
 - G-09 GitHub发布与SITE-01展示：通过，E-20261023-GITHUB-PUBLISHED及E-20261023-GITHUB-SITE；公开仓库/Release/Pages和私钥排除已验证，网络复查超时留痕；不更改G-02及手机授权验收状态。
@@ -114,6 +125,8 @@ MV-02媒体交付通过（E-20261022-PROMO-MV-02）：36秒1080p/30fps、原创�
 - G-02真机可用：待设备，未豁免。
 
 ## 验收记录
+
+- 2026-11-04：Agnes本地密钥已找到并验证，生产视觉客户端三合成图与8项协议/HTTP测试通过，Release/权限/签名/真实密钥排除检查通过；升级云端需要新同意。GitHub同步中，实际手机仍待验收。
 
 - 2026-11-04：1.4.0娱乐截图检查源码、签名APK、35项新规则/周期/旧结果保护、回归/构建/权限/模型检查和网页披露完成；工程通过，真机待验收，GitHub源码/Release v1.4.0已发布，Pages success及HTML HTTP200/摘要匹配（E-20261104-GITHUB-1.4.0）。
 

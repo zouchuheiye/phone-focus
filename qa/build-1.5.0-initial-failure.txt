@@ -1,0 +1,5 @@
+Initial Windows non-ASCII Gradle worker path failure; fixed by scoped ASCII drive alias in build.ps1.
+AgnesClientTest > initializationError FAILED
+    java.lang.ClassNotFoundException: com.phonefocus.guard.AgnesClientTest
+BUILD FAILED in 10s
+Also fixed test fixture Files.readString/writeString unavailable in Android compile stubs, using readAllBytes/write.

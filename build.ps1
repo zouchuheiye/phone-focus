@@ -1,5 +1,16 @@
-param([string]$ToolchainRoot = (Join-Path $env:USERPROFILE 'Documents\Codex\2026-10-13\codex-v0-1-android-ai-android\work\toolchain'), [switch]$Online)
+param([string]$ToolchainRoot = (Join-Path $env:USERPROFILE 'Documents\Codex\2026-10-13\codex-v0-1-android-ai-android\work\toolchain'), [switch]$Online, [switch]$WithTests)
 $ErrorActionPreference = 'Stop'
+# Java 17 on Windows decodes Gradle worker argument files using the native code page.
+# An ASCII drive alias avoids ClassNotFoundException for unit tests in a Chinese path.
+if ($WithTests -and $env:OS -eq 'Windows_NT' -and $PSScriptRoot -match '[^\x00-\x7F]') {
+    $taskTestDrive = @('Q','R','S','T','U','V') | Where-Object { -not (Test-Path -LiteralPath ($_ + ':\')) -and (($_ + ':\') -notin [Environment]::GetLogicalDrives()) } | Select-Object -First 1
+    if (-not $taskTestDrive) { throw 'No unused ASCII drive alias is available for Gradle tests' }
+    & subst ($taskTestDrive + ':') $PSScriptRoot
+    if ($LASTEXITCODE -ne 0) { throw 'Cannot create temporary Gradle test path alias' }
+    try { & ($taskTestDrive + ':\build.ps1') -ToolchainRoot $ToolchainRoot -Online:$Online -WithTests }
+    finally { & subst ($taskTestDrive + ':') /D }
+    return
+}
 $taskGradleConfig = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'app\build.gradle') -Raw
 if ($taskGradleConfig -notmatch "versionName '([0-9]+\.[0-9]+\.[0-9]+)'") { throw 'Missing release version' }
 $taskVersion = $Matches[1]
@@ -29,6 +40,7 @@ try {
     $sdkProperty = $env:ANDROID_HOME.Replace('\','/').Replace(':','\:')
     [IO.File]::WriteAllText((Join-Path $PSScriptRoot 'local.properties'), "sdk.dir=$sdkProperty`n", [Text.UTF8Encoding]::new($false))
     $gradleArgs = @('-p', $PSScriptRoot, 'assembleRelease', ':app:lintRelease', '--no-daemon', '--console=plain')
+    if ($WithTests) { $gradleArgs += ':app:testReleaseUnitTest' }
     if (-not $Online) { $gradleArgs += '--offline' }
     & $gradleBin @gradleArgs
     if ($LASTEXITCODE -ne 0) { throw 'Android build or lint failed' }

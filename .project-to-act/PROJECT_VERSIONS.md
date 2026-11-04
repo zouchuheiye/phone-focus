@@ -2,14 +2,16 @@
 
 ## 当前版本
 
-- versionName：1.4.0；versionCode：6；包名com.phonefocus.guard。
-- APK：releases/phone-focus-1.4.0.apk；46224534字节；SHA256：da8882e5275365eecfd89c740521afea53121922391187cb8a8a69e1a5828491。
-- 与1.3.1同签名，原时段/开关数据兼容；min26/target35/compile36，截图能力需API30（Android11）。
-- 新开关默认关闭；本人确认截图用途并在系统启用无障碍服务。可能需要关闭再开启旧服务更新能力。
-- 内置ML Kit text-recognition-chinese:16.0.1中文/拉丁模型，最终APK无网络权限；不保存截图/OCR原文。
-- 2026-11-04工程交付通过；GitHub源码/Release v1.4.0已发布，Pages success及HTML HTTP200/摘要匹配（E-20261104-GITHUB-1.4.0）；真机及实际OCR准确率待验收。签名材料仍在.local，不上传。
+- versionName：1.5.0；versionCode：7；包名com.phonefocus.guard。
+- APK：releases/phone-focus-1.5.0.apk；1081950字节；SHA256：1a294c3b796075fe0ccf0a2594e8ec30370a80ed7b83fb4b695b03319e020a83。
+- 同1.4.0签名；原每日时段数据保留，min26/target35/compile36，截图仍需API30。
+- Agnes默认agnes-2.5-flash，官方HTTPS + data URI图片；个人密钥手机Keystore加密，公开APK与仓库不含密钥，不再打包旧OCR模型/关键词规则。
+- 云端开关用新字段，升级默认关闭，必须导入个人配置并确认上传用途；保存/删除配置会暂停。
+- 8项协议/HTTP模拟、三张合成画面生产客户端实测、原回归、构建/Lint0错误22警告与签名/权限检查通过；GitHub同步中；无手机，真实Keystore/截图/后台/物理锁屏未验收。
 
 ## 版本历史
+
+- 1.5.0 / 2026-11-04：用户指定Agnes视觉模型，新增个人配置与新云端同意，移除生产OCR/关键词判断。30秒网络超时、45秒结果保护；公开APK无实际密钥，同签名覆盖升级。证据qa/verification-1.5.0.json；旧1.4.0保留。
 
 - 1.4.0 / 2026-11-04：每10分钟本机截图OCR规则识别娱乐并请求锁屏，35项规则/周期/结果有效性检查与原回归通过；构建/Lint0错误20警告、同签名及最终APK截图/模型/无网络权限通过。证据qa/verification-1.4.0.json；设备计数0。
 

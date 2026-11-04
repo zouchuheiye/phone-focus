@@ -29,7 +29,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.lang.ref.WeakReference;
 
-/** Package events drive daily overlays; separately opted-in screenshots use local OCR only. */
+/** Package events drive overlays; separately opted-in screenshots use Agnes cloud vision. */
 public final class ScheduleAccessibilityService extends AccessibilityService {
     private static final String OVERLAY_CLASS = "com.phonefocus.guard.DailyBlockingOverlay";
     private static WeakReference<ScheduleAccessibilityService> instance = new WeakReference<>(null);
@@ -94,6 +94,7 @@ public final class ScheduleAccessibilityService extends AccessibilityService {
         if (OVERLAY_CLASS.contentEquals(event.getClassName() == null ? "" : event.getClassName())) return;
         foreground = event.getPackageName().toString();
         foregroundRevision++;
+        if (entertainment!=null) entertainment.invalidate();
         evaluate();
     }
     String foregroundPackage() { return foreground; }

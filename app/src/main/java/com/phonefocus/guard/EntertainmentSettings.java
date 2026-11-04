@@ -8,9 +8,10 @@ final class EntertainmentSettings {
     private EntertainmentSettings() { }
     static SharedPreferences prefs(Context c) { return c.getSharedPreferences("entertainment_guard",Context.MODE_PRIVATE); }
     static boolean supported() { return Build.VERSION.SDK_INT>=30; }
-    static boolean enabled(Context c) { return supported() && prefs(c).getBoolean("enabled",false); }
+    // New key intentionally requires fresh consent after upgrading from the offline OCR version.
+    static boolean enabled(Context c) { return supported() && prefs(c).getBoolean("agnes_enabled_v1",false) && AgnesConfig.present(c); }
     static void setEnabled(Context c,boolean on) {
-        prefs(c).edit().putBoolean("enabled",on && supported()).putString("last_result",on?"等待首次10分钟检查":"已暂停娱乐检查").apply();
+        prefs(c).edit().putBoolean("agnes_enabled_v1",on && supported() && AgnesConfig.present(c)).putString("last_result",on?"等待首次10分钟Agnes检查":"已暂停Agnes娱乐检查").apply();
         ScheduleAccessibilityService.refreshNow();
     }
     static void result(Context c,String message) {

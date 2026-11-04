@@ -1,0 +1,11 @@
+{
+  "http": 200,
+  "model": "agnes-2.5-flash",
+  "seconds": 3.09,
+  "answer": "{\"category\":\"entertainment\",\"confidence\":0.95,\"reason\":\"The screen contains Chinese text indicating game-related options such as '星际对战' (Star Battle), '排位赛' (Ranked Match), '对战大厅' (Battle Hall), '选择英雄' (Select Hero), and '开始游戏' (Start Game), which are typical features of an entertainment game interface.\"}",
+  "finish_reason": "stop",
+  "synthetic_only": true,
+  "input": "qa/agnes-synthetic-game-initial.jpg",
+  "inputSha256": "462bc93d505cccfad3cef3840f6b176ca6f2c3c3af30c5cb372a4eee585c2393",
+  "scope": "Initial protocol smoke test with synthetic game menu; final production-client test uses separate no-text game, study and blank fixtures in agnes-live-verification.json."
+}

@@ -29,14 +29,14 @@ public final class EntertainmentGuardTest {
         check(!c.poll(20*interval+1,true),"no catch-up burst");
         check(!c.poll(20*interval+2,false),"turn off");check(!c.poll(21*interval,true),"reenable waits");
         check(!c.poll(22*interval-1,true),"reenable before due");check(c.poll(22*interval,true),"reenable due");
-        check(EntertainmentCadence.current(true,true,3,3,feed,feed,14999),"fresh result");
+        check(EntertainmentCadence.current(true,true,3,3,feed,feed,44999),"fresh result");
         check(!EntertainmentCadence.current(false,true,3,3,feed,feed,1),"consent withdrawn");
         check(!EntertainmentCadence.current(true,false,3,3,feed,feed,1),"call/screen off/locked/protected");
         check(!EntertainmentCadence.current(true,true,3,4,feed,feed,1),"same app changed window");
         check(!EntertainmentCadence.current(true,true,3,3,feed,bili,1),"changed app");
-        check(!EntertainmentCadence.current(true,true,3,3,feed,feed,15000),"stale at cutoff");
+        check(!EntertainmentCadence.current(true,true,3,3,feed,feed,45000),"stale at cutoff");
         check(!EntertainmentCadence.current(true,true,3,3,feed,feed,-1),"invalid age");
         check(!EntertainmentCadence.current(true,true,3,3,null,null,1),"unknown package");
-        System.out.println("Entertainment guard: "+count+" focused rule/cadence/stale-result checks passed. Not an OCR accuracy or Android runtime test.");
+        System.out.println("Entertainment guard: "+count+" legacy policy fixtures and current cadence/stale-result checks passed. Legacy rules are not in the 1.5.0 production app.");
     }
 }
